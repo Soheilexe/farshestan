@@ -1,221 +1,136 @@
 <!DOCTYPE html>
-<html lang="fa" dir="rtl">
+<html lang="fa">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#0b0a08">
-<title>فرشستان | نمایشگاه فرش کاشان</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>فرشستان | Farshestan</title>
+<meta name="description" content="فرشستان | نمایشگاه فرش کاشان">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700;800&family=Cormorant+Garamond:wght@500;600;700&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
 <style>
-:root {
-  --bg:#090806; --surface:#11100d; --surface2:#171511; --gold:#d7b66a;
-  --gold2:#f0d99a; --cream:#f6efdf; --muted:#9f9788; --line:rgba(240,217,154,.16);
-  --shadow:0 35px 100px rgba(0,0,0,.55);
+:root{
+ --bg:#16090c;--bg2:#281116;--panel:rgba(255,248,236,.055);--panel2:rgba(255,248,236,.085);
+ --text:#f5eddf;--soft:#cbbcae;--wine:#5a2c32;--wine2:#7a444b;
+ --gold:#c9a55e;--gold2:#e0c98f;--line:rgba(201,165,94,.25);
+ --shadow:0 24px 70px rgba(0,0,0,.32);--focus:rgba(201,165,94,.28);
 }
-*{box-sizing:border-box;margin:0;padding:0}
+body.light{
+ --bg:#eee4d5;--bg2:#f9f5ee;--panel:rgba(255,255,255,.58);--panel2:rgba(255,255,255,.78);
+ --text:#2b1a1d;--soft:#786a62;--wine:#632f36;--wine2:#8c5960;
+ --gold:#ae8640;--gold2:#9b7738;--line:rgba(112,78,30,.18);
+ --shadow:0 24px 70px rgba(77,53,26,.12);--focus:rgba(174,134,64,.22);
+}
+*{box-sizing:border-box}
 html{scroll-behavior:smooth}
 body{
-  min-height:100vh; font-family:Vazirmatn,Tahoma,sans-serif; color:var(--cream);
-  background:
-    radial-gradient(circle at 80% -10%,rgba(215,182,106,.16),transparent 32%),
-    radial-gradient(circle at 10% 40%,rgba(104,49,33,.16),transparent 30%),
-    var(--bg);
-  overflow-x:hidden;
+ margin:0;min-height:100vh;color:var(--text);font-family:Vazirmatn,Arial,sans-serif;
+ background:
+ radial-gradient(circle at 10% -5%,rgba(201,165,94,.13),transparent 28%),
+ radial-gradient(circle at 90% 12%,rgba(122,68,75,.22),transparent 31%),
+ linear-gradient(145deg,var(--bg),var(--bg2));
+ transition:background .35s,color .35s;
 }
-body:before{
-  content:"";position:fixed;inset:0;pointer-events:none;opacity:.055;
-  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 160 160' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.5'/%3E%3C/svg%3E");
+body:before{content:"";position:fixed;inset:0;pointer-events:none;opacity:.25;background-image:radial-gradient(rgba(255,255,255,.08) .6px,transparent .6px);background-size:5px 5px;mask-image:linear-gradient(to bottom,black,transparent 80%)}
+a{text-decoration:none;color:inherit}
+.page{width:min(100%,1080px);margin:auto;padding:16px 18px 34px}
+.topbar{display:flex;align-items:center;justify-content:space-between;gap:14px;margin-bottom:14px}
+.brand{display:flex;align-items:center;gap:11px}.mark{width:43px;height:43px;border-radius:14px;border:1px solid var(--gold);display:grid;place-items:center;color:var(--gold2);font:600 27px "Cormorant Garamond",serif;background:var(--panel);box-shadow:0 8px 25px rgba(0,0,0,.12)}
+.brand b{font-size:14px}.brand small{display:block;color:var(--soft);font-size:9px;margin-top:2px}
+.controls{display:flex;gap:6px;align-items:center}.btn{appearance:none;border:1px solid var(--line);background:var(--panel);color:var(--text);border-radius:11px;padding:8px 10px;font:600 9px Vazirmatn;cursor:pointer;transition:.2s}.btn:hover,.btn:focus-visible{border-color:var(--gold);box-shadow:0 0 0 4px var(--focus);outline:none}.btn.active{background:var(--gold);color:#281719;border-color:var(--gold)}
+.hero{
+ position:relative;overflow:hidden;border:1px solid var(--line);border-radius:30px;padding:32px 30px 27px;
+ background:linear-gradient(145deg,rgba(122,68,75,.25),var(--panel));
+ box-shadow:var(--shadow);backdrop-filter:blur(16px);
 }
-.container{width:min(1160px,calc(100% - 40px));margin:auto}
-nav{
-  position:fixed;top:0;left:0;right:0;z-index:50;padding:18px 0;
-  background:linear-gradient(180deg,rgba(9,8,6,.9),rgba(9,8,6,0));
-  backdrop-filter:blur(10px);
-}
-.nav-inner{display:flex;align-items:center;justify-content:space-between}
-.brand{display:flex;align-items:center;gap:12px;color:var(--cream);text-decoration:none;font-weight:800}
-.brand-mark{
-  width:42px;height:42px;border:1px solid rgba(215,182,106,.55);border-radius:13px;
-  display:grid;place-items:center;position:relative;background:linear-gradient(145deg,#292117,#0e0c09);
-  box-shadow:inset 0 0 25px rgba(215,182,106,.08),0 8px 30px rgba(0,0,0,.3)
-}
-.brand-mark:after{content:"✦";color:var(--gold);font-size:20px}
-.brand small{display:block;color:var(--muted);font-weight:400;font-size:10px;margin-top:-2px}
-.nav-pill{font-size:12px;color:var(--gold2);border:1px solid var(--line);border-radius:999px;padding:8px 14px;background:rgba(255,255,255,.025)}
+.hero:before{content:"";position:absolute;width:330px;height:330px;border:1px solid rgba(201,165,94,.12);border-radius:50%;right:-135px;top:-175px}.hero:after{content:"";position:absolute;width:190px;height:190px;border:1px solid rgba(201,165,94,.08);border-radius:50%;right:-65px;top:-105px}
+.kicker{font-size:9px;letter-spacing:3px;color:var(--gold2);margin-bottom:9px}.hero h1{margin:0;font:600 clamp(52px,8vw,78px)/.82 "Cormorant Garamond",Amiri,serif;color:var(--text);letter-spacing:.5px}.intro{max-width:790px;margin:16px 0 20px;color:var(--soft);font-size:12px;line-height:2.05}
+.phones{display:grid;grid-template-columns:repeat(2,minmax(0,300px));gap:10px}.phone{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:12px 14px;border:1px solid var(--line);border-radius:15px;background:var(--panel);transition:.2s}.phone:hover,.phone:focus-visible{transform:translateY(-2px);border-color:var(--gold);box-shadow:0 10px 25px rgba(0,0,0,.12),0 0 0 4px var(--focus);outline:none}.phone small{color:var(--soft);font-size:8px}.phone b{font-size:14px;direction:ltr;color:var(--text)}
+.section{margin-top:17px}.section-head{display:flex;justify-content:space-between;align-items:end;margin:0 3px 8px}.section-head b{font-size:12px}.section-head span{font-size:8px;color:var(--soft)}
+.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}.card{min-height:96px;padding:14px;border:1px solid var(--line);border-radius:18px;background:var(--panel);display:flex;flex-direction:column;justify-content:space-between;transition:.2s;box-shadow:0 10px 28px rgba(0,0,0,.06)}.card:hover,.card:focus-visible{transform:translateY(-3px);border-color:var(--gold);box-shadow:0 15px 32px rgba(0,0,0,.14),0 0 0 4px var(--focus);outline:none}.card.primary{background:linear-gradient(145deg,rgba(122,68,75,.45),var(--panel2));min-height:108px}.card .icon{width:30px;height:30px;display:grid;place-items:center;color:var(--gold2);font-size:18px;border:1px solid var(--line);border-radius:10px;background:rgba(201,165,94,.06)}.card strong{font-size:11px;margin-top:8px}.card small{font-size:8px;color:var(--soft);direction:ltr}
+.messengers{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}.msg{min-height:83px;padding:13px;border:1px solid var(--line);border-radius:17px;background:var(--panel);transition:.2s}.msg:hover,.msg:focus-visible{transform:translateY(-2px);border-color:var(--gold);box-shadow:0 0 0 4px var(--focus);outline:none}.msg b{font-size:11px}.msg small{display:block;color:var(--soft);font-size:8px;margin-top:6px;direction:ltr}.nums{display:flex;flex-wrap:wrap;gap:5px;margin-top:8px}.num{font-size:8px;color:var(--gold2);padding:4px 6px;border-radius:7px;background:rgba(201,165,94,.08)}
+.location{
+ margin-top:17px;padding:17px 18px;border:1px solid var(--line);border-radius:20px;background:var(--panel);
+ display:flex;align-items:center;justify-content:space-between;gap:15px;box-shadow:0 12px 35px rgba(0,0,0,.07)
+}.location-copy{min-width:0}.location-title{font-size:12px;font-weight:700}.location-text{font-size:10px;color:var(--soft);margin-top:5px;line-height:1.8}.map-links{display:flex;gap:7px;flex-wrap:wrap;justify-content:flex-end}.map-link{padding:8px 11px;border:1px solid var(--line);border-radius:10px;font-size:9px;background:var(--panel2);transition:.2s}.map-link:hover,.map-link:focus-visible{border-color:var(--gold);box-shadow:0 0 0 4px var(--focus);outline:none}
+.footer{text-align:center;color:var(--soft);font-size:8px;padding:20px 0 2px}
+@media(max-width:800px){.grid,.messengers{grid-template-columns:repeat(2,1fr)}.hero{padding:27px 22px}}
+@media(max-width:520px){.page{padding:11px 12px 25px}.topbar{align-items:flex-start}.brand small{display:none}.controls{flex-wrap:wrap;justify-content:flex-end}.hero{border-radius:24px;padding:24px 18px}.hero h1{font-size:56px}.intro{font-size:11px;line-height:2}.phones{grid-template-columns:1fr}.grid,.messengers{grid-template-columns:1fr 1fr}.card{min-height:88px}.location{align-items:flex-start;flex-direction:column}.map-links{justify-content:flex-start}}
+@media(max-width:350px){.grid,.messengers{grid-template-columns:1fr}.hero h1{font-size:50px}}
+</style></head><body>
+<div class="page" dir="rtl">
+<header class="topbar">
+ <div class="brand"><div class="mark">ف</div><div><b>فرشستان</b><small id="brandSub">نمایشگاه فرش کاشان</small></div></div>
+ <div class="controls">
+  <button class="btn active" data-lang="fa" onclick="setLang('fa')">فا</button>
+  <button class="btn" data-lang="en" onclick="setLang('en')">EN</button>
+  <button class="btn" data-lang="ar" onclick="setLang('ar')">ع</button>
+  <button class="btn" onclick="toggleTheme()" aria-label="تغییر حالت رنگ">☼ ◐</button>
+ </div>
+</header>
 
-.hero{min-height:100vh;display:grid;place-items:center;padding:130px 0 80px;position:relative}
-.hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:70px;align-items:center}
-.eyebrow{display:inline-flex;gap:9px;align-items:center;color:var(--gold);font-size:12px;font-weight:700;letter-spacing:.4px;margin-bottom:20px}
-.dot{width:7px;height:7px;border-radius:50%;background:var(--gold);box-shadow:0 0 18px var(--gold)}
-h1{font-size:clamp(44px,7vw,82px);line-height:1.03;letter-spacing:-3px;font-weight:900;max-width:720px}
-h1 span{background:linear-gradient(120deg,#fff5da 10%,#d7b66a 55%,#fff1bd 90%);-webkit-background-clip:text;color:transparent}
-.hero p{color:#aaa294;font-size:17px;line-height:2;margin:24px 0 30px;max-width:620px}
-.actions{display:flex;gap:12px;flex-wrap:wrap}
-.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;text-decoration:none;border-radius:14px;padding:14px 21px;font-weight:700;font-size:13px;transition:.3s;cursor:pointer}
-.btn-primary{color:#17120a;background:linear-gradient(135deg,#e9cf8b,#b89143);box-shadow:0 15px 40px rgba(215,182,106,.18)}
-.btn-primary:hover{transform:translateY(-3px);box-shadow:0 20px 50px rgba(215,182,106,.3)}
-.btn-ghost{color:var(--cream);border:1px solid var(--line);background:rgba(255,255,255,.025)}
-.btn-ghost:hover{border-color:rgba(215,182,106,.45);background:rgba(215,182,106,.06)}
-
-.rug-art{position:relative;min-height:510px;display:grid;place-items:center}
-.rug-frame{
-  width:min(420px,85%);aspect-ratio:.72;border-radius:12px;padding:12px;
-  background:linear-gradient(135deg,#d9bd74,#6c4b1c,#e4ca80,#63431a);
-  transform:rotate(3deg);box-shadow:40px 45px 90px rgba(0,0,0,.7),0 0 90px rgba(215,182,106,.12);
-}
-.rug-inner{
-  width:100%;height:100%;border:5px solid #2d2112;border-radius:5px;
-  background:
-   radial-gradient(ellipse at 50% 48%,rgba(223,194,116,.7) 0 8%,transparent 9%),
-   repeating-radial-gradient(ellipse at center,#753b2b 0 12px,#a66b39 13px 20px,#3e241e 21px 30px);
-  position:relative;overflow:hidden;
-}
-.rug-inner:before{content:"";position:absolute;inset:18px;border:2px solid rgba(231,204,132,.7);box-shadow:inset 0 0 0 7px rgba(45,30,17,.6);}
-.rug-inner:after{content:"فرشستان";position:absolute;inset:0;display:grid;place-items:center;color:rgba(246,239,223,.65);font-size:35px;font-weight:800;transform:rotate(-90deg);letter-spacing:2px}
-.float-card{
-  position:absolute;bottom:55px;left:5%;padding:17px 19px;border:1px solid var(--line);
-  border-radius:18px;background:rgba(18,16,12,.76);backdrop-filter:blur(18px);box-shadow:var(--shadow)
-}
-.float-card b{display:block;color:var(--gold2);font-size:15px;margin-bottom:4px}
-.float-card span{color:var(--muted);font-size:11px}
-
-.section{padding:100px 0}
-.section-head{display:flex;justify-content:space-between;align-items:end;gap:30px;margin-bottom:32px}
-.section-kicker{color:var(--gold);font-size:11px;font-weight:800;letter-spacing:1px}
-h2{font-size:clamp(30px,5vw,48px);letter-spacing:-1.5px;margin-top:8px}
-.section-head p{max-width:440px;color:var(--muted);line-height:1.9;font-size:13px}
-.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
-.card{
-  padding:28px;border-radius:24px;border:1px solid var(--line);
-  background:linear-gradient(145deg,rgba(255,255,255,.045),rgba(255,255,255,.012));
-  min-height:210px;transition:.35s;position:relative;overflow:hidden
-}
-.card:hover{transform:translateY(-7px);border-color:rgba(215,182,106,.42);box-shadow:0 25px 60px rgba(0,0,0,.35)}
-.card:after{content:"";position:absolute;width:130px;height:130px;border-radius:50%;background:rgba(215,182,106,.08);filter:blur(25px);left:-50px;bottom:-50px}
-.icon{width:46px;height:46px;border-radius:14px;display:grid;place-items:center;color:#17120a;background:linear-gradient(135deg,#e7ca82,#a77e35);font-size:20px;margin-bottom:24px}
-.card h3{font-size:18px;margin-bottom:10px}
-.card p{font-size:12px;color:var(--muted);line-height:1.9}
-
-.contact{border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:75px 0}
-.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}
-.contact-box{padding:28px;border:1px solid var(--line);border-radius:24px;background:rgba(255,255,255,.025)}
-.contact-box h3{font-size:20px;margin-bottom:8px}
-.contact-box>p{color:var(--muted);font-size:12px;line-height:1.9;margin-bottom:20px}
-.contact-list{display:grid;gap:9px}
-.contact-link{display:flex;align-items:center;justify-content:space-between;gap:15px;text-decoration:none;color:var(--cream);padding:14px 15px;border-radius:14px;background:rgba(255,255,255,.035);border:1px solid transparent;transition:.25s}
-.contact-link:hover{border-color:var(--line);background:rgba(215,182,106,.05)}
-.contact-link span:first-child{color:var(--muted);font-size:11px}
-.contact-link strong{font-size:13px;direction:ltr}
-
-footer{padding:35px 0 45px;color:#716b60;font-size:11px}
-.footer-inner{display:flex;justify-content:space-between;gap:20px;align-items:center}
-.gold{color:var(--gold)}
-
-@media(max-width:850px){
-  .container{width:min(100% - 28px,650px)}
-  .hero{padding-top:110px}
-  .hero-grid{grid-template-columns:1fr;gap:25px;text-align:center}
-  .hero p{margin-left:auto;margin-right:auto}
-  .actions{justify-content:center}
-  .rug-art{min-height:430px}
-  .rug-frame{width:300px}
-  .float-card{left:2%;bottom:20px}
-  .cards{grid-template-columns:1fr}
-  .section-head{display:block}
-  .section-head p{margin-top:15px}
-  .contact-grid{grid-template-columns:1fr}
-  .footer-inner{display:block;text-align:center}
-  .footer-inner>*+*{margin-top:10px}
-}
-@media(max-width:480px){
-  h1{letter-spacing:-1.8px}
-  .nav-pill{display:none}
-  .rug-art{min-height:380px}
-  .rug-frame{width:245px}
-  .float-card{padding:12px 14px}
-}
-</style>
-</head>
-<body>
-<nav>
-  <div class="container nav-inner">
-    <a class="brand" href="#">
-      <span class="brand-mark"></span>
-      <span>فرشستان<small>نمایشگاه فرش کاشان</small></span>
-    </a>
-    <span class="nav-pill">کاشان · بلوار امام رضا</span>
-  </div>
-</nav>
-
-<main>
 <section class="hero">
-  <div class="container hero-grid">
-    <div>
-      <div class="eyebrow"><span class="dot"></span> اصالت، هنر، انتخاب متفاوت</div>
-      <h1>جایی که <span>فرش</span><br>به یک اثر هنری تبدیل می‌شود.</h1>
-      <p>فرشستان؛ تجربه‌ای متفاوت برای دیدن، انتخاب و ارتباط با دنیای فرش. از گالری آنلاین تا ارتباط مستقیم و مسیریابی نمایشگاه.</p>
-      <div class="actions">
-        <a class="btn btn-primary" href="https://farshestan.co/" target="_blank" rel="noopener">ورود به وب‌سایت ↗</a>
-        <a class="btn btn-ghost" href="#contact">ارتباط با فرشستان</a>
-      </div>
-    </div>
-    <div class="rug-art" aria-label="تصویر تزئینی فرش">
-      <div class="rug-frame"><div class="rug-inner"></div></div>
-      <div class="float-card"><b>فرشستان</b><span>کاشان · بلوار امام رضا</span></div>
-    </div>
-  </div>
+ <div class="kicker">KASHAN • PERSIAN RUGS</div>
+ <h1 id="title">فرشستان</h1>
+ <p class="intro" id="intro">برای ارتباط مستقیم با فرشستان و دریافت کاتالوگ فرش‌ها، می‌توانید در پیام‌رسان‌های تلگرام، واتساپ، بله و ایتا پیام بدهید یا با دو شماره تماس ما در ارتباط باشید.</p>
+ <div class="phones">
+  <a class="phone" href="tel:09135836090"><small id="p1">شماره ۱ · تماس مستقیم</small><b>0913 583 6090</b></a>
+  <a class="phone" href="tel:09135836080"><small id="p2">شماره ۲ · تماس مستقیم</small><b>0913 583 6080</b></a>
+ </div>
 </section>
 
 <section class="section">
-  <div class="container">
-    <div class="section-head">
-      <div><div class="section-kicker">THE EXPERIENCE</div><h2>همه‌چیز برای یک انتخاب خاص</h2></div>
-      <p>یک صفحه‌ی ساده کافی نیست؛ اینجا ساختار سایت بر پایه‌ی حس لوکس، خوانایی، تعامل و دسترسی سریع طراحی شده است.</p>
-    </div>
-    <div class="cards">
-      <article class="card"><div class="icon">✦</div><h3>گالری و وب‌سایت</h3><p>ورود سریع به فضای اصلی برند و مشاهده‌ی محصولات و محتوای فرشستان.</p></article>
-      <article class="card"><div class="icon">◎</div><h3>ارتباط مستقیم</h3><p>دسترسی سریع به شبکه‌های اجتماعی، پیام‌رسان‌ها، ایمیل و شماره‌های تماس.</p></article>
-      <article class="card"><div class="icon">⌖</div><h3>مسیریابی</h3><p>پیدا کردن نمایشگاه در گوگل مپ، نشان و بلد، بدون جست‌وجوی اضافه.</p></article>
-    </div>
-  </div>
+ <div class="section-head"><b id="quick">دسترسی سریع</b><span id="hint">اول سایت، سپس شبکه اجتماعی و تماس</span></div>
+ <div class="grid">
+  <a class="card primary" href="https://farshestan.co/"><span class="icon">⌂</span><strong id="website">وب‌سایت فرشستان</strong><small>farshestan.co</small></a>
+  <a class="card primary" href="https://www.instagram.com/farshestan/"><span class="icon">◎</span><strong id="instagram">پیج اینستاگرام</strong><small>@farshestan</small></a>
+  <a class="card" href="tel:09135836090"><span class="icon">☎</span><strong id="call1">تماس با شماره ۱</strong><small>0913 583 6090</small></a>
+  <a class="card" href="tel:09135836080"><span class="icon">☎</span><strong id="call2">تماس با شماره ۲</strong><small>0913 583 6080</small></a>
+ </div>
 </section>
 
-<section class="contact" id="contact">
-  <div class="container contact-grid">
-    <div class="contact-box">
-      <div class="section-kicker">DIRECT CONTACT</div>
-      <h3>ارتباط با فرشستان</h3>
-      <p>برای ارتباط مستقیم و دریافت کاتالوگ فرش‌ها، از مسیر موردنظر خود وارد شوید.</p>
-      <div class="contact-list">
-        <a class="contact-link" href="https://www.instagram.com/farshestan/" target="_blank" rel="noopener"><span>اینستاگرام</span><strong>@farshestan ↗</strong></a>
-        <a class="contact-link" href="https://t.me/farshestanco" target="_blank" rel="noopener"><span>تلگرام</span><strong>@farshestanco ↗</strong></a>
-        <a class="contact-link" href="https://eitaa.com/farshestan_co" target="_blank" rel="noopener"><span>ایتا</span><strong>@farshestan_co ↗</strong></a>
-        <a class="contact-link" href="mailto:info@farshestan.co"><span>ایمیل</span><strong>info@farshestan.co</strong></a>
-        <a class="contact-link" href="tel:09135836090"><span>تماس ۱</span><strong>0913 583 6090</strong></a>
-        <a class="contact-link" href="tel:09135836080"><span>تماس ۲</span><strong>0913 583 6080</strong></a>
-      </div>
-    </div>
-    <div class="contact-box">
-      <div class="section-kicker">VISIT US</div>
-      <h3>به نمایشگاه سر بزنید</h3>
-      <p>کاشان، بلوار امام رضا — مسیر موردنظر خود را انتخاب کنید.</p>
-      <div class="contact-list">
-        <a class="contact-link" href="https://maps.app.goo.gl/61jGNhxfx9CrzdR86" target="_blank" rel="noopener"><span>مسیریابی با</span><strong>گوگل مپ ↗</strong></a>
-        <a class="contact-link" href="https://nshn.ir/c9_brYgeQxO2uJ" target="_blank" rel="noopener"><span>مسیریابی با</span><strong>نشان ↗</strong></a>
-        <a class="contact-link" href="https://balad.ir/p/28i5s1zWXkq0Id" target="_blank" rel="noopener"><span>مسیریابی با</span><strong>بلد ↗</strong></a>
-      </div>
-    </div>
-  </div>
+<section class="section">
+ <div class="section-head"><b id="msgTitle">پیام‌رسان‌ها</b><span id="msgHint">ارتباط مستقیم و دریافت کاتالوگ فرش‌ها</span></div>
+ <div class="messengers">
+  <a class="msg" href="https://t.me/farshestanco"><b id="telegram">تلگرام</b><small>@farshestanco</small></a>
+  <a class="msg" href="https://wa.me/989135836090"><b id="whatsapp">واتساپ</b><div class="nums"><span class="num">0913 583 6090</span><span class="num">0913 583 6080</span></div></a>
+  <a class="msg" href="tel:09135836090"><b id="bale">بله</b><div class="nums"><span class="num">0913 583 6090</span><span class="num">0913 583 6080</span></div></a>
+  <a class="msg" href="https://eitaa.com/farshestan_co"><b id="eitaa">ایتا</b><small>@farshestan_co</small></a>
+ </div>
 </section>
-</main>
 
-<footer>
-  <div class="container footer-inner">
-    <span>© فرشستان — کاشان</span>
-    <span class="gold">اصالت در جزئیات است.</span>
-  </div>
-</footer>
+<section class="location" aria-label="آدرس و نقشه">
+ <div class="location-copy">
+  <div class="location-title" id="locationTitle">آدرس نمایشگاه</div>
+  <div class="location-text" id="locationText">فرشستان | نمایشگاه فرش کاشان</div>
+ </div>
+ <div class="map-links">
+  <a class="map-link" href="https://maps.app.goo.gl/61jGNhxfx9CrzdR86" id="google">Google Maps</a>
+  <a class="map-link" href="https://nshn.ir/c9_brYgeQxO2uJ" id="neshan">نشان</a>
+  <a class="map-link" href="https://balad.ir/p/28i5s1zWXkq0Id" id="balad">بلد</a>
+ </div>
+</section>
+
+<section class="section">
+ <div class="section-head"><b id="more">دسترسی‌های بیشتر</b></div>
+ <div class="grid">
+  <a class="card" href="mailto:info@farshestan.co"><span class="icon">✉</span><strong id="email">ایمیل</strong><small>info@farshestan.co</small></a>
+  <a class="card" href="https://nshn.ir/c9_brYgeQxO2uJ"><span class="icon">⌖</span><strong id="nav">مسیریابی</strong><small>Neshan</small></a>
+  <a class="card" href="https://balad.ir/p/28i5s1zWXkq0Id"><span class="icon">⌖</span><strong id="nav2">مسیریابی</strong><small>Balad</small></a>
+  <a class="card" href="tel:09135836090"><span class="icon">☎</span><strong id="direct">تماس مستقیم</strong><small>0913 583 6090</small></a>
+ </div>
+</section>
+<footer class="footer" id="footer">فرشستان — هنر اصیل فرش ایرانی در کاشان</footer>
+</div>
+
+<script>
+const T={
+fa:{dir:'rtl',brand:'نمایشگاه فرش کاشان',title:'فرشستان',intro:'برای ارتباط مستقیم با فرشستان و دریافت کاتالوگ فرش‌ها، می‌توانید در پیام‌رسان‌های تلگرام، واتساپ، بله و ایتا پیام بدهید یا با دو شماره تماس ما در ارتباط باشید.',p1:'شماره ۱ · تماس مستقیم',p2:'شماره ۲ · تماس مستقیم',quick:'دسترسی سریع',hint:'اول سایت، سپس شبکه اجتماعی و تماس',website:'وب‌سایت فرشستان',instagram:'پیج اینستاگرام',call1:'تماس با شماره ۱',call2:'تماس با شماره ۲',msgTitle:'پیام‌رسان‌ها',msgHint:'ارتباط مستقیم و دریافت کاتالوگ فرش‌ها',telegram:'تلگرام',whatsapp:'واتساپ',bale:'بله',eitaa:'ایتا',locationTitle:'آدرس نمایشگاه',locationText:'فرشستان | نمایشگاه فرش کاشان',google:'Google Maps',neshan:'نشان',balad:'بلد',more:'دسترسی‌های بیشتر',email:'ایمیل',nav:'مسیریابی',nav2:'مسیریابی',direct:'تماس مستقیم',footer:'فرشستان — هنر اصیل فرش ایرانی در کاشان'},
+en:{dir:'ltr',brand:'Kashan Rug Showroom',title:'Farshestan',intro:'For direct contact with Farshestan and to receive our rug catalog, message us on Telegram, WhatsApp, Bale or Eitaa, or contact us through either phone number.',p1:'Phone 01 · Call directly',p2:'Phone 02 · Call directly',quick:'Quick Access',hint:'Website first, then social & contact',website:'Farshestan Website',instagram:'Instagram Page',call1:'Call Number 01',call2:'Call Number 02',msgTitle:'Messaging',msgHint:'Direct contact & rug catalog',telegram:'Telegram',whatsapp:'WhatsApp',bale:'Bale',eitaa:'Eitaa',locationTitle:'Showroom Address',locationText:'Kashan, Isfahan, Iran',google:'Google Maps',neshan:'Neshan',balad:'Balad',more:'More Access',email:'Email',nav:'Directions',nav2:'Directions',direct:'Call Directly',footer:'Farshestan — Authentic Persian Rugs in Kashan'},
+ar:{dir:'rtl',brand:'معرض السجاد في كاشان',title:'فرشستان',intro:'للتواصل المباشر مع فرشستان والحصول على كتالوج السجاد، يمكنكم مراسلتنا عبر تيليغرام وواتساب وبله وإيتا، أو التواصل معنا عبر أحد رقمي الهاتف.',p1:'الرقم ١ · اتصال مباشر',p2:'الرقم ٢ · اتصال مباشر',quick:'الوصول السريع',hint:'الموقع أولاً، ثم التواصل والشبكات',website:'موقع فرشستان',instagram:'صفحة إنستغرام',call1:'الاتصال بالرقم ١',call2:'الاتصال بالرقم ٢',msgTitle:'تطبيقات المراسلة',msgHint:'التواصل المباشر والحصول على الكتالوج',telegram:'تيليغرام',whatsapp:'واتساب',bale:'بله',eitaa:'إيتا',locationTitle:'عنوان المعرض',locationText:'كاشان، أصفهان، إيران',google:'Google Maps',neshan:'نشان',balad:'بلد',more:'مزيد من الخيارات',email:'البريد الإلكتروني',nav:'الاتجاهات',nav2:'الاتجاهات',direct:'اتصال مباشر',footer:'فرشستان — فن السجاد الفارسي الأصيل في كاشان'}};
+function setLang(l){const t=T[l];document.documentElement.lang=l;document.body.dir=t.dir;Object.keys(t).forEach(k=>{const e=document.getElementById(k);if(e)e.textContent=t[k]});document.getElementById('brandSub').textContent=t.brand;document.querySelectorAll('[data-lang]').forEach(b=>b.classList.toggle('active',b.dataset.lang===l));localStorage.setItem('farshestanLang',l)}
+function toggleTheme(){document.body.classList.toggle('light');localStorage.setItem('farshestanTheme',document.body.classList.contains('light')?'light':'dark')}
+if(localStorage.getItem('farshestanTheme')==='light')document.body.classList.add('light');setLang(localStorage.getItem('farshestanLang')||'fa');
+</script>
 </body>
 </html>
