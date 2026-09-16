@@ -1,136 +1,2196 @@
 <!DOCTYPE html>
-<html lang="fa">
+<html lang="fa" dir="rtl">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<title>فرشستان | Farshestan</title>
-<meta name="description" content="فرشستان | نمایشگاه فرش کاشان">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>فرشستان | ارتباط با ما</title>
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700;800&family=Cormorant+Garamond:wght@500;600;700&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Cormorant+Garamond:wght@400;500;600;700&family=Vazirmatn:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
 <style>
+
 :root{
- --bg:#16090c;--bg2:#281116;--panel:rgba(255,248,236,.055);--panel2:rgba(255,248,236,.085);
- --text:#f5eddf;--soft:#cbbcae;--wine:#5a2c32;--wine2:#7a444b;
- --gold:#c9a55e;--gold2:#e0c98f;--line:rgba(201,165,94,.25);
- --shadow:0 24px 70px rgba(0,0,0,.32);--focus:rgba(201,165,94,.28);
+    --bg:#f4eee4;
+    --bg-soft:#eee4d4;
+    --surface:rgba(255,252,246,.72);
+    --surface-solid:#fffaf2;
+    --surface-hover:rgba(255,255,255,.9);
+
+    --text:#32151a;
+    --text-soft:#756960;
+    --gold:#a67b3d;
+    --gold-light:#c8a66a;
+    --burgundy:#8c1118;
+    --burgundy-dark:#5e0c12;
+
+    --border:rgba(98,67,45,.13);
+    --shadow:0 20px 70px rgba(65,40,27,.11);
+
+    --radius:26px;
+
+    --transition:all .45s cubic-bezier(.2,.8,.2,1);
 }
-body.light{
- --bg:#eee4d5;--bg2:#f9f5ee;--panel:rgba(255,255,255,.58);--panel2:rgba(255,255,255,.78);
- --text:#2b1a1d;--soft:#786a62;--wine:#632f36;--wine2:#8c5960;
- --gold:#ae8640;--gold2:#9b7738;--line:rgba(112,78,30,.18);
- --shadow:0 24px 70px rgba(77,53,26,.12);--focus:rgba(174,134,64,.22);
+
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
 }
-*{box-sizing:border-box}
-html{scroll-behavior:smooth}
+
+html{
+    scroll-behavior:smooth;
+}
+
 body{
- margin:0;min-height:100vh;color:var(--text);font-family:Vazirmatn,Arial,sans-serif;
- background:
- radial-gradient(circle at 10% -5%,rgba(201,165,94,.13),transparent 28%),
- radial-gradient(circle at 90% 12%,rgba(122,68,75,.22),transparent 31%),
- linear-gradient(145deg,var(--bg),var(--bg2));
- transition:background .35s,color .35s;
+    min-height:100vh;
+    overflow-x:hidden;
+    color:var(--text);
+    font-family:Vazirmatn, sans-serif;
+    background:var(--bg);
+    transition:background .6s ease,color .6s ease;
 }
-body:before{content:"";position:fixed;inset:0;pointer-events:none;opacity:.25;background-image:radial-gradient(rgba(255,255,255,.08) .6px,transparent .6px);background-size:5px 5px;mask-image:linear-gradient(to bottom,black,transparent 80%)}
-a{text-decoration:none;color:inherit}
-.page{width:min(100%,1080px);margin:auto;padding:16px 18px 34px}
-.topbar{display:flex;align-items:center;justify-content:space-between;gap:14px;margin-bottom:14px}
-.brand{display:flex;align-items:center;gap:11px}.mark{width:43px;height:43px;border-radius:14px;border:1px solid var(--gold);display:grid;place-items:center;color:var(--gold2);font:600 27px "Cormorant Garamond",serif;background:var(--panel);box-shadow:0 8px 25px rgba(0,0,0,.12)}
-.brand b{font-size:14px}.brand small{display:block;color:var(--soft);font-size:9px;margin-top:2px}
-.controls{display:flex;gap:6px;align-items:center}.btn{appearance:none;border:1px solid var(--line);background:var(--panel);color:var(--text);border-radius:11px;padding:8px 10px;font:600 9px Vazirmatn;cursor:pointer;transition:.2s}.btn:hover,.btn:focus-visible{border-color:var(--gold);box-shadow:0 0 0 4px var(--focus);outline:none}.btn.active{background:var(--gold);color:#281719;border-color:var(--gold)}
+
+/* =========================
+   BACKGROUND
+========================= */
+
+body::before{
+    content:"";
+    position:fixed;
+    inset:0;
+    z-index:-5;
+
+    background:
+        radial-gradient(
+            circle at 10% 8%,
+            rgba(255,255,255,.95),
+            transparent 30%
+        ),
+        radial-gradient(
+            circle at 88% 78%,
+            rgba(166,123,61,.16),
+            transparent 32%
+        ),
+        radial-gradient(
+            circle at 45% 45%,
+            rgba(140,17,24,.035),
+            transparent 40%
+        );
+}
+
+body::after{
+    content:"";
+    position:fixed;
+    inset:0;
+    z-index:-4;
+
+    opacity:.18;
+    pointer-events:none;
+
+    background-image:
+        linear-gradient(
+            135deg,
+            rgba(140,17,24,.08) 25%,
+            transparent 25%
+        ),
+        linear-gradient(
+            315deg,
+            rgba(166,123,61,.08) 25%,
+            transparent 25%
+        );
+
+    background-size:90px 90px;
+}
+
+/* =========================
+   DARK MODE
+========================= */
+
+body.dark{
+    --bg:#0b0908;
+    --bg-soft:#15110e;
+
+    --surface:rgba(25,20,17,.76);
+    --surface-solid:#18130f;
+    --surface-hover:rgba(37,29,24,.9);
+
+    --text:#f1dfbb;
+    --text-soft:#aa9a83;
+
+    --gold:#d0ad6a;
+    --gold-light:#e3c789;
+
+    --burgundy:#b9212b;
+    --burgundy-dark:#7d1118;
+
+    --border:rgba(210,172,102,.19);
+    --shadow:0 25px 80px rgba(0,0,0,.48);
+}
+
+body.dark::before{
+    background:
+        radial-gradient(
+            circle at 12% 10%,
+            rgba(210,172,102,.09),
+            transparent 30%
+        ),
+        radial-gradient(
+            circle at 85% 75%,
+            rgba(126,17,24,.18),
+            transparent 35%
+        ),
+        radial-gradient(
+            circle at 50% 50%,
+            rgba(255,255,255,.015),
+            transparent 45%
+        );
+}
+
+/* =========================
+   PAGE
+========================= */
+
+.page{
+    width:min(760px,100%);
+    margin:auto;
+    padding:20px 18px 35px;
+}
+
+/* =========================
+   TOPBAR
+========================= */
+
+.topbar{
+    height:58px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    position:relative;
+    z-index:20;
+}
+
+.controls{
+    display:flex;
+    gap:9px;
+    align-items:center;
+}
+
+.control{
+    height:44px;
+    min-width:44px;
+
+    border:1px solid var(--border);
+    border-radius:15px;
+
+    background:var(--surface);
+    backdrop-filter:blur(20px);
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    gap:7px;
+
+    color:var(--text);
+    cursor:pointer;
+
+    box-shadow:
+        0 8px 25px rgba(60,40,25,.07),
+        inset 0 1px rgba(255,255,255,.45);
+
+    transition:var(--transition);
+}
+
+.control:hover{
+    transform:translateY(-3px);
+    border-color:rgba(166,123,61,.35);
+
+    box-shadow:
+        0 14px 35px rgba(80,50,30,.12),
+        0 0 25px rgba(166,123,61,.08);
+}
+
+.control svg{
+    width:19px;
+    height:19px;
+    stroke-width:1.7;
+}
+
+.language{
+    padding:0 13px;
+    font-size:11px;
+    letter-spacing:.5px;
+}
+
+.language .flag{
+    font-size:15px;
+}
+
+.menu-button{
+    width:44px;
+}
+
+/* =========================
+   HERO
+========================= */
+
 .hero{
- position:relative;overflow:hidden;border:1px solid var(--line);border-radius:30px;padding:32px 30px 27px;
- background:linear-gradient(145deg,rgba(122,68,75,.25),var(--panel));
- box-shadow:var(--shadow);backdrop-filter:blur(16px);
+    text-align:center;
+    padding:25px 10px 30px;
+    animation:heroIn .9s ease both;
 }
-.hero:before{content:"";position:absolute;width:330px;height:330px;border:1px solid rgba(201,165,94,.12);border-radius:50%;right:-135px;top:-175px}.hero:after{content:"";position:absolute;width:190px;height:190px;border:1px solid rgba(201,165,94,.08);border-radius:50%;right:-65px;top:-105px}
-.kicker{font-size:9px;letter-spacing:3px;color:var(--gold2);margin-bottom:9px}.hero h1{margin:0;font:600 clamp(52px,8vw,78px)/.82 "Cormorant Garamond",Amiri,serif;color:var(--text);letter-spacing:.5px}.intro{max-width:790px;margin:16px 0 20px;color:var(--soft);font-size:12px;line-height:2.05}
-.phones{display:grid;grid-template-columns:repeat(2,minmax(0,300px));gap:10px}.phone{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:12px 14px;border:1px solid var(--line);border-radius:15px;background:var(--panel);transition:.2s}.phone:hover,.phone:focus-visible{transform:translateY(-2px);border-color:var(--gold);box-shadow:0 10px 25px rgba(0,0,0,.12),0 0 0 4px var(--focus);outline:none}.phone small{color:var(--soft);font-size:8px}.phone b{font-size:14px;direction:ltr;color:var(--text)}
-.section{margin-top:17px}.section-head{display:flex;justify-content:space-between;align-items:end;margin:0 3px 8px}.section-head b{font-size:12px}.section-head span{font-size:8px;color:var(--soft)}
-.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}.card{min-height:96px;padding:14px;border:1px solid var(--line);border-radius:18px;background:var(--panel);display:flex;flex-direction:column;justify-content:space-between;transition:.2s;box-shadow:0 10px 28px rgba(0,0,0,.06)}.card:hover,.card:focus-visible{transform:translateY(-3px);border-color:var(--gold);box-shadow:0 15px 32px rgba(0,0,0,.14),0 0 0 4px var(--focus);outline:none}.card.primary{background:linear-gradient(145deg,rgba(122,68,75,.45),var(--panel2));min-height:108px}.card .icon{width:30px;height:30px;display:grid;place-items:center;color:var(--gold2);font-size:18px;border:1px solid var(--line);border-radius:10px;background:rgba(201,165,94,.06)}.card strong{font-size:11px;margin-top:8px}.card small{font-size:8px;color:var(--soft);direction:ltr}
-.messengers{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}.msg{min-height:83px;padding:13px;border:1px solid var(--line);border-radius:17px;background:var(--panel);transition:.2s}.msg:hover,.msg:focus-visible{transform:translateY(-2px);border-color:var(--gold);box-shadow:0 0 0 4px var(--focus);outline:none}.msg b{font-size:11px}.msg small{display:block;color:var(--soft);font-size:8px;margin-top:6px;direction:ltr}.nums{display:flex;flex-wrap:wrap;gap:5px;margin-top:8px}.num{font-size:8px;color:var(--gold2);padding:4px 6px;border-radius:7px;background:rgba(201,165,94,.08)}
-.location{
- margin-top:17px;padding:17px 18px;border:1px solid var(--line);border-radius:20px;background:var(--panel);
- display:flex;align-items:center;justify-content:space-between;gap:15px;box-shadow:0 12px 35px rgba(0,0,0,.07)
-}.location-copy{min-width:0}.location-title{font-size:12px;font-weight:700}.location-text{font-size:10px;color:var(--soft);margin-top:5px;line-height:1.8}.map-links{display:flex;gap:7px;flex-wrap:wrap;justify-content:flex-end}.map-link{padding:8px 11px;border:1px solid var(--line);border-radius:10px;font-size:9px;background:var(--panel2);transition:.2s}.map-link:hover,.map-link:focus-visible{border-color:var(--gold);box-shadow:0 0 0 4px var(--focus);outline:none}
-.footer{text-align:center;color:var(--soft);font-size:8px;padding:20px 0 2px}
-@media(max-width:800px){.grid,.messengers{grid-template-columns:repeat(2,1fr)}.hero{padding:27px 22px}}
-@media(max-width:520px){.page{padding:11px 12px 25px}.topbar{align-items:flex-start}.brand small{display:none}.controls{flex-wrap:wrap;justify-content:flex-end}.hero{border-radius:24px;padding:24px 18px}.hero h1{font-size:56px}.intro{font-size:11px;line-height:2}.phones{grid-template-columns:1fr}.grid,.messengers{grid-template-columns:1fr 1fr}.card{min-height:88px}.location{align-items:flex-start;flex-direction:column}.map-links{justify-content:flex-start}}
-@media(max-width:350px){.grid,.messengers{grid-template-columns:1fr}.hero h1{font-size:50px}}
-</style></head><body>
-<div class="page" dir="rtl">
+
+@keyframes heroIn{
+    from{
+        opacity:0;
+        transform:translateY(18px);
+    }
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+
+.logo-wrap{
+    position:relative;
+    display:inline-flex;
+    justify-content:center;
+    align-items:center;
+
+    padding:18px 28px;
+    margin-bottom:6px;
+}
+
+.logo-wrap::before{
+    content:"";
+    position:absolute;
+    width:210px;
+    height:100px;
+
+    background:radial-gradient(
+        ellipse,
+        rgba(140,17,24,.12),
+        transparent 70%
+    );
+
+    filter:blur(20px);
+}
+
+.logo{
+    position:relative;
+    width:min(390px,78vw);
+    height:auto;
+    display:block;
+
+    object-fit:contain;
+
+    filter:
+        drop-shadow(0 8px 12px rgba(90,20,20,.08));
+
+    transition:var(--transition);
+}
+
+body.dark .logo{
+    filter:
+        drop-shadow(0 0 22px rgba(208,173,106,.08));
+}
+
+.logo:hover{
+    transform:scale(1.025);
+}
+
+.brand-line{
+    width:100px;
+    height:1px;
+    margin:9px auto 13px;
+
+    background:linear-gradient(
+        90deg,
+        transparent,
+        var(--gold),
+        transparent
+    );
+}
+
+.brand-subtitle{
+    font-family:"Cormorant Garamond",serif;
+    text-transform:uppercase;
+
+    font-size:15px;
+    letter-spacing:7px;
+
+    color:var(--gold);
+
+    margin-left:7px;
+}
+
+.tagline{
+    margin-top:12px;
+
+    color:var(--text-soft);
+
+    font-size:12px;
+    font-weight:400;
+
+    letter-spacing:.2px;
+}
+
+.intro{
+    max-width:540px;
+    margin:16px auto 0;
+
+    color:var(--text-soft);
+
+    font-size:12px;
+    line-height:2.15;
+}
+
+/* =========================
+   SECTION
+========================= */
+
+.section{
+    margin-top:17px;
+}
+
+.section-label{
+    display:flex;
+    align-items:center;
+    gap:11px;
+
+    margin:0 6px 11px;
+
+    color:var(--gold);
+
+    font-size:10px;
+    font-weight:600;
+
+    letter-spacing:1.5px;
+}
+
+.section-label::before{
+    content:"";
+    width:28px;
+    height:1px;
+
+    background:linear-gradient(
+        90deg,
+        transparent,
+        var(--gold)
+    );
+}
+
+[dir="ltr"] .section-label::before{
+    order:2;
+    transform:rotate(180deg);
+}
+
+/* =========================
+   CARDS
+========================= */
+
+.card{
+    position:relative;
+
+    width:100%;
+    min-height:78px;
+
+    margin-bottom:11px;
+    padding:14px 16px;
+
+    display:flex;
+    align-items:center;
+    gap:14px;
+
+    border:1px solid var(--border);
+    border-radius:var(--radius);
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(255,255,255,.78),
+            rgba(248,238,222,.58)
+        );
+
+    backdrop-filter:blur(22px);
+
+    box-shadow:var(--shadow);
+
+    color:var(--text);
+    text-decoration:none;
+
+    cursor:pointer;
+
+    overflow:hidden;
+
+    transition:var(--transition);
+
+    animation:cardIn .65s ease both;
+}
+
+body.dark .card{
+    background:
+        linear-gradient(
+            135deg,
+            rgba(39,31,26,.82),
+            rgba(18,15,13,.75)
+        );
+}
+
+.card:nth-child(2){animation-delay:.05s}
+.card:nth-child(3){animation-delay:.10s}
+.card:nth-child(4){animation-delay:.15s}
+.card:nth-child(5){animation-delay:.20s}
+
+@keyframes cardIn{
+    from{
+        opacity:0;
+        transform:translateY(15px);
+    }
+
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+
+.card::before{
+    content:"";
+
+    position:absolute;
+    inset:0;
+
+    background:
+        linear-gradient(
+            110deg,
+            transparent 20%,
+            rgba(255,255,255,.25),
+            transparent 55%
+        );
+
+    transform:translateX(-120%);
+    transition:transform .8s ease;
+}
+
+.card:hover::before{
+    transform:translateX(120%);
+}
+
+.card:hover{
+    transform:translateY(-4px);
+
+    border-color:rgba(166,123,61,.35);
+
+    background:var(--surface-hover);
+
+    box-shadow:
+        0 25px 70px rgba(60,40,25,.15),
+        0 0 35px rgba(166,123,61,.06);
+}
+
+.icon-box{
+    position:relative;
+
+    width:50px;
+    height:50px;
+
+    flex:0 0 50px;
+
+    border-radius:17px;
+
+    display:grid;
+    place-items:center;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(140,17,24,.11),
+            rgba(166,123,61,.08)
+        );
+
+    color:var(--burgundy);
+
+    border:1px solid rgba(166,123,61,.12);
+
+    transition:var(--transition);
+}
+
+.icon-box svg{
+    width:22px;
+    height:22px;
+    stroke-width:1.65;
+}
+
+.card:hover .icon-box{
+    transform:scale(1.07) rotate(-2deg);
+
+    box-shadow:
+        0 7px 25px rgba(140,17,24,.12);
+}
+
+.card.call .icon-box{
+    color:var(--gold);
+    background:rgba(166,123,61,.11);
+}
+
+.card.instagram .icon-box{
+    color:#a33e68;
+    background:rgba(163,62,104,.08);
+}
+
+.card.email .icon-box{
+    color:#75604d;
+}
+
+.card.website .icon-box{
+    color:var(--burgundy);
+}
+
+.copy{
+    min-width:0;
+    flex:1;
+    text-align:right;
+}
+
+.title{
+    font-size:13.5px;
+    font-weight:600;
+
+    color:var(--text);
+}
+
+.sub{
+    margin-top:4px;
+
+    font-size:10.5px;
+
+    color:var(--text-soft);
+
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+
+    direction:ltr;
+    text-align:right;
+}
+
+.chevron{
+    width:28px;
+    height:28px;
+
+    display:grid;
+    place-items:center;
+
+    color:var(--gold);
+
+    transition:var(--transition);
+}
+
+.chevron svg{
+    width:18px;
+}
+
+.card:hover .chevron{
+    transform:translateX(-4px);
+}
+
+/* =========================
+   MESSAGING
+========================= */
+
+.messaging{
+    padding:13px;
+
+    border:1px solid var(--border);
+    border-radius:27px;
+
+    background:var(--surface);
+
+    backdrop-filter:blur(22px);
+
+    box-shadow:var(--shadow);
+
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+
+    gap:9px;
+}
+
+.msg{
+    min-height:88px;
+
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+
+    gap:8px;
+
+    border:1px solid var(--border);
+    border-radius:20px;
+
+    background:rgba(255,255,255,.48);
+
+    color:var(--text);
+
+    text-decoration:none;
+
+    transition:var(--transition);
+}
+
+body.dark .msg{
+    background:rgba(16,13,11,.65);
+}
+
+.msg:hover{
+    transform:translateY(-5px) scale(1.015);
+
+    border-color:rgba(166,123,61,.38);
+
+    box-shadow:
+        0 15px 35px rgba(50,30,20,.12);
+}
+
+.msg-icon{
+    width:41px;
+    height:41px;
+
+    display:grid;
+    place-items:center;
+
+    border-radius:14px;
+
+    color:#fff;
+
+    transition:var(--transition);
+}
+
+.msg-icon svg{
+    width:21px;
+    height:21px;
+    stroke-width:1.8;
+}
+
+.msg:hover .msg-icon{
+    transform:scale(1.08);
+}
+
+.telegram .msg-icon{
+    background:#229ed9;
+    box-shadow:0 8px 20px rgba(34,158,217,.22);
+}
+
+.whatsapp .msg-icon{
+    background:#25d366;
+    box-shadow:0 8px 20px rgba(37,211,102,.20);
+}
+
+.eitaa .msg-icon{
+    background:#ef7f32;
+    box-shadow:0 8px 20px rgba(239,127,50,.20);
+}
+
+.bale .msg-icon{
+    background:#22b8a8;
+    box-shadow:0 8px 20px rgba(34,184,168,.20);
+}
+
+.msg-name{
+    font-size:10px;
+    color:var(--text-soft);
+}
+
+/* =========================
+   PHONE GRID
+========================= */
+
+.phone-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:10px;
+}
+
+.phone-card{
+    min-height:75px;
+}
+
+/* =========================
+   LOCATION
+========================= */
+
+.address-card{
+    min-height:92px;
+}
+
+.address-card .icon-box{
+    align-self:center;
+}
+
+.address-text{
+    line-height:1.9;
+}
+
+/* =========================
+   MAP BUTTONS
+========================= */
+
+.mapgrid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:9px;
+}
+
+.map{
+    min-height:78px;
+
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+
+    gap:7px;
+
+    border:1px solid var(--border);
+    border-radius:20px;
+
+    background:var(--surface);
+
+    color:var(--text);
+    text-decoration:none;
+
+    box-shadow:
+        0 9px 28px rgba(60,40,25,.06);
+
+    transition:var(--transition);
+}
+
+.map:hover{
+    transform:translateY(-4px);
+
+    border-color:rgba(166,123,61,.35);
+
+    box-shadow:
+        0 17px 38px rgba(60,40,25,.12);
+}
+
+.map-icon{
+    width:27px;
+    height:27px;
+
+    color:var(--gold);
+}
+
+.map-icon svg{
+    width:100%;
+    height:100%;
+    stroke-width:1.5;
+}
+
+.map-name{
+    font-size:10px;
+    color:var(--text-soft);
+}
+
+/* =========================
+   FOOTER
+========================= */
+
+.footer{
+    margin:38px 0 5px;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    gap:14px;
+
+    color:var(--text-soft);
+
+    font-family:"Cormorant Garamond",serif;
+
+    font-size:14px;
+    letter-spacing:1.5px;
+}
+
+.footer::before,
+.footer::after{
+    content:"";
+
+    width:52px;
+    height:1px;
+
+    background:linear-gradient(
+        90deg,
+        transparent,
+        var(--gold)
+    );
+}
+
+.footer::after{
+    transform:rotate(180deg);
+}
+
+/* =========================
+   TOAST
+========================= */
+
+.toast{
+    position:fixed;
+
+    left:50%;
+    bottom:25px;
+
+    transform:translate(-50%,25px);
+
+    opacity:0;
+    pointer-events:none;
+
+    z-index:100;
+
+    padding:11px 18px;
+
+    border:1px solid rgba(255,255,255,.12);
+    border-radius:15px;
+
+    background:#321519;
+    color:#fff;
+
+    font-size:11px;
+
+    box-shadow:
+        0 15px 40px rgba(0,0,0,.25);
+
+    transition:.35s ease;
+}
+
+.toast.show{
+    opacity:1;
+    transform:translate(-50%,0);
+}
+
+/* =========================
+   MENU PANEL
+========================= */
+
+.menu-panel{
+    position:fixed;
+
+    top:0;
+    right:0;
+
+    width:min(360px,88vw);
+    height:100vh;
+
+    z-index:50;
+
+    padding:90px 25px 30px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255,251,244,.96),
+            rgba(241,229,210,.94)
+        );
+
+    backdrop-filter:blur(30px);
+
+    border-left:1px solid var(--border);
+
+    box-shadow:-25px 0 80px rgba(40,25,15,.15);
+
+    transform:translateX(105%);
+
+    transition:transform .55s cubic-bezier(.2,.8,.2,1);
+}
+
+body.dark .menu-panel{
+    background:
+        linear-gradient(
+            145deg,
+            rgba(27,22,18,.98),
+            rgba(12,10,9,.97)
+        );
+}
+
+.menu-panel.open{
+    transform:translateX(0);
+}
+
+.menu-close{
+    position:absolute;
+
+    top:20px;
+    left:20px;
+
+    width:42px;
+    height:42px;
+
+    border-radius:14px;
+
+    border:1px solid var(--border);
+
+    background:var(--surface);
+
+    color:var(--text);
+
+    display:grid;
+    place-items:center;
+
+    cursor:pointer;
+}
+
+.menu-brand{
+    color:var(--gold);
+
+    font-family:Amiri,serif;
+
+    font-size:30px;
+
+    margin-bottom:25px;
+}
+
+.menu-item{
+    display:flex;
+    align-items:center;
+    gap:13px;
+
+    padding:15px 10px;
+
+    color:var(--text);
+    text-decoration:none;
+
+    border-bottom:1px solid var(--border);
+
+    font-size:12px;
+
+    transition:.25s;
+}
+
+.menu-item:hover{
+    padding-right:17px;
+    color:var(--gold);
+}
+
+.menu-item svg{
+    width:20px;
+}
+
+/* overlay */
+
+.overlay{
+    position:fixed;
+    inset:0;
+
+    background:rgba(0,0,0,.3);
+
+    backdrop-filter:blur(3px);
+
+    z-index:40;
+
+    opacity:0;
+    pointer-events:none;
+
+    transition:.35s;
+}
+
+.overlay.show{
+    opacity:1;
+    pointer-events:auto;
+}
+
+/* =========================
+   LTR
+========================= */
+
+[dir="ltr"] body{
+    font-family:"Cormorant Garamond",Georgia,serif;
+}
+
+[dir="ltr"] .copy{
+    text-align:left;
+}
+
+[dir="ltr"] .sub{
+    text-align:left;
+}
+
+[dir="ltr"] .card{
+    direction:ltr;
+}
+
+[dir="ltr"] .chevron{
+    transform:rotate(180deg);
+}
+
+[dir="ltr"] .card:hover .chevron{
+    transform:translateX(4px) rotate(180deg);
+}
+
+[dir="ltr"] .menu-panel{
+    right:auto;
+    left:0;
+
+    transform:translateX(-105%);
+
+    border-left:0;
+    border-right:1px solid var(--border);
+
+    box-shadow:25px 0 80px rgba(40,25,15,.15);
+}
+
+[dir="ltr"] .menu-panel.open{
+    transform:translateX(0);
+}
+
+[dir="ltr"] .menu-close{
+    left:auto;
+    right:20px;
+}
+
+[dir="ltr"] .menu-item:hover{
+    padding-right:10px;
+    padding-left:17px;
+}
+
+/* =========================
+   MOBILE
+========================= */
+
+@media(max-width:560px){
+
+    .page{
+        padding:13px 13px 28px;
+    }
+
+    .topbar{
+        height:51px;
+    }
+
+    .control{
+        height:41px;
+        min-width:41px;
+    }
+
+    .language{
+        padding:0 10px;
+    }
+
+    .hero{
+        padding-top:18px;
+        padding-bottom:25px;
+    }
+
+    .logo{
+        width:min(330px,82vw);
+    }
+
+    .logo-wrap{
+        padding:10px 14px;
+    }
+
+    .brand-subtitle{
+        font-size:13px;
+        letter-spacing:5px;
+    }
+
+    .intro{
+        font-size:11.5px;
+        line-height:2;
+    }
+
+    .card{
+        min-height:73px;
+        padding:12px 13px;
+        border-radius:22px;
+    }
+
+    .icon-box{
+        width:46px;
+        height:46px;
+        flex-basis:46px;
+        border-radius:15px;
+    }
+
+    .title{
+        font-size:12.5px;
+    }
+
+    .sub{
+        font-size:9.5px;
+    }
+
+    .phone-grid{
+        gap:8px;
+    }
+
+    .messaging{
+        padding:10px;
+        gap:7px;
+    }
+
+    .msg{
+        min-height:76px;
+        border-radius:17px;
+    }
+
+    .msg-icon{
+        width:37px;
+        height:37px;
+    }
+
+    .mapgrid{
+        gap:7px;
+    }
+
+    .map{
+        min-height:72px;
+    }
+}
+
+@media(max-width:390px){
+
+    .page{
+        padding-inline:10px;
+    }
+
+    .logo{
+        width:280px;
+    }
+
+    .phone-grid{
+        grid-template-columns:1fr;
+    }
+
+    .messaging{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .mapgrid{
+        grid-template-columns:1fr 1fr 1fr;
+    }
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="overlay" id="overlay"></div>
+
+<!-- =========================
+     MENU
+========================= -->
+
+<aside class="menu-panel" id="menuPanel">
+
+    <button class="menu-close" id="menuClose" aria-label="بستن">
+        <svg viewBox="0 0 24 24" fill="none">
+            <path d="M6 6l12 12M18 6L6 18"
+                  stroke="currentColor"
+                  stroke-linecap="round"
+                  stroke-width="1.7"/>
+        </svg>
+    </button>
+
+    <div class="menu-brand">
+        فرشستان
+    </div>
+
+    <a class="menu-item" href="https://farshestan.co/" target="_blank">
+        <svg viewBox="0 0 24 24" fill="none">
+            <path d="M3 11.5L12 4l9 7.5"
+                  stroke="currentColor"
+                  stroke-width="1.6"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"/>
+            <path d="M5.5 10.5V20h13v-9.5"
+                  stroke="currentColor"
+                  stroke-width="1.6"
+                  stroke-linejoin="round"/>
+        </svg>
+        <span data-fa="وب‌سایت فرشستان"
+              data-en="Farshestan Website">
+            وب‌سایت فرشستان
+        </span>
+    </a>
+
+    <a class="menu-item" href="https://www.instagram.com/farshestan/" target="_blank">
+        <svg viewBox="0 0 24 24" fill="none">
+            <rect x="4" y="4" width="16" height="16" rx="5"
+                  stroke="currentColor"
+                  stroke-width="1.6"/>
+            <circle cx="12" cy="12" r="3.5"
+                    stroke="currentColor"
+                    stroke-width="1.6"/>
+            <circle cx="17.2" cy="6.8" r=".8"
+                    fill="currentColor"/>
+        </svg>
+        <span data-fa="اینستاگرام"
+              data-en="Instagram">
+            اینستاگرام
+        </span>
+    </a>
+
+    <a class="menu-item" href="mailto:info@farshestan.co">
+        <svg viewBox="0 0 24 24" fill="none">
+            <rect x="3.5" y="5" width="17" height="14"
+                  rx="3"
+                  stroke="currentColor"
+                  stroke-width="1.6"/>
+            <path d="M5 7l7 5 7-5"
+                  stroke="currentColor"
+                  stroke-width="1.6"
+                  stroke-linecap="round"/>
+        </svg>
+        <span data-fa="ایمیل"
+              data-en="Email">
+            ایمیل
+        </span>
+    </a>
+
+    <a class="menu-item" href="tel:+989135836090">
+        <svg viewBox="0 0 24 24" fill="none">
+            <path d="M7 4.5l3 3-2 2c1.1 2.3 2.9 4.1 5.2 5.2l2-2 3 3c.6.6.5 1.5-.1 2-1 .7-2.5.8-5-.1-7.3C16.5 7 14.8 5.2 12.4 4.1 10.1 3.2 7.6 3.3 6.9 4c-.4.1-.5.3-.1.5Z"
+                  stroke="currentColor"
+                  stroke-width="1.5"
+                  stroke-linejoin="round"/>
+        </svg>
+        <span data-fa="تماس با فرشستان"
+              data-en="Call Farshestan">
+            تماس با فرشستان
+        </span>
+    </a>
+
+</aside>
+
+
+<main class="page">
+
+<!-- =========================
+     TOP BAR
+========================= -->
+
 <header class="topbar">
- <div class="brand"><div class="mark">ف</div><div><b>فرشستان</b><small id="brandSub">نمایشگاه فرش کاشان</small></div></div>
- <div class="controls">
-  <button class="btn active" data-lang="fa" onclick="setLang('fa')">فا</button>
-  <button class="btn" data-lang="en" onclick="setLang('en')">EN</button>
-  <button class="btn" data-lang="ar" onclick="setLang('ar')">ع</button>
-  <button class="btn" onclick="toggleTheme()" aria-label="تغییر حالت رنگ">☼ ◐</button>
- </div>
+
+    <div class="controls">
+
+        <!-- THEME -->
+
+        <button class="control"
+                id="themeButton"
+                aria-label="تغییر حالت">
+
+            <svg id="themeIcon"
+                 viewBox="0 0 24 24"
+                 fill="none">
+
+                <circle cx="12" cy="12" r="4"
+                        stroke="currentColor"
+                        stroke-width="1.6"/>
+
+                <path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"
+                      stroke="currentColor"
+                      stroke-width="1.5"
+                      stroke-linecap="round"/>
+            </svg>
+
+        </button>
+
+
+        <!-- LANGUAGE -->
+
+        <button class="control language"
+                id="languageButton">
+
+            <span class="flag" id="languageFlag">🇮🇷</span>
+
+            <b id="languageText">FA</b>
+
+        </button>
+
+    </div>
+
+
+    <!-- MENU -->
+
+    <button class="control menu-button"
+            id="menuButton"
+            aria-label="منو">
+
+        <svg viewBox="0 0 24 24" fill="none">
+
+            <path d="M4 7h16M4 12h16M4 17h16"
+                  stroke="currentColor"
+                  stroke-width="1.7"
+                  stroke-linecap="round"/>
+
+        </svg>
+
+    </button>
+
 </header>
 
+
+<!-- =========================
+     HERO
+========================= -->
+
 <section class="hero">
- <div class="kicker">KASHAN • PERSIAN RUGS</div>
- <h1 id="title">فرشستان</h1>
- <p class="intro" id="intro">برای ارتباط مستقیم با فرشستان و دریافت کاتالوگ فرش‌ها، می‌توانید در پیام‌رسان‌های تلگرام، واتساپ، بله و ایتا پیام بدهید یا با دو شماره تماس ما در ارتباط باشید.</p>
- <div class="phones">
-  <a class="phone" href="tel:09135836090"><small id="p1">شماره ۱ · تماس مستقیم</small><b>0913 583 6090</b></a>
-  <a class="phone" href="tel:09135836080"><small id="p2">شماره ۲ · تماس مستقیم</small><b>0913 583 6080</b></a>
- </div>
+
+    <div class="logo-wrap">
+
+        <img
+            class="logo"
+            src="logo.png"
+            alt="لوگوی فرشستان"
+        >
+
+    </div>
+
+    <div class="brand-line"></div>
+
+    <div class="brand-subtitle">
+        FARSHestan
+    </div>
+
+    <div class="tagline"
+         data-fa="هنر اصیل، در خانه شما"
+         data-en="Authentic Art, Woven Into Your Home">
+
+        هنر اصیل، در خانه شما
+
+    </div>
+
+    <p class="intro"
+       data-fa="برای ارتباط با فرشستان، مشاهده مجموعه‌ها و دریافت اطلاعات بیشتر، از راه‌های ارتباطی زیر با ما در تماس باشید."
+       data-en="Connect with Farshestan, explore our collections and discover more through the contact options below.">
+
+        برای ارتباط با فرشستان، مشاهده مجموعه‌ها و دریافت اطلاعات بیشتر،
+        از راه‌های ارتباطی زیر با ما در تماس باشید.
+
+    </p>
+
 </section>
+
+
+<!-- =========================
+     MAIN CONTACTS
+========================= -->
 
 <section class="section">
- <div class="section-head"><b id="quick">دسترسی سریع</b><span id="hint">اول سایت، سپس شبکه اجتماعی و تماس</span></div>
- <div class="grid">
-  <a class="card primary" href="https://farshestan.co/"><span class="icon">⌂</span><strong id="website">وب‌سایت فرشستان</strong><small>farshestan.co</small></a>
-  <a class="card primary" href="https://www.instagram.com/farshestan/"><span class="icon">◎</span><strong id="instagram">پیج اینستاگرام</strong><small>@farshestan</small></a>
-  <a class="card" href="tel:09135836090"><span class="icon">☎</span><strong id="call1">تماس با شماره ۱</strong><small>0913 583 6090</small></a>
-  <a class="card" href="tel:09135836080"><span class="icon">☎</span><strong id="call2">تماس با شماره ۲</strong><small>0913 583 6080</small></a>
- </div>
+
+    <div class="section-label"
+         data-fa="ارتباط با فرشستان"
+         data-en="CONNECT WITH US">
+
+        ارتباط با فرشستان
+
+    </div>
+
+
+    <!-- WEBSITE -->
+
+    <a class="card website"
+       href="https://farshestan.co/"
+       target="_blank">
+
+        <div class="icon-box">
+
+            <svg viewBox="0 0 24 24" fill="none">
+
+                <circle cx="12" cy="12" r="8.5"
+                        stroke="currentColor"/>
+
+                <path d="M3.8 12h16.4M12 3.5c2.1 2.3 3.2 5.1 3.2 8.5S14.1 18.2 12 20.5M12 3.5C9.9 5.8 8.8 8.6 8.8 12s1.1 6.2 3.2 8.5"
+                      stroke="currentColor"
+                      stroke-linecap="round"/>
+
+            </svg>
+
+        </div>
+
+        <div class="copy">
+
+            <div class="title"
+                 data-fa="وب‌سایت فرشستان"
+                 data-en="Farshestan Website">
+
+                وب‌سایت فرشستان
+
+            </div>
+
+            <div class="sub">
+                farshestan.co
+            </div>
+
+        </div>
+
+        <div class="chevron">
+
+            <svg viewBox="0 0 24 24" fill="none">
+
+                <path d="M9 5l7 7-7 7"
+                      stroke="currentColor"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"/>
+
+            </svg>
+
+        </div>
+
+    </a>
+
+
+    <!-- INSTAGRAM -->
+
+    <a class="card instagram"
+       href="https://www.instagram.com/farshestan/"
+       target="_blank">
+
+        <div class="icon-box">
+
+            <svg viewBox="0 0 24 24" fill="none">
+
+                <rect x="4" y="4"
+                      width="16"
+                      height="16"
+                      rx="5"
+                      stroke="currentColor"/>
+
+                <circle cx="12" cy="12"
+                        r="3.5"
+                        stroke="currentColor"/>
+
+                <circle cx="17.2" cy="6.8"
+                        r=".8"
+                        fill="currentColor"/>
+
+            </svg>
+
+        </div>
+
+        <div class="copy">
+
+            <div class="title"
+                 data-fa="اینستاگرام"
+                 data-en="Instagram">
+
+                اینستاگرام
+
+            </div>
+
+            <div class="sub">
+                @farshestan
+            </div>
+
+        </div>
+
+        <div class="chevron">
+
+            <svg viewBox="0 0 24 24" fill="none">
+                <path d="M9 5l7 7-7 7"
+                      stroke="currentColor"
+                      stroke-linecap="round"/>
+            </svg>
+
+        </div>
+
+    </a>
+
+
+    <!-- EMAIL -->
+
+    <a class="card email"
+       href="mailto:info@farshestan.co">
+
+        <div class="icon-box">
+
+            <svg viewBox="0 0 24 24" fill="none">
+
+                <rect x="3.5" y="5"
+                      width="17"
+                      height="14"
+                      rx="3"
+                      stroke="currentColor"/>
+
+                <path d="M5 7l7 5 7-5"
+                      stroke="currentColor"
+                      stroke-linecap="round"/>
+
+            </svg>
+
+        </div>
+
+        <div class="copy">
+
+            <div class="title"
+                 data-fa="ایمیل"
+                 data-en="Email">
+
+                ایمیل
+
+            </div>
+
+            <div class="sub">
+                info@farshestan.co
+            </div>
+
+        </div>
+
+        <div class="chevron">
+
+            <svg viewBox="0 0 24 24" fill="none">
+                <path d="M9 5l7 7-7 7"
+                      stroke="currentColor"
+                      stroke-linecap="round"/>
+            </svg>
+
+        </div>
+
+    </a>
+
 </section>
+
+
+<!-- =========================
+     PHONE
+========================= -->
 
 <section class="section">
- <div class="section-head"><b id="msgTitle">پیام‌رسان‌ها</b><span id="msgHint">ارتباط مستقیم و دریافت کاتالوگ فرش‌ها</span></div>
- <div class="messengers">
-  <a class="msg" href="https://t.me/farshestanco"><b id="telegram">تلگرام</b><small>@farshestanco</small></a>
-  <a class="msg" href="https://wa.me/989135836090"><b id="whatsapp">واتساپ</b><div class="nums"><span class="num">0913 583 6090</span><span class="num">0913 583 6080</span></div></a>
-  <a class="msg" href="tel:09135836090"><b id="bale">بله</b><div class="nums"><span class="num">0913 583 6090</span><span class="num">0913 583 6080</span></div></a>
-  <a class="msg" href="https://eitaa.com/farshestan_co"><b id="eitaa">ایتا</b><small>@farshestan_co</small></a>
- </div>
+
+    <div class="section-label"
+         data-fa="تماس مستقیم"
+         data-en="DIRECT CALL">
+
+        تماس مستقیم
+
+    </div>
+
+    <div class="phone-grid">
+
+        <a class="card phone-card call"
+           href="tel:+989135836090">
+
+            <div class="icon-box">
+
+                <svg viewBox="0 0 24 24" fill="none">
+
+                    <path d="M7 4.5l3 3-2 2c1.1 2.3 2.9 4.1 5.2 5.2l2-2 3 3c.6.6.5 1.5-.1 2-1 .7-2.5.8-5-.1-7.3C16.5 7 14.8 5.2 12.4 4.1 10.1 3.2 7.6 3.3 6.9 4c-.4.1-.5.3-.1.5Z"
+                          stroke="currentColor"
+                          stroke-width="1.5"
+                          stroke-linejoin="round"/>
+
+                </svg>
+
+            </div>
+
+            <div class="copy">
+
+                <div class="title">
+                    0913 583 6090
+                </div>
+
+                <div class="sub"
+                     data-fa="تماس مستقیم"
+                     data-en="Direct Call">
+
+                    تماس مستقیم
+
+                </div>
+
+            </div>
+
+        </a>
+
+
+        <a class="card phone-card call"
+           href="tel:+989135836080">
+
+            <div class="icon-box">
+
+                <svg viewBox="0 0 24 24" fill="none">
+
+                    <path d="M7 4.5l3 3-2 2c1.1 2.3 2.9 4.1 5.2 5.2l2-2 3 3c.6.6.5 1.5-.1 2-1 .7-2.5.8-5-.1-7.3C16.5 7 14.8 5.2 12.4 4.1 10.1 3.2 7.6 3.3 6.9 4c-.4.1-.5.3-.1.5Z"
+                          stroke="currentColor"
+                          stroke-width="1.5"
+                          stroke-linejoin="round"/>
+
+                </svg>
+
+            </div>
+
+            <div class="copy">
+
+                <div class="title">
+                    0913 583 6080
+                </div>
+
+                <div class="sub"
+                     data-fa="تماس مستقیم"
+                     data-en="Direct Call">
+
+                    تماس مستقیم
+
+                </div>
+
+            </div>
+
+        </a>
+
+    </div>
+
 </section>
 
-<section class="location" aria-label="آدرس و نقشه">
- <div class="location-copy">
-  <div class="location-title" id="locationTitle">آدرس نمایشگاه</div>
-  <div class="location-text" id="locationText">فرشستان | نمایشگاه فرش کاشان</div>
- </div>
- <div class="map-links">
-  <a class="map-link" href="https://maps.app.goo.gl/61jGNhxfx9CrzdR86" id="google">Google Maps</a>
-  <a class="map-link" href="https://nshn.ir/c9_brYgeQxO2uJ" id="neshan">نشان</a>
-  <a class="map-link" href="https://balad.ir/p/28i5s1zWXkq0Id" id="balad">بلد</a>
- </div>
-</section>
+
+<!-- =========================
+     MESSAGING
+========================= -->
 
 <section class="section">
- <div class="section-head"><b id="more">دسترسی‌های بیشتر</b></div>
- <div class="grid">
-  <a class="card" href="mailto:info@farshestan.co"><span class="icon">✉</span><strong id="email">ایمیل</strong><small>info@farshestan.co</small></a>
-  <a class="card" href="https://nshn.ir/c9_brYgeQxO2uJ"><span class="icon">⌖</span><strong id="nav">مسیریابی</strong><small>Neshan</small></a>
-  <a class="card" href="https://balad.ir/p/28i5s1zWXkq0Id"><span class="icon">⌖</span><strong id="nav2">مسیریابی</strong><small>Balad</small></a>
-  <a class="card" href="tel:09135836090"><span class="icon">☎</span><strong id="direct">تماس مستقیم</strong><small>0913 583 6090</small></a>
- </div>
+
+    <div class="section-label"
+         data-fa="پیام‌رسان‌ها"
+         data-en="MESSAGING">
+
+        پیام‌رسان‌ها
+
+    </div>
+
+    <div class="messaging">
+
+
+        <!-- TELEGRAM -->
+
+        <a class="msg telegram"
+           href="https://t.me/farshestanco"
+           target="_blank">
+
+            <div class="msg-icon">
+
+                <svg viewBox="0 0 24 24" fill="none">
+
+                    <path d="M21 4L3.7 10.7c-.9.35-.85 1.6.08 1.84l4.3 1.1 1.65 5.25c.27.86 1.37 1.1 1.96.4l2.45-2.9 4.2 3.05c.72.52 1.73.12 1.9-.76L22.2 5.4C22.38 4.45 21.67 3.74 21 4Z"
+                          fill="currentColor"/>
+
+                    <path d="M8.1 13.55L18.3 7.1l-6.65 7.55"
+                          stroke="#229ed9"
+                          stroke-width="1.1"
+                          stroke-linecap="round"/>
+
+                </svg>
+
+            </div>
+
+            <span class="msg-name"
+                  data-fa="تلگرام"
+                  data-en="Telegram">
+
+                تلگرام
+
+            </span>
+
+        </a>
+
+
+        <!-- WHATSAPP 1 -->
+
+        <a class="msg whatsapp"
+           href="https://wa.me/989135836090"
+           target="_blank">
+
+            <div class="msg-icon">
+
+                <svg viewBox="0 0 24 24" fill="none">
+
+                    <path d="M20.5 11.6a8.45 8.45 0 0 1-12.5 7.3L4 20l1.15-3.8a8.45 8.45 0 1 1 15.35-4.6Z"
+                          stroke="white"
+                          stroke-width="1.5"/>
+
+                    <path d="M8.5 8.2c.25-.3.5-.32.75-.05l1.05 1.1c.2.2.22.47.06.7l-.48.7c.55 1.1 1.4 1.9 2.5 2.45l.68-.48c.23-.16.5-.14.7.06l1.1 1.05c.27.25.25.5-.05.75-.45.4-.9.6-1.4.55-1.5-.15-4.95-3.6-5.1-5.1-.05-.5.15-.95.59-1.43Z"
+                          fill="white"/>
+
+                </svg>
+
+            </div>
+
+            <span class="msg-name">
+                WhatsApp
+            </span>
+
+        </a>
+
+
+        <!-- BALE -->
+
+        <a class="msg bale"
+           href="#"
+           onclick="showToast('لینک بله در حال آماده‌سازی است');return false;">
+
+            <div class="msg-icon">
+
+                <svg viewBox="0 0 24 24" fill="none">
+
+                    <path d="M5 5.5h14v9.2a4.8 4.8 0 0 1-4.8 4.8H9.8A4.8 4.8 0 0 1 5 14.7V5.5Z"
+                          stroke="white"
+                          stroke-width="1.5"
+                          stroke-linejoin="round"/>
+
+                    <path d="M8.5 9.2h7M8.5 12.2h5"
+                          stroke="white"
+                          stroke-width="1.5"
+                          stroke-linecap="round"/>
+
+                </svg>
+
+            </div>
+
+            <span class="msg-name"
+                  data-fa="بله"
+                  data-en="Bale">
+
+                بله
+
+            </span>
+
+        </a>
+
+
+        <!-- EITAA -->
+
+        <a class="msg eitaa"
+           href="https://eitaa.com/farshestan_co"
+           target="_blank">
+
+            <div class="msg-icon">
+
+                <svg viewBox="0 0 24 24" fill="none">
+
+                    <path d="M7 5.5h7.5A4.5 4.5 0 0 1 19 10v4a4.5 4.5 0 0 1-4.5 4.5H7A2.5 2.5 0 0 1 4.5 16V8A2.5 2.5 0 0 1 7 5.5Z"
+                          stroke="white"
+                          stroke-width="1.6"/>
+
+                    <path d="M8 10h7M8 13h4"
+                          stroke="white"
+                          stroke-width="1.5"
+                          stroke-linecap="round"/>
+
+                </svg>
+
+            </div>
+
+            <span class="msg-name"
+                  data-fa="ایتا"
+                  data-en="Eitaa">
+
+                ایتا
+
+            </span>
+
+        </a>
+
+    </div>
+
 </section>
-<footer class="footer" id="footer">فرشستان — هنر اصیل فرش ایرانی در کاشان</footer>
-</div>
+
+
+<!-- =========================
+     ADDRESS
+========================= -->
+
+<section class="section">
+
+    <div class="section-label"
+         data-fa="نشانی فروشگاه"
+         data-en="STORE LOCATION">
+
+        نشانی فروشگاه
+
+    </div>
+
+
+    <div class="card address-card">
+
+        <div class="icon-box">
+
+            <svg viewBox="0 0 24 24" fill="none">
+
+                <path d="M19 10.2c0 5.2-7 10-7 10s-7-4.8-7-10a7 7 0 1 1 14 0Z"
+                      stroke="currentColor"
+                      stroke-width="1.5"/>
+
+                <circle cx="12" cy="10"
+                        r="2.4"
+                        stroke="currentColor"
+                        stroke-width="1.5"/>
+
+            </svg>
+
+        </div>
+
+        <div class="copy">
+
+            <div class="title"
+                 data-fa="نمایشگاه فرشستان"
+                 data-en="Farshestan Showroom">
+
+                نمایشگاه فرشستان
+
+            </div>
+
+            <div class="sub address-text"
+                 data-fa="کاشان، بلوار امام رضا، روبه‌روی مسجدالرضا، نمایشگاه فرشستان"
+                 data-en="Kashan, Imam Reza Blvd, opposite Al-Reza Mosque, Farshestan Showroom">
+
+                کاشان، بلوار امام رضا،
+                روبه‌روی مسجدالرضا،
+                نمایشگاه فرشستان
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- MAPS -->
+
+    <div class="mapgrid">
+
+
+        <!-- GOOGLE -->
+
+        <a class="map"
+           href="https://maps.app.goo.gl/61jGNhxfx9CrzdR86"
+           target="_blank">
+
+            <div class="map-icon">
+
+                <svg viewBox="0 0 24 24" fill="none">
+
+                    <path d="M12 21s7-5.1 7-11a7 7 0 1 0-14 0c0 5.9 7 11 7 11Z"
+                          stroke="currentColor"/>
+
+                    <circle cx="12" cy="10"
+                            r="2.3"
+                            stroke="currentColor"/>
+
+                </svg>
+
+            </div>
+
+            <span class="map-name">
+                Google Maps
+            </span>
+
+        </a>
+
+
+        <!-- NESHAN -->
+
+        <a class="map"
+           href="https://nshn.ir/c9_brYgeQxO2uJ"
+           target="_blank">
+
+            <div class="map-icon">
+
+                <svg viewBox="0 0 24 24" fill="none">
+
+                    <path d="M12 21s6.5-5.2 6.5-11a6.5 6.5 0 1 0-13 0c0 5.8 6.5 11 6.5 11Z"
+                          stroke="currentColor"/>
+
+                    <circle cx="12" cy="10"
+                            r="2"
+                            stroke="currentColor"/>
+
+                </svg>
+
+            </div>
+
+            <span class="map-name">
+                نشان
+            </span>
+
+        </a>
+
+
+        <!-- BALAD -->
+
+        <a class="map"
+           href="https://balad.ir/p/28i5s1zWXkq0Id"
+           target="_blank">
+
+            <div class="map-icon">
+
+                <svg viewBox="0 0 24 24" fill="none">
+
+                    <path d="M12 3l7 7-7 11-7-11 7-7Z"
+                          stroke="currentColor"
+                          stroke-linejoin="round"/>
+
+                    <path d="M9 10h6M10.5 13h3"
+                          stroke="currentColor"
+                          stroke-linecap="round"/>
+
+                </svg>
+
+            </div>
+
+            <span class="map-name">
+                بلد
+            </span>
+
+        </a>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     FOOTER
+========================= -->
+
+<footer class="footer">
+
+    <span data-fa="فرشستان، انتخابی ماندگار"
+          data-en="Farshestan — A Timeless Choice">
+
+        فرشستان، انتخابی ماندگار
+
+    </span>
+
+</footer>
+
+</main>
+
+
+<!-- TOAST -->
+
+<div class="toast" id="toast"></div>
+
 
 <script>
-const T={
-fa:{dir:'rtl',brand:'نمایشگاه فرش کاشان',title:'فرشستان',intro:'برای ارتباط مستقیم با فرشستان و دریافت کاتالوگ فرش‌ها، می‌توانید در پیام‌رسان‌های تلگرام، واتساپ، بله و ایتا پیام بدهید یا با دو شماره تماس ما در ارتباط باشید.',p1:'شماره ۱ · تماس مستقیم',p2:'شماره ۲ · تماس مستقیم',quick:'دسترسی سریع',hint:'اول سایت، سپس شبکه اجتماعی و تماس',website:'وب‌سایت فرشستان',instagram:'پیج اینستاگرام',call1:'تماس با شماره ۱',call2:'تماس با شماره ۲',msgTitle:'پیام‌رسان‌ها',msgHint:'ارتباط مستقیم و دریافت کاتالوگ فرش‌ها',telegram:'تلگرام',whatsapp:'واتساپ',bale:'بله',eitaa:'ایتا',locationTitle:'آدرس نمایشگاه',locationText:'فرشستان | نمایشگاه فرش کاشان',google:'Google Maps',neshan:'نشان',balad:'بلد',more:'دسترسی‌های بیشتر',email:'ایمیل',nav:'مسیریابی',nav2:'مسیریابی',direct:'تماس مستقیم',footer:'فرشستان — هنر اصیل فرش ایرانی در کاشان'},
-en:{dir:'ltr',brand:'Kashan Rug Showroom',title:'Farshestan',intro:'For direct contact with Farshestan and to receive our rug catalog, message us on Telegram, WhatsApp, Bale or Eitaa, or contact us through either phone number.',p1:'Phone 01 · Call directly',p2:'Phone 02 · Call directly',quick:'Quick Access',hint:'Website first, then social & contact',website:'Farshestan Website',instagram:'Instagram Page',call1:'Call Number 01',call2:'Call Number 02',msgTitle:'Messaging',msgHint:'Direct contact & rug catalog',telegram:'Telegram',whatsapp:'WhatsApp',bale:'Bale',eitaa:'Eitaa',locationTitle:'Showroom Address',locationText:'Kashan, Isfahan, Iran',google:'Google Maps',neshan:'Neshan',balad:'Balad',more:'More Access',email:'Email',nav:'Directions',nav2:'Directions',direct:'Call Directly',footer:'Farshestan — Authentic Persian Rugs in Kashan'},
-ar:{dir:'rtl',brand:'معرض السجاد في كاشان',title:'فرشستان',intro:'للتواصل المباشر مع فرشستان والحصول على كتالوج السجاد، يمكنكم مراسلتنا عبر تيليغرام وواتساب وبله وإيتا، أو التواصل معنا عبر أحد رقمي الهاتف.',p1:'الرقم ١ · اتصال مباشر',p2:'الرقم ٢ · اتصال مباشر',quick:'الوصول السريع',hint:'الموقع أولاً، ثم التواصل والشبكات',website:'موقع فرشستان',instagram:'صفحة إنستغرام',call1:'الاتصال بالرقم ١',call2:'الاتصال بالرقم ٢',msgTitle:'تطبيقات المراسلة',msgHint:'التواصل المباشر والحصول على الكتالوج',telegram:'تيليغرام',whatsapp:'واتساب',bale:'بله',eitaa:'إيتا',locationTitle:'عنوان المعرض',locationText:'كاشان، أصفهان، إيران',google:'Google Maps',neshan:'نشان',balad:'بلد',more:'مزيد من الخيارات',email:'البريد الإلكتروني',nav:'الاتجاهات',nav2:'الاتجاهات',direct:'اتصال مباشر',footer:'فرشستان — فن السجاد الفارسي الأصيل في كاشان'}};
-function setLang(l){const t=T[l];document.documentElement.lang=l;document.body.dir=t.dir;Object.keys(t).forEach(k=>{const e=document.getElementById(k);if(e)e.textContent=t[k]});document.getElementById('brandSub').textContent=t.brand;document.querySelectorAll('[data-lang]').forEach(b=>b.classList.toggle('active',b.dataset.lang===l));localStorage.setItem('farshestanLang',l)}
-function toggleTheme(){document.body.classList.toggle('light');localStorage.setItem('farshestanTheme',document.body.classList.contains('light')?'light':'dark')}
-if(localStorage.getItem('farshestanTheme')==='light')document.body.classList.add('light');setLang(localStorage.getItem('farshestanLang')||'fa');
+
+/* =========================================
+   THEME
+========================================= */
+
+const body = document.body;
+const themeButton = document.getElementById("themeButton");
+const themeIcon = document.getElementById("themeIcon");
+
+function updateThemeIcon(){
+
+    const dark = body.classList.contains("dark");
+
+    if(dark){
+
+        themeIcon.innerHTML = `
+            <path d="M20.5 15.3A8.5 8.5 0 0 1 8.7 3.5
+                     8.5 8.5 0 1 0 20.5 15.3Z"
+                  stroke="currentColor"
+                  stroke-width="1.6"
+                  stroke-linejoin="round"/>
+        `;
+
+    }else{
+
+        themeIcon.innerHTML = `
+            <circle cx="12" cy="12" r="4"
+                    stroke="currentColor"
+                    stroke-width="1.6"/>
+
+            <path d="M12 2v2M12 20v2
+                     M4.9 4.9l1.4 1.4
+                     M17.7 17.7l1.4 1.4
+                     M2 12h2M20 12h2
+                     M4.9 19.1l1.4-1.4
+                     M17.7 6.3l1.4-1.4"
+                  stroke="currentColor"
+                  stroke-width="1.5"
+                  stroke-linecap="round"/>
+        `;
+
+    }
+
+}
+
+themeButton.addEventListener("click",()=>{
+
+    body.classList.toggle("dark");
+
+    localStorage.setItem(
+        "farshestan-theme",
+        body.classList.contains("dark")
+            ? "dark"
+            : "light"
+    );
+
+    updateThemeIcon();
+
+});
+
+
+if(localStorage.getItem("farshestan-theme")==="dark"){
+    body.classList.add("dark");
+}
+
+updateThemeIcon();
+
+
+/* =========================================
+   LANGUAGE
+========================================= */
+
+const languageButton =
+    document.getElementById("languageButton");
+
+const languageFlag =
+    document.getElementById("languageFlag");
+
+const languageText =
+    document.getElementById("languageText");
+
+let currentLanguage =
+    localStorage.getItem("farshestan-language") || "fa";
+
+
+function setLanguage(lang){
+
+    currentLanguage = lang;
+
+    document.documentElement.lang =
+        lang;
+
+    document.documentElement.dir =
+        lang === "fa" ? "rtl" : "ltr";
+
+    document.querySelectorAll("[data-fa]").forEach(el=>{
+
+        const value =
+            lang === "fa"
+                ? el.dataset.fa
+                : el.dataset.en;
+
+        if(value){
+            el.textContent = value;
+        }
+
+    });
+
+
+    if(lang === "fa"){
+
+        languageFlag.textContent = "🇮🇷";
+        languageText.textContent = "FA";
+
+    }else{
+
+        languageFlag.textContent = "🇬🇧";
+        languageText.textContent = "EN";
+
+    }
+
+    localStorage.setItem(
+        "farshestan-language",
+        lang
+    );
+
+}
+
+
+languageButton.addEventListener("click",()=>{
+
+    setLanguage(
+        currentLanguage === "fa"
+            ? "en"
+            : "fa"
+    );
+
+});
+
+
+setLanguage(currentLanguage);
+
+
+/* =========================================
+   MENU
+========================================= */
+
+const menuButton =
+    document.getElementById("menuButton");
+
+const menuClose =
+    document.getElementById("menuClose");
+
+const menuPanel =
+    document.getElementById("menuPanel");
+
+const overlay =
+    document.getElementById("overlay");
+
+
+function openMenu(){
+
+    menuPanel.classList.add("open");
+    overlay.classList.add("show");
+
+}
+
+
+function closeMenu(){
+
+    menuPanel.classList.remove("open");
+    overlay.classList.remove("show");
+
+}
+
+
+menuButton.addEventListener("click",openMenu);
+menuClose.addEventListener("click",closeMenu);
+overlay.addEventListener("click",closeMenu);
+
+
+/* =========================================
+   TOAST
+========================================= */
+
+let toastTimer;
+
+function showToast(message){
+
+    const toast =
+        document.getElementById("toast");
+
+    toast.textContent = message;
+
+    toast.classList.add("show");
+
+    clearTimeout(toastTimer);
+
+    toastTimer =
+        setTimeout(()=>{
+            toast.classList.remove("show");
+        },1800);
+
+}
+
+
+/* =========================================
+   PREVENT EMPTY BALE LINK
+========================================= */
+
+document.querySelectorAll('a[href="#"]').forEach(link=>{
+
+    link.addEventListener("click",e=>{
+        e.preventDefault();
+    });
+
+});
+
 </script>
+
 </body>
 </html>
