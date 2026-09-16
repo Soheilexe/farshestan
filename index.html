@@ -41,19 +41,18 @@ body{
     linear-gradient(145deg,var(--bg),var(--bg-deep));
 }
 body:before{
-  content:""; position:fixed; inset:-5%; z-index:-3; pointer-events:none;
+  content:""; position:fixed; inset:0; z-index:-3; pointer-events:none;
   background:
-    linear-gradient(rgba(245,241,232,.30),rgba(245,241,232,.45)),
+    linear-gradient(rgba(245,241,232,.18),rgba(245,241,232,.28)),
     url("carpett.jpg") center/cover;
-  filter:blur(6px) saturate(.95) contrast(1);
-  transform:scale(1.08);
+  filter:saturate(1) contrast(1.02);
+  transform:scale(1.02);
 }
 body:after{
   content:""; position:fixed; inset:0; z-index:-2; pointer-events:none;
   background:
-    radial-gradient(circle at 50% -10%,rgba(255,255,255,.55),transparent 42%),
-    repeating-linear-gradient(115deg,rgba(255,255,255,.025) 0 1px,transparent 1px 7px);
-  backdrop-filter:blur(11px);
+    radial-gradient(circle at 50% -10%,rgba(255,255,255,.35),transparent 42%),
+    repeating-linear-gradient(115deg,rgba(255,255,255,.02) 0 1px,transparent 1px 7px);
 }
 button{font:inherit;color:inherit}
 button,.card{border:0}
@@ -272,13 +271,12 @@ svg{display:block}
 }
 .dark:before{
   background:
-    linear-gradient(rgba(10,8,7,.55),rgba(10,8,7,.70)),
+    linear-gradient(rgba(10,8,7,.42),rgba(10,8,7,.58)),
     url("carpett.jpg") center/cover;
-  filter:blur(7px) saturate(.85) contrast(1.05);
+  filter:saturate(.9) contrast(1.05);
 }
 .dark:after{
   background:radial-gradient(circle at 50% 0,rgba(215,181,116,.07),transparent 42%);
-  backdrop-filter:blur(12px);
 }
 .dark .icon-btn,.dark .lang{
   background:rgba(30,25,21,.58);border-color:var(--line);color:#e1c895;
