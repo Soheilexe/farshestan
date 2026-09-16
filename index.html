@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>فرشستان | نمایشگاه فرش کاشان</title>
+<link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body {
+    font-family: 'Vazirmatn', Tahoma, sans-serif;
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+    color: #fff;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+  }
+  .card {
+    width: 100%;
+    max-width: 420px;
+    background: rgba(255,255,255,0.05);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 24px;
+    padding: 32px 24px;
+    text-align: center;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.4);
+  }
+  .logo {
+    width: 96px; height: 96px;
+    margin: 0 auto 16px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #e1306c, #f77737);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 42px;
+    box-shadow: 0 8px 24px rgba(225,48,108,0.4);
+  }
+  h1 {
+    font-size: 22px;
+    font-weight: 700;
+    margin-bottom: 6px;
+  }
+  .subtitle {
+    font-size: 13px;
+    color: #b8b8c8;
+    margin-bottom: 24px;
+  }
+  .links { display: flex; flex-direction: column; gap: 12px; }
+  .link {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 14px 16px;
+    background: rgba(255,255,255,0.07);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 14px;
+    color: #fff;
+    text-decoration: none;
+    font-size: 15px;
+    font-weight: 600;
+    transition: all 0.25s ease;
+    direction: rtl;
+  }
+  .link:hover, .link:active {
+    background: rgba(255,255,255,0.15);
+    transform: translateY(-2px);
+    border-color: rgba(255,255,255,0.25);
+  }
+  .icon {
+    width: 36px; height: 36px;
+    display: flex; align-items: center; justify-content: center;
+    border-radius: 10px;
+    font-size: 18px;
+    flex-shrink: 0;
+  }
+  .icon-ig { background: linear-gradient(45deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888); }
+  .icon-web { background: linear-gradient(135deg,#0ea5e9,#2563eb); }
+  .icon-phone { background: linear-gradient(135deg,#22c55e,#16a34a); }
+  .icon-mail { background: linear-gradient(135deg,#ef4444,#dc2626); }
+  .icon-tg { background: linear-gradient(135deg,#0088cc,#006699); }
+  .icon-eitaa { background: linear-gradient(135deg,#f59e0b,#ea580c); }
+  .icon-map { background: linear-gradient(135deg,#a855f7,#7c3aed); }
+  .link-text { display: flex; flex-direction: column; align-items: flex-start; }
+  .link-label { font-size: 11px; color: #b8b8c8; font-weight: 400; }
+  .link-value { font-size: 14px; direction: ltr; }
+  .footer {
+    margin-top: 24px;
+    font-size: 12px;
+    color: #888;
+  }
+</style>
+</head>
+<body>
+  <div class="card">
+    <div class="logo">🧶</div>
+    <h1>نمایشگاه فرش فرشستان</h1>
+    <p class="subtitle">کاشان، بلوار امام رضا</p>
+
+    <div class="links">
+      <a class="link" href="https://farshestan.co/" target="_blank">
+        <div class="icon icon-web">🌐</div>
+        <div class="link-text">
+          <span class="link-label">وب‌سایت</span>
+          <span class="link-value">farshestan.co</span>
+        </div>
+      </a>
+
+      <a class="link" href="https://www.instagram.com/farshestan/" target="_blank">
+        <div class="icon icon-ig">📷</div>
+        <div class="link-text">
+          <span class="link-label">اینستاگرام</span>
+          <span class="link-value">@farshestan</span>
+        </div>
+      </a>
+
+      <a class="link" href="tel:09135836090">
+        <div class="icon icon-phone">📞</div>
+        <div class="link-text">
+          <span class="link-label">تماس ۱</span>
+          <span class="link-value">0913 583 6090</span>
+        </div>
+      </a>
+
+      <a class="link" href="tel:09135836080">
+        <div class="icon icon-phone">📞</div>
+        <div class="link-text">
+          <span class="link-label">تماس ۲</span>
+          <span class="link-value">0913 583 6080</span>
+        </div>
+      </a>
+
+      <a class="link" href="mailto:info@farshestan.co">
+        <div class="icon icon-mail">✉️</div>
+        <div class="link-text">
+          <span class="link-label">ایمیل</span>
+          <span class="link-value">info@farshestan.co</span>
+        </div>
+      </a>
+
+      <a class="link" href="https://t.me/farshestanco" target="_blank">
+        <div class="icon icon-tg">✈️</div>
+        <div class="link-text">
+          <span class="link-label">کانال تلگرام</span>
+          <span class="link-value">t.me/farshestanco</span>
+        </div>
+      </a>
+
+      <a class="link" href="https://eitaa.com/farshestan_co" target="_blank">
+        <div class="icon icon-eitaa">📨</div>
+        <div class="link-text">
+          <span class="link-label">کانال ایتا</span>
+          <span class="link-value">eitaa.com/farshestan_co</span>
+        </div>
+      </a>
+
+      <a class="link" href="https://maps.google.com/?q=کاشان+بلوار+امام+رضا+روبه+روی+مسجدالرضا+نمایشگاه+فرشستان" target="_blank">
+        <div class="icon icon-map">📍</div>
+        <div class="link-text">
+          <span class="link-label">آدرس روی نقشه</span>
+          <span class="link-value" style="font-size:12px;">کاشان، بلوار امام رضا</span>
+        </div>
+      </a>
+    </div>
+
+    <div class="footer">© فرشستان</div>
+  </div>
+</body>
+</html>
