@@ -43,15 +43,15 @@ body{
 body:before{
   content:""; position:fixed; inset:-10%; z-index:-3; pointer-events:none;
   background:
-    linear-gradient(rgba(245,241,232,.64),rgba(245,241,232,.78)),
-    url("https://images.unsplash.com/photo-1549490349-8643362247b5?auto=format&fit=crop&w=2000&q=85") center/cover;
-  filter:saturate(.72) contrast(.96);
-  transform:scale(1.05);
+    linear-gradient(rgba(245,241,232,.55),rgba(245,241,232,.72)),
+    url("carpett.jpg") center/cover;
+  filter:blur(28px) saturate(.85) contrast(.98);
+  transform:scale(1.15);
 }
 body:after{
   content:""; position:fixed; inset:0; z-index:-2; pointer-events:none;
   background:
-    radial-gradient(circle at 50% -10%,rgba(255,255,255,.62),transparent 42%),
+    radial-gradient(circle at 50% -10%,rgba(255,255,255,.55),transparent 42%),
     repeating-linear-gradient(115deg,rgba(255,255,255,.025) 0 1px,transparent 1px 7px);
   backdrop-filter:blur(11px);
 }
@@ -272,9 +272,9 @@ svg{display:block}
 }
 .dark:before{
   background:
-    linear-gradient(rgba(10,8,7,.72),rgba(10,8,7,.86)),
-    url("https://images.unsplash.com/photo-1609602126247-4ab7188b4c1b?auto=format&fit=crop&w=2000&q=85") center/cover;
-  filter:saturate(.72) contrast(1.05);
+    linear-gradient(rgba(10,8,7,.68),rgba(10,8,7,.82)),
+    url("carpett.jpg") center/cover;
+  filter:blur(32px) saturate(.7) contrast(1.05);
 }
 .dark:after{
   background:radial-gradient(circle at 50% 0,rgba(215,181,116,.07),transparent 42%);
@@ -297,23 +297,6 @@ svg{display:block}
 .dark .msg small,.dark .map b{color:#b9aa94}
 .dark .footer{color:#a8977e}
 .dark .orb{opacity:.11}
-
-/* =========================
-   PAGE-2 BLURRED BACKGROUND
-   ========================= */
-.page2-bg{
-  position:fixed; inset:-6%; z-index:-1;
-  pointer-events:none;
-  background:url("carpett.jpg") center/cover no-repeat;
-  filter:blur(34px) saturate(1.05) brightness(1.02);
-  opacity:.22;
-  transform:scale(1.12);
-  transition:opacity .5s ease, filter .5s ease;
-}
-.dark .page2-bg{
-  opacity:.14;
-  filter:blur(38px) saturate(.85) brightness(.72);
-}
 
 
 /* =========================
@@ -488,7 +471,6 @@ body.opening-active{overflow:hidden}
 </div>
 
 <div class="orb one"></div><div class="orb two"></div>
-<div class="page2-bg" aria-hidden="true"></div>
 
 <main class="shell">
 <header class="topbar">
