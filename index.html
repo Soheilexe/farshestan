@@ -14,8 +14,6 @@
 :root{
   --bg:#f5f1e8;
   --bg-deep:#ebe3d4;
-  --surface:rgba(255,253,248,.68);
-  --surface-strong:rgba(255,255,255,.78);
   --text:#241719;
   --muted:#5c5149;
   --line:rgba(58,38,30,.12);
@@ -23,9 +21,9 @@
   --gold-soft:#d5b77e;
   --wine:#70242d;
   --wine-dark:#4b171e;
-  --shadow:0 24px 80px rgba(55,39,29,.12);
-  --shadow-hover:0 34px 90px rgba(55,39,29,.20);
-  --radius:28px;
+  --shadow:0 18px 55px rgba(55,39,29,.10);
+  --shadow-hover:0 26px 70px rgba(55,39,29,.18);
+  --radius:22px;
   --ease:cubic-bezier(.22,1,.36,1);
 }
 
@@ -38,7 +36,7 @@ html{
   font-feature-settings:"kern" 1, "liga" 1;
 }
 body{
-  margin:0; min-height:100vh; color:var(--text);
+  margin:0; min-height:100vh; min-height:100svh; color:var(--text);
   font-family:Vazirmatn,system-ui,sans-serif;
   font-weight:500;
   overflow-x:hidden;
@@ -65,43 +63,27 @@ button{font:inherit;color:inherit}
 button,.card{border:0}
 button{appearance:none}
 svg{display:block}
-
-/* لینک‌ها همان ظاهر کارت را بگیرند */
 a.card,a.msg,a.map{text-decoration:none;color:inherit;-webkit-tap-highlight-color:transparent}
 
-.shell{
-  width:min(760px,100%);
-  margin:auto;
-  padding:20px 18px 38px;
-  position:relative;
-}
-
-/* ambient luxury glow */
-.orb{
-  position:fixed; width:260px; height:260px; border-radius:50%;
-  filter:blur(55px); opacity:.16; pointer-events:none; z-index:-1;
-  animation:float 10s ease-in-out infinite;
-}
-.orb.one{background:var(--gold); top:14%; right:-100px}
-.orb.two{background:var(--wine); bottom:8%; left:-120px; animation-delay:-4s}
-@keyframes float{50%{transform:translate3d(0,35px,0) scale(1.08)}}
-
+/* ============ TOP BUTTONS (stable position) ============ */
 .topbar{
-  height:54px; display:flex; align-items:center; justify-content:space-between;
-  animation:fadeDown .8s var(--ease) both;
+  position:fixed; top:14px; right:16px; z-index:60;
+  display:flex; align-items:center; gap:9px;
+  direction:ltr;
 }
-.actions{display:flex;gap:10px}
 .icon-btn,.lang{
   position:relative; overflow:hidden;
-  width:46px;height:46px; display:grid;place-items:center;
+  height:42px; display:grid; place-items:center;
   border:1px solid var(--line);
-  border-radius:16px;
-  background:rgba(255,255,255,.46);
-  box-shadow:0 10px 30px rgba(50,35,27,.08),inset 0 1px rgba(255,255,255,.8);
-  backdrop-filter:blur(18px);
+  border-radius:14px;
+  background:rgba(255,255,255,.55);
+  box-shadow:0 8px 24px rgba(50,35,27,.09),inset 0 1px rgba(255,255,255,.85);
+  backdrop-filter:blur(18px) saturate(140%);
+  -webkit-backdrop-filter:blur(18px) saturate(140%);
   cursor:pointer;
-  transition:transform .45s var(--ease),box-shadow .45s var(--ease),border-color .45s;
+  transition:transform .4s var(--ease),box-shadow .4s var(--ease),border-color .4s;
 }
+.icon-btn{width:42px}
 .icon-btn:before,.lang:before{
   content:"";position:absolute;inset:-80% 30% auto -40%;height:180%;
   background:linear-gradient(90deg,transparent,rgba(255,255,255,.75),transparent);
@@ -109,179 +91,237 @@ a.card,a.msg,a.map{text-decoration:none;color:inherit;-webkit-tap-highlight-colo
   transition:transform .7s var(--ease);
 }
 .icon-btn:hover:before,.lang:hover:before{transform:rotate(24deg) translateX(170%)}
-.icon-btn:hover,.lang:hover{transform:translateY(-4px);box-shadow:0 18px 42px rgba(50,35,27,.14)}
-.lang{width:auto;padding:0 13px;display:flex;gap:8px;font-size:12px}
+.icon-btn:hover,.lang:hover{transform:translateY(-3px);box-shadow:0 14px 34px rgba(50,35,27,.15);border-color:rgba(182,139,74,.3)}
+.icon-btn:active,.lang:active{transform:translateY(0) scale(.96)}
+.lang{padding:0 12px;display:flex;gap:7px;font-size:12px;font-weight:700;color:var(--wine)}
+.lang b{letter-spacing:.5px}
 
+/* ============ SHELL ============ */
+.shell{
+  width:min(880px,100%);
+  margin:auto;
+  min-height:100vh; min-height:100svh;
+  padding:70px 18px 16px;
+  display:flex; flex-direction:column; justify-content:center;
+  gap:10px;
+  position:relative;
+}
+
+/* ambient glow */
+.orb{
+  position:fixed; width:240px; height:240px; border-radius:50%;
+  filter:blur(55px); opacity:.15; pointer-events:none; z-index:-1;
+  animation:float 10s ease-in-out infinite;
+}
+.orb.one{background:var(--gold); top:14%; right:-100px}
+.orb.two{background:var(--wine); bottom:8%; left:-120px; animation-delay:-4s}
+@keyframes float{50%{transform:translate3d(0,30px,0) scale(1.08)}}
+
+/* ============ HERO ============ */
 .hero{
   text-align:center;
-  padding:34px 8px 27px;
-  animation:heroIn 1s .08s var(--ease) both;
+  padding:2px 8px 6px;
+  animation:heroIn .9s .05s var(--ease) both;
 }
 .logo-fa{
-  font-family:Amiri,serif;font-weight:700;font-size:72px;line-height:.92;
-  letter-spacing:-4px;color:var(--wine);
-  text-shadow:0 8px 30px rgba(112,36,45,.13);
+  font-family:Amiri,serif;font-weight:700;
+  font-size:clamp(58px,9.5vw,92px);
+  line-height:.92;
+  letter-spacing:-4px;
+  background:linear-gradient(135deg,#70242d 0%,#b68b4a 45%,#8b3a2f 100%);
+  -webkit-background-clip:text;background-clip:text;
+  -webkit-text-fill-color:transparent;color:transparent;
+  filter:drop-shadow(0 8px 26px rgba(112,36,45,.18));
+  margin:0 auto;
 }
 .logo-en{
   font-family:"Cormorant Garamond",serif;
-  font-weight:600;letter-spacing:9px;font-size:18px;
-  text-transform:uppercase;color:#806f62;margin-top:10px;
+  font-weight:600;letter-spacing:9px;font-size:13px;
+  text-transform:uppercase;color:#806f62;margin-top:6px;
 }
 .tag{
-  display:inline-flex;align-items:center;gap:9px;
-  margin-top:15px;padding:7px 13px;border-radius:999px;
-  border:1px solid rgba(182,139,74,.22);
-  background:rgba(255,255,255,.36);
-  color:#806e5e;font-size:11px;
-  box-shadow:inset 0 1px rgba(255,255,255,.8);
+  display:inline-flex;align-items:center;gap:8px;
+  margin-top:10px;padding:5px 12px;border-radius:999px;
+  border:1px solid rgba(182,139,74,.28);
+  background:rgba(255,255,255,.45);
+  color:#806e5e;font-size:10.5px;font-weight:600;
+  box-shadow:inset 0 1px rgba(255,255,255,.85);
 }
 .tag:before,.tag:after{content:"";width:4px;height:4px;border-radius:50%;background:var(--gold)}
 .intro{
-  max-width:560px;margin:17px auto 0;
-  font-size:13px;line-height:2.05;color:var(--muted);
+  max-width:540px;margin:9px auto 0;
+  font-size:11.5px;line-height:1.95;color:var(--muted);
 }
 
-/* premium cards */
-.section{margin-top:16px}
+/* ============ CARDS GRID ============ */
+.cards{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:9px;
+}
 .card{
   position:relative; isolation:isolate; overflow:hidden;
-  width:100%; display:flex;align-items:center;gap:15px;
-  padding:16px 17px;margin-bottom:12px;
+  display:flex;align-items:center;gap:11px;
+  padding:11px 13px;
+  min-height:56px;
   border-radius:var(--radius);
   border:1px solid rgba(87,57,42,.12);
-  background:linear-gradient(135deg,rgba(255,255,255,.76),rgba(247,239,226,.54));
-  box-shadow:var(--shadow),inset 0 1px rgba(255,255,255,.86);
-  backdrop-filter:blur(22px) saturate(120%);
-  text-align:right;cursor:pointer;
-  transform:translateY(0);
-  transition:transform .55s var(--ease),box-shadow .55s var(--ease),border-color .55s;
-  animation:cardIn .8s var(--ease) both;
+  background:linear-gradient(135deg,rgba(255,255,255,.78),rgba(247,239,226,.55));
+  box-shadow:var(--shadow),inset 0 1px rgba(255,255,255,.88);
+  backdrop-filter:blur(20px) saturate(120%);
+  -webkit-backdrop-filter:blur(20px) saturate(120%);
+  text-align:start;cursor:pointer;
+  transition:transform .5s var(--ease),box-shadow .5s var(--ease),border-color .5s;
+  animation:cardIn .7s var(--ease) both;
 }
-.card:nth-child(2){animation-delay:.08s}
-.card:nth-child(3){animation-delay:.16s}
-.card:nth-child(4){animation-delay:.24s}
-.card:nth-child(5){animation-delay:.32s}
+.card:nth-child(1){animation-delay:.05s}
+.card:nth-child(2){animation-delay:.1s}
+.card:nth-child(3){animation-delay:.15s}
+.card:nth-child(4){animation-delay:.2s}
+.card:nth-child(5){animation-delay:.25s}
+.card:nth-child(5){grid-column:1 / -1}
 .card:before{
   content:"";position:absolute;inset:0;z-index:-1;
-  background:radial-gradient(circle at var(--mx,50%) var(--my,50%),rgba(182,139,74,.16),transparent 28%);
+  background:radial-gradient(circle at var(--mx,50%) var(--my,50%),rgba(182,139,74,.18),transparent 30%);
   opacity:0;transition:opacity .4s;
 }
 .card:after{
   content:"";position:absolute;top:0;bottom:0;left:-80%;
-  width:45%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.45),transparent);
+  width:45%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.5),transparent);
   transform:skewX(-18deg);transition:left .8s var(--ease);
 }
 .card:hover{
-  transform:translateY(-7px) scale(1.008);
+  transform:translateY(-4px) scale(1.006);
   box-shadow:var(--shadow-hover),inset 0 1px rgba(255,255,255,.95);
-  border-color:rgba(182,139,74,.27);
+  border-color:rgba(182,139,74,.3);
 }
 .card:hover:before{opacity:1}
 .card:hover:after{left:135%}
 
 .badge{
-  width:51px;height:51px;flex:0 0 51px;border-radius:18px;
+  width:42px;height:42px;flex:0 0 42px;border-radius:14px;
   display:grid;place-items:center;color:var(--wine);
-  background:linear-gradient(145deg,rgba(112,36,45,.12),rgba(112,36,45,.035));
+  background:linear-gradient(145deg,rgba(112,36,45,.13),rgba(112,36,45,.035));
   border:1px solid rgba(112,36,45,.08);
   box-shadow:inset 0 1px rgba(255,255,255,.85);
-  transition:transform .55s var(--ease),background .55s;
+  transition:transform .5s var(--ease),background .5s;
 }
-.card:hover .badge{transform:rotate(-7deg) scale(1.08);background:rgba(182,139,74,.15)}
-.copy{min-width:0;flex:1}
-.title{font-weight:700;font-size:14px;letter-spacing:-.15px}
-.sub{font-size:11.5px;color:#6b5f56;margin-top:5px;direction:ltr;text-align:right;white-space:normal}
-.sub.fa{direction:rtl;text-align:right}
+.card:hover .badge{transform:rotate(-7deg) scale(1.07);background:rgba(182,139,74,.16)}
+.copy{min-width:0;flex:1;overflow:hidden}
+.title{font-weight:700;font-size:13px;letter-spacing:-.15px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.sub{font-size:10.5px;color:#6b5f56;margin-top:3px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.ltr-text{direction:ltr}
+html[dir="rtl"] .ltr-text{text-align:right}
+html[dir="ltr"] .ltr-text{text-align:left}
 .chev{
-  width:34px;height:34px;border-radius:12px;display:grid;place-items:center;
-  color:#a18b79;background:rgba(255,255,255,.38);
+  width:26px;height:26px;flex:0 0 26px;border-radius:9px;display:grid;place-items:center;
+  color:#a18b79;background:rgba(255,255,255,.42);
   transition:transform .5s var(--ease),background .5s,color .5s;
 }
-.card:hover .chev{transform:translateX(-5px);color:var(--wine);background:rgba(182,139,74,.11)}
+.card:hover .chev{transform:translateX(-4px);color:var(--wine);background:rgba(182,139,74,.13)}
+html[dir="ltr"] .card:hover .chev{transform:translateX(4px)}
+html[dir="ltr"] .chev svg{transform:rotate(180deg)}
 
-.call .badge{color:#9b7138;background:rgba(182,139,74,.13)}
+.call .badge{color:#9b7138;background:rgba(182,139,74,.14)}
 .insta .badge{color:#843c5c;background:rgba(132,60,92,.09)}
 .mail .badge{color:#3f6f8f;background:rgba(63,111,143,.10)}
+.web .badge{color:#4a6b3f;background:rgba(74,107,63,.10)}
 
+/* ============ MESSAGING ============ */
 .messaging{
-  padding:14px;border-radius:30px;
-  background:rgba(255,250,241,.52);
+  padding:10px;border-radius:24px;
+  background:rgba(255,250,241,.55);
   border:1px solid var(--line);
   box-shadow:var(--shadow);
-  backdrop-filter:blur(20px);
-  display:grid;grid-template-columns:repeat(4,1fr);gap:10px;
-  animation:cardIn .8s .23s var(--ease) both;
+  backdrop-filter:blur(18px);
+  -webkit-backdrop-filter:blur(18px);
+  display:grid;grid-template-columns:repeat(4,1fr);gap:8px;
+  animation:cardIn .7s .3s var(--ease) both;
 }
 .msg{
-  height:82px;position:relative;overflow:hidden;
-  border-radius:21px;
-  background:rgba(255,255,255,.56);
+  height:62px;position:relative;overflow:hidden;
+  border-radius:16px;
+  background:rgba(255,255,255,.6);
   border:1px solid rgba(90,60,45,.08);
-  display:grid;place-items:center;cursor:pointer;
-  box-shadow:0 9px 24px rgba(70,45,30,.055),inset 0 1px rgba(255,255,255,.8);
-  transition:transform .5s var(--ease),box-shadow .5s var(--ease);
+  display:grid;place-items:center;gap:5px;padding-top:4px;cursor:pointer;
+  box-shadow:0 8px 20px rgba(70,45,30,.05),inset 0 1px rgba(255,255,255,.85);
+  transition:transform .45s var(--ease),box-shadow .45s var(--ease);
 }
 .msg:before{
   content:"";position:absolute;inset:0;
-  background:radial-gradient(circle at 50% 0,rgba(255,255,255,.8),transparent 60%);
+  background:radial-gradient(circle at 50% 0,rgba(255,255,255,.85),transparent 60%);
+  pointer-events:none;
 }
-.msg:hover{transform:translateY(-7px) scale(1.025);box-shadow:0 20px 38px rgba(60,42,30,.13)}
+.msg:hover{transform:translateY(-4px) scale(1.025);box-shadow:0 16px 32px rgba(60,42,30,.13)}
+.msg:active{transform:translateY(0) scale(.98)}
 .msg span{
-  width:41px;height:41px;border-radius:14px;display:grid;place-items:center;
-  color:white;font-weight:700;font-size:15px;position:relative;
-  box-shadow:0 9px 20px rgba(0,0,0,.12);
-  transition:transform .5s var(--ease);
+  width:32px;height:32px;border-radius:11px;display:grid;place-items:center;
+  color:white;font-weight:700;font-size:13px;position:relative;
+  box-shadow:0 7px 16px rgba(0,0,0,.14);
+  transition:transform .45s var(--ease);
 }
-.msg:hover span{transform:scale(1.12) rotate(-5deg)}
-.telegram span{background:#229ed9}.whatsapp span{background:#25d366}.bale span{background:#22b8a8}.eitaa span{background:#ef7f32}
-.msg small{font-size:10px;color:#5f544c;margin-top:-7px;position:relative;font-weight:600}
+.msg:hover span{transform:scale(1.1) rotate(-5deg)}
+.telegram span{background:linear-gradient(135deg,#2bb3ea,#229ed9)}
+.whatsapp span{background:linear-gradient(135deg,#3ee07f,#25d366)}
+.bale span{background:linear-gradient(135deg,#33ccbb,#22b8a8)}
+.eitaa span{background:linear-gradient(135deg,#ff9a52,#ef7f32)}
+.msg small{font-size:9.5px;color:#5f544c;position:relative;font-weight:600;line-height:1}
 
-.address{animation:cardIn .8s .31s var(--ease) both}
-.mapgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+/* ============ ADDRESS ============ */
+.address{display:flex;flex-direction:column;gap:8px;animation:cardIn .7s .35s var(--ease) both}
+.mapgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
 .map{
-  padding:14px 8px;border-radius:21px;
-  background:rgba(255,255,255,.58);
+  padding:9px 6px;border-radius:16px;
+  background:rgba(255,255,255,.6);
   border:1px solid var(--line);text-align:center;cursor:pointer;
-  box-shadow:0 10px 28px rgba(60,42,30,.06),inset 0 1px rgba(255,255,255,.8);
-  transition:transform .5s var(--ease),box-shadow .5s var(--ease);
+  box-shadow:0 8px 22px rgba(60,42,30,.06),inset 0 1px rgba(255,255,255,.85);
+  transition:transform .45s var(--ease),box-shadow .45s var(--ease),border-color .45s;
 }
-.map:hover{transform:translateY(-5px);box-shadow:0 18px 36px rgba(60,42,30,.13)}
-.map i{font-style:normal;display:grid;place-items:center;margin:auto;width:38px;height:38px;border-radius:13px;background:rgba(182,139,74,.11);color:var(--gold)}
-.map b{display:block;font-size:11px;margin-top:7px;font-weight:700}
+.map:hover{transform:translateY(-3px);box-shadow:0 14px 30px rgba(60,42,30,.13);border-color:rgba(182,139,74,.28)}
+.map:active{transform:translateY(0) scale(.98)}
+.map i{
+  font-style:normal;display:grid;place-items:center;margin:auto;
+  width:30px;height:30px;border-radius:10px;
+  background:linear-gradient(145deg,rgba(182,139,74,.18),rgba(182,139,74,.06));
+  color:var(--gold);font-size:13px;font-weight:700;
+}
+.map b{display:block;font-size:10px;margin-top:5px;font-weight:700}
 
+/* ============ FOOTER ============ */
 .footer{
-  text-align:center;color:#6f6259;font-size:11px;margin:36px 0 6px;
-  display:flex;align-items:center;gap:13px;justify-content:center;
+  text-align:center;color:#6f6259;font-size:10.5px;
+  display:flex;align-items:center;gap:11px;justify-content:center;
   animation:fadeUp 1s .5s var(--ease) both;
+  margin-top:2px;
 }
-.footer:before,.footer:after{content:"";height:1px;width:68px;background:linear-gradient(90deg,transparent,var(--gold))}
+.footer:before,.footer:after{content:"";height:1px;width:56px;background:linear-gradient(90deg,transparent,var(--gold))}
 .footer:after{background:linear-gradient(90deg,var(--gold),transparent)}
 
+/* ============ TOAST ============ */
 .toast{
-  position:fixed;bottom:24px;left:50%;z-index:20;
+  position:fixed;bottom:22px;left:50%;z-index:80;
   transform:translate(-50%,25px) scale(.96);opacity:0;pointer-events:none;
   display:flex;align-items:center;gap:9px;
-  background:rgba(39,20,22,.93);color:#fff;
-  padding:12px 18px;border:1px solid rgba(213,183,126,.25);
-  border-radius:16px;font-size:12px;
+  background:rgba(39,20,22,.94);color:#fff;
+  padding:11px 17px;border:1px solid rgba(213,183,126,.25);
+  border-radius:14px;font-size:12px;
   box-shadow:0 18px 55px rgba(0,0,0,.22);
   backdrop-filter:blur(16px);
   transition:.45s var(--ease);
 }
 .toast.show{opacity:1;transform:translate(-50%,0) scale(1)}
 
-@keyframes fadeDown{from{opacity:0;transform:translateY(-15px)}to{opacity:1;transform:none}}
-@keyframes heroIn{from{opacity:0;transform:translateY(18px) scale(.97)}to{opacity:1;transform:none}}
-@keyframes cardIn{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:none}}
-@keyframes fadeUp{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+@keyframes heroIn{from{opacity:0;transform:translateY(16px) scale(.97)}to{opacity:1;transform:none}}
+@keyframes cardIn{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
+@keyframes fadeUp{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
 
+/* ============ DARK ============ */
 .dark{
   --bg:#0c0b0a;--bg-deep:#17120f;
-  --surface:rgba(28,23,20,.66);--surface-strong:rgba(31,25,21,.82);
   --text:#f3e8d3;--muted:#c9bda9;--line:rgba(213,183,126,.20);
   --gold:#d7b574;--gold-soft:#ead3a5;--wine:#d39a62;--wine-dark:#8b4b43;
-  --shadow:0 28px 90px rgba(0,0,0,.42);
-  --shadow-hover:0 35px 100px rgba(0,0,0,.58);
+  --shadow:0 22px 70px rgba(0,0,0,.42);
+  --shadow-hover:0 30px 85px rgba(0,0,0,.58);
 }
 .dark:before{
   background:
@@ -293,23 +333,27 @@ a.card,a.msg,a.map{text-decoration:none;color:inherit;-webkit-tap-highlight-colo
   background:radial-gradient(circle at 50% 0,rgba(215,181,116,.07),transparent 42%);
 }
 .dark .icon-btn,.dark .lang{
-  background:rgba(30,25,21,.58);border-color:var(--line);color:#e1c895;
+  background:rgba(30,25,21,.62);border-color:var(--line);color:#e1c895;
 }
-.dark .logo-fa{color:#e0b979;text-shadow:0 0 34px rgba(215,181,116,.17)}
+.dark .logo-fa{
+  background:linear-gradient(135deg,#e0b979 0%,#f2d9a5 45%,#c9884f 100%);
+  -webkit-background-clip:text;background-clip:text;
+  -webkit-text-fill-color:transparent;color:transparent;
+  filter:drop-shadow(0 0 34px rgba(215,181,116,.22));
+}
 .dark .logo-en,.dark .tag,.dark .intro,.dark .sub{color:#c9bda9}
-.dark .tag{background:rgba(215,181,116,.055)}
+.dark .tag{background:rgba(215,181,116,.06)}
 .dark .card{
-  background:linear-gradient(135deg,rgba(40,32,27,.76),rgba(18,15,13,.74));
+  background:linear-gradient(135deg,rgba(40,32,27,.78),rgba(18,15,13,.76));
   border-color:rgba(213,183,126,.20);
 }
-.dark .badge{background:rgba(215,181,116,.08);color:#dfbc7d}
-.dark .chev{background:rgba(255,255,255,.035)}
-.dark .messaging{background:rgba(28,23,20,.58);border-color:var(--line)}
-.dark .msg,.dark .map{background:rgba(20,16,14,.70);border-color:rgba(213,183,126,.16)}
+.dark .badge{background:rgba(215,181,116,.09);color:#dfbc7d}
+.dark .chev{background:rgba(255,255,255,.04)}
+.dark .messaging{background:rgba(28,23,20,.6);border-color:var(--line)}
+.dark .msg,.dark .map{background:rgba(20,16,14,.72);border-color:rgba(213,183,126,.16)}
 .dark .msg small,.dark .map b{color:#d3c4ab}
 .dark .footer{color:#c2b298}
 .dark .orb{opacity:.11}
-
 
 /* =========================
    CINEMATIC OPENING SCENE
@@ -322,15 +366,10 @@ body.opening-active{overflow:hidden}
   overflow:hidden;
   background:#18110e;
   cursor:default;
-  opacity:1;
-  visibility:visible;
+  opacity:1; visibility:visible;
   transition:opacity .45s cubic-bezier(.22,1,.36,1),visibility .45s;
 }
-.opening-scene.is-gone{
-  opacity:0;
-  visibility:hidden;
-  pointer-events:none;
-}
+.opening-scene.is-gone{opacity:0;visibility:hidden;pointer-events:none}
 .opening-image{
   position:absolute; inset:-5%;
   background:
@@ -406,26 +445,18 @@ body.opening-active{overflow:hidden}
   background:linear-gradient(90deg,transparent,#d9b878,transparent);
   animation:openingProgress 3.5s ease-out forwards;
 }
+html[dir="ltr"] .opening-progress span{transform-origin:left}
 
-@keyframes openingZoom{
-  from{transform:scale(1.075)}
-  to{transform:scale(1.01)}
-}
+@keyframes openingZoom{from{transform:scale(1.075)}to{transform:scale(1.01)}}
 @keyframes openingContentIn{
   from{opacity:0;transform:translateY(35px) scale(.97);filter:blur(7px)}
   to{opacity:1;transform:none;filter:none}
 }
-@keyframes openingProgress{
-  to{transform:scaleX(1)}
-}
-@keyframes scrollPulse{
-  50%{transform:translateY(6px);opacity:.48}
-}
+@keyframes openingProgress{to{transform:scaleX(1)}}
+@keyframes scrollPulse{50%{transform:translateY(6px);opacity:.48}}
 @keyframes grainShift{
-  0%{transform:translate(0,0)}
-  25%{transform:translate(2%,-1%)}
-  50%{transform:translate(-1%,2%)}
-  75%{transform:translate(1%,1%)}
+  0%{transform:translate(0,0)}25%{transform:translate(2%,-1%)}
+  50%{transform:translate(-1%,2%)}75%{transform:translate(1%,1%)}
   100%{transform:translate(0,0)}
 }
 
@@ -437,29 +468,26 @@ body.opening-active{overflow:hidden}
   .scroll-hint{margin-top:38px}
 }
 
-@media(prefers-reduced-motion:reduce){
-  .opening-image,.opening-content,.opening-progress span,.scroll-hint,.opening-grain{
-    animation:none!important;
-  }
+/* ============ RESPONSIVE ============ */
+@media(max-width:620px){
+  .shell{padding:66px 13px 14px;gap:9px}
+  .cards{grid-template-columns:1fr;gap:8px}
+  .card:nth-child(5){grid-column:auto}
+  .card{padding:10px 12px;min-height:52px;border-radius:18px}
+  .badge{width:38px;height:38px;flex:0 0 38px;border-radius:12px}
+  .title{font-size:12.5px}
+  .sub{font-size:10px}
+  .messaging{padding:9px;gap:7px;border-radius:20px}
+  .msg{height:58px;border-radius:14px}
+  .msg span{width:30px;height:30px;border-radius:10px;font-size:12px}
+  .msg small{font-size:9px}
+  .map{padding:8px 5px;border-radius:14px}
+  .map i{width:28px;height:28px;border-radius:9px}
+  .map b{font-size:9.5px}
+  .intro{font-size:11px}
+  .logo-en{font-size:12px;letter-spacing:7px}
 }
 
-@media(max-width:520px){
-  .shell{padding-inline:14px}
-  .logo-fa{font-size:59px}
-  .logo-en{letter-spacing:7px;font-size:16px}
-  .hero{padding-top:26px}
-  .messaging{gap:7px;padding:10px}
-  .msg{height:72px;border-radius:18px}
-  .msg span{width:37px;height:37px}
-  .mapgrid{gap:7px}
-  .card{border-radius:23px}
-}
-
-/* ============================================
-   اصلاح نمایش روی دسکتاپ / لپ‌تاپ
-   ============================================ */
-
-/* پس‌زمینه‌ی باکیفیت‌تر روی صفحات پهن */
 @media(min-width:900px){
   body:before{
     transform:none;
@@ -473,63 +501,35 @@ body.opening-active{overflow:hidden}
       linear-gradient(rgba(10,8,7,.55),rgba(10,8,7,.70)),
       url("carpett.jpg") center/cover fixed no-repeat;
   }
-}
-
-/* تایپوگرافی بزرگ‌تر و خواناتر برای مانیتور */
-@media(min-width:900px){
-  .shell{width:min(820px,100%);padding:26px 22px 48px}
-
-  .logo-fa{font-size:86px;letter-spacing:-5px}
-  .logo-en{font-size:20px;letter-spacing:11px}
-  .tag{font-size:12.5px;padding:8px 16px}
-  .intro{font-size:15px;line-height:2.15;max-width:620px;color:#4f453e}
-
-  .title{font-size:16px;font-weight:700}
-  .sub{font-size:13.5px;color:#5a4f47;margin-top:6px}
-
-  .card{padding:20px 22px;gap:18px}
-  .badge{width:56px;height:56px;flex:0 0 56px}
-  .chev{width:38px;height:38px}
-
-  .msg{height:92px}
-  .msg span{width:46px;height:46px;font-size:17px}
-  .msg small{font-size:11.5px}
-
-  .map{padding:18px 10px}
-  .map b{font-size:12.5px}
-  .map i{width:44px;height:44px}
-
-  .footer{font-size:12.5px;color:#5f544c}
-}
-
-/* کنتراست بالاتر متن‌ها در حالت تاریک روی دسکتاپ */
-@media(min-width:900px){
-  .dark .intro,
-  .dark .sub{color:#d5c9b5}
-  .dark .msg small,
-  .dark .map b{color:#ddd0b8}
-  .dark .logo-en,
-  .dark .tag{color:#c8baa3}
+  .shell{width:min(920px,100%);padding:80px 22px 22px;gap:12px}
+  .logo-en{font-size:15px;letter-spacing:11px;margin-top:8px}
+  .tag{font-size:11.5px;padding:6px 14px;margin-top:12px}
+  .intro{font-size:13px;line-height:2.05;max-width:600px;color:#4f453e;margin-top:12px}
+  .card{padding:13px 15px;min-height:62px;gap:13px}
+  .badge{width:46px;height:46px;flex:0 0 46px;border-radius:15px}
+  .title{font-size:14px}
+  .sub{font-size:11.5px;margin-top:4px}
+  .chev{width:30px;height:30px;flex:0 0 30px;border-radius:10px}
+  .msg{height:70px;border-radius:18px}
+  .msg span{width:36px;height:36px;font-size:14px}
+  .msg small{font-size:10.5px}
+  .map{padding:12px 8px;border-radius:18px}
+  .map i{width:34px;height:34px;border-radius:11px}
+  .map b{font-size:11px;margin-top:7px}
+  .footer{font-size:11.5px;color:#5f544c}
+  .dark .intro,.dark .sub{color:#d5c9b5}
+  .dark .msg small,.dark .map b{color:#ddd0b8}
+  .dark .logo-en,.dark .tag{color:#c8baa3}
   .dark .footer{color:#cdbda2}
 }
 
-/* اگه مرورگر blur رو پشتیبانی نکرد، پس‌زمینه‌ی محکم‌تر و پررنگ‌تر */
 @supports not (backdrop-filter:blur(10px)){
-  .icon-btn,.lang{background:rgba(255,255,255,.78)}
+  .icon-btn,.lang{background:rgba(255,255,255,.82)}
   .card{background:linear-gradient(135deg,rgba(255,255,255,.95),rgba(248,241,228,.92))}
-  .msg,.map{background:rgba(255,255,255,.85)}
+  .msg,.map{background:rgba(255,255,255,.88)}
   .dark .card{background:linear-gradient(135deg,rgba(35,28,23,.95),rgba(20,16,14,.95))}
-  .dark .msg,
-  .dark .map{background:rgba(25,20,17,.95)}
-  .dark .icon-btn,
-  .dark .lang{background:rgba(30,25,21,.88)}
-}
-
-/* مانیتورهای بزرگ‌تر - کمی بزرگ‌تر و بازتر */
-@media(min-width:1400px){
-  .shell{width:min(880px,100%)}
-  .logo-fa{font-size:96px}
-  .intro{font-size:15.5px}
+  .dark .msg,.dark .map{background:rgba(25,20,17,.95)}
+  .dark .icon-btn,.dark .lang{background:rgba(30,25,21,.9)}
 }
 
 @media(prefers-reduced-motion:reduce){
@@ -549,10 +549,10 @@ body.opening-active{overflow:hidden}
     <div class="opening-kicker">F A R S H E S T A N</div>
     <div class="opening-logo">فرشستان</div>
     <div class="opening-line"></div>
-    <div class="opening-title">هنر اصیل، در خانه شما</div>
-    <p>جایی که اصالت، هنر و زیبایی<br>در کنار هم ماندگار می‌شوند.</p>
+    <div class="opening-title" data-i18n="openingTitle">هنر اصیل، در خانه شما</div>
+    <p data-i18n="openingDesc">جایی که اصالت، هنر و زیبایی<br>در کنار هم ماندگار می‌شوند.</p>
     <div class="scroll-hint">
-      <span>برای کشف فرشستان اسکرول کنید</span>
+      <span data-i18n="scrollHint">برای کشف فرشستان اسکرول کنید</span>
       <i data-lucide="chevrons-down" width="18"></i>
     </div>
   </div>
@@ -562,138 +562,184 @@ body.opening-active{overflow:hidden}
 
 <div class="orb one"></div><div class="orb two"></div>
 
+<!-- دکمه‌های بالا — موقعیت ثابت، با تغییر زبان جابه‌جا نمی‌شوند -->
+<div class="topbar">
+  <button class="icon-btn" id="theme" aria-label="theme">
+    <i data-lucide="sun-moon" width="18"></i>
+  </button>
+  <button class="lang" id="lang" aria-label="language">
+    <span id="flag">🇮🇷</span><b id="langText">FA</b>
+  </button>
+</div>
+
 <main class="shell">
-<header class="topbar">
-  <div class="actions">
-    <button class="icon-btn" id="theme" aria-label="تغییر تم">
-      <i data-lucide="sun-moon" width="19"></i>
+
+  <section class="hero">
+    <div class="logo-fa">فرشستان</div>
+    <div class="logo-en">FARSHESTAN</div>
+    <div class="tag" data-i18n="tagline">هنر اصیل، در خانه شما</div>
+    <p class="intro" data-i18n="intro">برای ارتباط با فرشستان، مشاهده مجموعه‌ها و دریافت اطلاعات بیشتر، از راه‌های ارتباطی زیر با ما در تماس باشید.</p>
+  </section>
+
+  <section class="cards">
+
+    <a class="card web" href="https://farshestan.co/" target="_blank" rel="noopener">
+      <div class="badge"><i data-lucide="globe-2" width="19"></i></div>
+      <div class="copy">
+        <div class="title" data-i18n="website">وب‌سایت فرشستان</div>
+        <div class="sub ltr-text">farshestan.co</div>
+      </div>
+      <div class="chev"><i data-lucide="arrow-left" width="15"></i></div>
+    </a>
+
+    <a class="card insta" href="https://www.instagram.com/farshestan/" target="_blank" rel="noopener">
+      <div class="badge"><i data-lucide="instagram" width="19"></i></div>
+      <div class="copy">
+        <div class="title" data-i18n="instagram">اینستاگرام</div>
+        <div class="sub ltr-text">@farshestan</div>
+      </div>
+      <div class="chev"><i data-lucide="arrow-left" width="15"></i></div>
+    </a>
+
+    <a class="card call" href="tel:+989135836090">
+      <div class="badge"><i data-lucide="phone" width="18"></i></div>
+      <div class="copy">
+        <div class="title" data-i18n="call">تماس با ما</div>
+        <div class="sub ltr-text">0913 583 6090</div>
+      </div>
+      <div class="chev"><i data-lucide="arrow-left" width="15"></i></div>
+    </a>
+
+    <a class="card call" href="tel:+989135836080">
+      <div class="badge"><i data-lucide="phone-call" width="18"></i></div>
+      <div class="copy">
+        <div class="title" data-i18n="call">تماس با ما</div>
+        <div class="sub ltr-text">0913 583 6080</div>
+      </div>
+      <div class="chev"><i data-lucide="arrow-left" width="15"></i></div>
+    </a>
+
+    <a class="card mail" href="mailto:info@farshestan.co">
+      <div class="badge"><i data-lucide="mail" width="18"></i></div>
+      <div class="copy">
+        <div class="title" data-i18n="email">ایمیل</div>
+        <div class="sub ltr-text">info@farshestan.co</div>
+      </div>
+      <div class="chev"><i data-lucide="arrow-left" width="15"></i></div>
+    </a>
+  </section>
+
+  <section class="messaging">
+    <a class="msg telegram" href="https://t.me/farshestanco" target="_blank" rel="noopener">
+      <span>➤</span><small data-i18n="telegram">تلگرام</small>
+    </a>
+    <a class="msg whatsapp" href="https://wa.me/989135836090" target="_blank" rel="noopener">
+      <span>◔</span><small data-i18n="whatsapp">واتساپ</small>
+    </a>
+    <button class="msg bale" id="baleBtn" type="button">
+      <span>ب</span><small data-i18n="bale">بله</small>
     </button>
-    <button class="lang" id="lang" aria-label="تغییر زبان">
-      <span id="flag">🇮🇷</span><b id="langText">FA</b>
-    </button>
-  </div>
-  <button class="icon-btn" id="menu" aria-label="منو">
-    <i data-lucide="menu" width="20"></i>
-  </button>
-</header>
-
-<section class="hero">
-  <div class="logo-fa">فرشستان</div>
-  <div class="logo-en">FARSHestan</div>
-  <div class="tag">هنر اصیل، در خانه شما</div>
-  <p class="intro">برای ارتباط با فرشستان، مشاهده مجموعه‌ها و دریافت اطلاعات بیشتر، از راه‌های ارتباطی زیر با ما در تماس باشید.</p>
-</section>
-
-<section class="section">
-
-  <!-- وب‌سایت -->
-  <a class="card web" href="https://farshestan.co/" target="_blank" rel="noopener">
-    <div class="badge"><i data-lucide="globe-2" width="21"></i></div>
-    <div class="copy">
-      <div class="title">وب‌سایت فرشستان</div>
-      <div class="sub">farshestan.co</div>
-    </div>
-    <div class="chev"><i data-lucide="arrow-left" width="17"></i></div>
-  </a>
-
-  <!-- اینستاگرام -->
-  <a class="card insta" href="https://www.instagram.com/farshestan/" target="_blank" rel="noopener">
-    <div class="badge"><i data-lucide="instagram" width="21"></i></div>
-    <div class="copy">
-      <div class="title">اینستاگرام</div>
-      <div class="sub">@farshestan</div>
-    </div>
-    <div class="chev"><i data-lucide="arrow-left" width="17"></i></div>
-  </a>
-
-  <!-- تلفن ۱ -->
-  <a class="card call" href="tel:+989135836090">
-    <div class="badge"><i data-lucide="phone" width="20"></i></div>
-    <div class="copy">
-      <div class="title">تماس با ما</div>
-      <div class="sub">0913 583 6090</div>
-    </div>
-    <div class="chev"><i data-lucide="arrow-left" width="17"></i></div>
-  </a>
-
-  <!-- تلفن ۲ -->
-  <a class="card call" href="tel:+989135836080">
-    <div class="badge"><i data-lucide="phone-call" width="20"></i></div>
-    <div class="copy">
-      <div class="title">تماس با ما</div>
-      <div class="sub">0913 583 6080</div>
-    </div>
-    <div class="chev"><i data-lucide="arrow-left" width="17"></i></div>
-  </a>
-
-  <!-- ایمیل -->
-  <a class="card mail" href="mailto:info@farshestan.co">
-    <div class="badge"><i data-lucide="mail" width="20"></i></div>
-    <div class="copy">
-      <div class="title">ایمیل</div>
-      <div class="sub">info@farshestan.co</div>
-    </div>
-    <div class="chev"><i data-lucide="arrow-left" width="17"></i></div>
-  </a>
-</section>
-
-<section class="section messaging">
-  <a class="msg telegram" href="https://t.me/farshestanco" target="_blank" rel="noopener">
-    <span>➤</span><small>تلگرام</small>
-  </a>
-  <a class="msg whatsapp" href="https://wa.me/989135836090" target="_blank" rel="noopener">
-    <span>◔</span><small>واتساپ</small>
-  </a>
-  <button class="msg bale" onclick="toast('کانال بله — به‌زودی')">
-    <span>ب</span><small>بله</small>
-  </button>
-  <a class="msg eitaa" href="https://eitaa.com/farshestan_co" target="_blank" rel="noopener">
-    <span>ا</span><small>ایتا</small>
-  </a>
-</section>
-
-<section class="section address">
-  <!-- کارت آدرس ← لینک گوگل مپ -->
-  <a class="card" href="https://maps.app.goo.gl/61jGNhxfx9CrzdR86" target="_blank" rel="noopener">
-    <div class="badge"><i data-lucide="map-pin" width="21"></i></div>
-    <div class="copy">
-      <div class="title">آدرس فروشگاه</div>
-      <div class="sub fa">کاشان، بلوار امام رضا، روبه‌روی مسجدالرضا، نمایشگاه فرشستان</div>
-    </div>
-    <div class="chev"><i data-lucide="arrow-left" width="17"></i></div>
-  </a>
-
-  <div class="mapgrid">
-    <!-- گوگل مپ -->
-    <a class="map" href="https://maps.app.goo.gl/61jGNhxfx9CrzdR86" target="_blank" rel="noopener">
-      <i><span>⌖</span></i><b>گوگل مپ</b>
+    <a class="msg eitaa" href="https://eitaa.com/farshestan_co" target="_blank" rel="noopener">
+      <span>ا</span><small data-i18n="eitaa">ایتا</small>
     </a>
-    <!-- نشان -->
-    <a class="map" href="https://nshn.ir/c9_brYgeQxO2uJ" target="_blank" rel="noopener">
-      <i><span>◉</span></i><b>نشان</b>
-    </a>
-    <!-- بلد -->
-    <a class="map" href="https://balad.ir/p/28i5s1zWXkq0Id" target="_blank" rel="noopener">
-      <i><span>◆</span></i><b>بلد</b>
-    </a>
-  </div>
-</section>
+  </section>
 
-<footer class="footer">فرشستان، انتخابی ماندگار</footer>
+  <section class="address">
+    <a class="card" href="https://maps.app.goo.gl/61jGNhxfx9CrzdR86" target="_blank" rel="noopener">
+      <div class="badge"><i data-lucide="map-pin" width="19"></i></div>
+      <div class="copy">
+        <div class="title" data-i18n="address">آدرس فروشگاه</div>
+        <div class="sub" data-i18n="addressText">کاشان، بلوار امام رضا، روبه‌روی مسجدالرضا، نمایشگاه فرشستان</div>
+      </div>
+      <div class="chev"><i data-lucide="arrow-left" width="15"></i></div>
+    </a>
+
+    <div class="mapgrid">
+      <a class="map" href="https://maps.app.goo.gl/61jGNhxfx9CrzdR86" target="_blank" rel="noopener">
+        <i><span>⌖</span></i><b data-i18n="googleMaps">گوگل مپ</b>
+      </a>
+      <a class="map" href="https://nshn.ir/c9_brYgeQxO2uJ" target="_blank" rel="noopener">
+        <i><span>◉</span></i><b data-i18n="neshan">نشان</b>
+      </a>
+      <a class="map" href="https://balad.ir/p/28i5s1zWXkq0Id" target="_blank" rel="noopener">
+        <i><span>◆</span></i><b data-i18n="balad">بلد</b>
+      </a>
+    </div>
+  </section>
+
+  <footer class="footer" data-i18n="footer">فرشستان، انتخابی ماندگار</footer>
 </main>
 
 <div class="toast" id="toast"><i data-lucide="sparkles" width="15"></i><span></span></div>
 
 <script>
-const body=document.body;
-const openingScene=document.getElementById('openingScene');
-let openingDismissed=false;
+/* ============ I18N ============ */
+const I18N = {
+  fa: {
+    tagline:'هنر اصیل، در خانه شما',
+    intro:'برای ارتباط با فرشستان، مشاهده مجموعه‌ها و دریافت اطلاعات بیشتر، از راه‌های ارتباطی زیر با ما در تماس باشید.',
+    website:'وب‌سایت فرشستان',
+    instagram:'اینستاگرام',
+    call:'تماس با ما',
+    email:'ایمیل',
+    address:'آدرس فروشگاه',
+    addressText:'کاشان، بلوار امام رضا، روبه‌روی مسجدالرضا، نمایشگاه فرشستان',
+    googleMaps:'گوگل مپ',
+    neshan:'نشان',
+    balad:'بلد',
+    telegram:'تلگرام',
+    whatsapp:'واتساپ',
+    bale:'بله',
+    eitaa:'ایتا',
+    footer:'فرشستان، انتخابی ماندگار',
+    openingTitle:'هنر اصیل، در خانه شما',
+    openingDesc:'جایی که اصالت، هنر و زیبایی<br>در کنار هم ماندگار می‌شوند.',
+    scrollHint:'برای کشف فرشستان اسکرول کنید',
+    baleSoon:'کانال بله — به‌زودی',
+    themeDark:'حالت تاریک فعال شد',
+    themeLight:'حالت روشن فعال شد',
+    langToast:'چیدمان فارسی'
+  },
+  en: {
+    tagline:'Authentic Art, In Your Home',
+    intro:'To reach Farshestan, browse our collections and get more information, use any of the channels below.',
+    website:'Farshestan Website',
+    instagram:'Instagram',
+    call:'Call Us',
+    email:'Email',
+    address:'Store Address',
+    addressText:'Kashan, Imam Reza Blvd, opposite Al-Reza Mosque, Farshestan Showroom',
+    googleMaps:'Google Maps',
+    neshan:'Neshan',
+    balad:'Balad',
+    telegram:'Telegram',
+    whatsapp:'WhatsApp',
+    bale:'Bale',
+    eitaa:'Eitaa',
+    footer:'Farshestan, A Lasting Choice',
+    openingTitle:'Authentic Art, In Your Home',
+    openingDesc:'Where authenticity, art and beauty<br>endure together.',
+    scrollHint:'Scroll to discover Farshestan',
+    baleSoon:'Bale channel — coming soon',
+    themeDark:'Dark mode enabled',
+    themeLight:'Light mode enabled',
+    langToast:'English layout'
+  }
+};
+
+let currentLang = 'fa';
+
+/* ============ OPENING SCENE ============ */
+const body = document.body;
+const html = document.documentElement;
+const openingScene = document.getElementById('openingScene');
+let openingDismissed = false;
 
 body.classList.add('opening-active');
 
 function dismissOpening(){
   if(openingDismissed) return;
-  openingDismissed=true;
+  openingDismissed = true;
   openingScene.classList.add('is-gone');
   body.classList.remove('opening-active');
   setTimeout(()=>openingScene.remove(),500);
@@ -711,42 +757,63 @@ window.addEventListener('keydown', e=>{
   if(!openingDismissed && ['ArrowDown','PageDown',' '].includes(e.key)) dismissOpening();
 });
 
-const themeBtn=document.getElementById('theme');
-const langBtn=document.getElementById('lang');
-const langText=document.getElementById('langText');
-const flag=document.getElementById('flag');
-const toastEl=document.getElementById('toast');
+/* ============ ELEMENTS ============ */
+const themeBtn = document.getElementById('theme');
+const langBtn  = document.getElementById('lang');
+const langText = document.getElementById('langText');
+const flag     = document.getElementById('flag');
+const toastEl  = document.getElementById('toast');
+const baleBtn  = document.getElementById('baleBtn');
 
 lucide.createIcons();
 
-themeBtn.onclick=()=>{
+/* ============ THEME ============ */
+themeBtn.onclick = ()=>{
   body.classList.toggle('dark');
-  toast(body.classList.contains('dark') ? 'حالت تاریک فعال شد' : 'حالت روشن فعال شد');
+  toast(body.classList.contains('dark') ? I18N[currentLang].themeDark : I18N[currentLang].themeLight);
 };
 
-langBtn.onclick=()=>{
-  const rtl=body.getAttribute('dir')!=='ltr';
-  body.setAttribute('dir',rtl?'ltr':'rtl');
-  flag.textContent=rtl?'🇬🇧':'🇮🇷';
-  langText.textContent=rtl?'EN':'FA';
-  toast(rtl?'English layout — نمایشی':'چیدمان فارسی — نمایشی');
+/* ============ LANGUAGE ============ */
+function applyLang(lang){
+  currentLang = lang;
+  const dict = I18N[lang];
+
+  html.lang = lang;
+  html.dir = (lang === 'fa') ? 'rtl' : 'ltr';
+
+  document.querySelectorAll('[data-i18n]').forEach(el=>{
+    const key = el.dataset.i18n;
+    if(dict[key] != null) el.innerHTML = dict[key];
+  });
+
+  flag.textContent = (lang === 'fa') ? '🇮🇷' : '🇬🇧';
+  langText.textContent = (lang === 'fa') ? 'FA' : 'EN';
+}
+
+langBtn.onclick = ()=>{
+  const next = currentLang === 'fa' ? 'en' : 'fa';
+  applyLang(next);
+  toast(I18N[next].langToast);
 };
 
-document.getElementById('menu').onclick=()=>toast('منو — فعلاً نمایشی است');
+/* ============ BALE BUTTON ============ */
+baleBtn.onclick = ()=> toast(I18N[currentLang].baleSoon);
 
+/* ============ CARD SPOTLIGHT ============ */
 document.querySelectorAll('.card').forEach(card=>{
-  card.addEventListener('pointermove',e=>{
-    const r=card.getBoundingClientRect();
-    card.style.setProperty('--mx',`${e.clientX-r.left}px`);
-    card.style.setProperty('--my',`${e.clientY-r.top}px`);
+  card.addEventListener('pointermove', e=>{
+    const r = card.getBoundingClientRect();
+    card.style.setProperty('--mx', `${e.clientX - r.left}px`);
+    card.style.setProperty('--my', `${e.clientY - r.top}px`);
   });
 });
 
+/* ============ TOAST ============ */
 function toast(text){
-  toastEl.querySelector('span').textContent=text;
+  toastEl.querySelector('span').textContent = text;
   toastEl.classList.add('show');
-  clearTimeout(window.tt);
-  window.tt=setTimeout(()=>toastEl.classList.remove('show'),1800);
+  clearTimeout(window.__tt);
+  window.__tt = setTimeout(()=> toastEl.classList.remove('show'), 1800);
 }
 </script>
 </body>
