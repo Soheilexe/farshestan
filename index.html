@@ -13,7 +13,6 @@
 <style>
 /* ============================================================
    FARSHESTAN — UNIFIED COMPACT LUXE
-   Wine title everywhere · stacked brand/tagline
    ============================================================ */
 :root{
   --bg-1:#f8f4ec;
@@ -45,7 +44,6 @@
   --emerald-soft:rgba(20,80,61,.14);
   --emerald-glow:rgba(20,80,61,.35);
 
-  /* Deep rich wine (زرشکی) — no pink */
   --wine:#7a1526;
   --wine-2:#8f1a2e;
   --wine-soft:rgba(122,21,38,.14);
@@ -94,7 +92,6 @@
   --emerald-soft:rgba(95,191,152,.16);
   --emerald-glow:rgba(95,191,152,.35);
 
-  /* Rich wine for dark mode — not pink */
   --wine:#c4263d;
   --wine-2:#d63450;
   --wine-soft:rgba(196,38,61,.18);
@@ -273,7 +270,7 @@ a.card,a.msg,a.map{text-decoration:none;color:inherit;-webkit-tap-highlight-colo
 @keyframes float{50%{transform:translate3d(0,34px,0) scale(1.1)}}
 
 /* ============================================================
-   HERO — wine title + stacked brand & tagline
+   HERO
    ============================================================ */
 .hero{
   text-align:center;
@@ -414,7 +411,7 @@ a.card,a.msg,a.map{text-decoration:none;color:inherit;-webkit-tap-highlight-colo
 }
 
 /* ============================================================
-   BADGE — glossy neon
+   BADGE
    ============================================================ */
 .badge{
   width:42px; height:42px; flex:0 0 42px; border-radius:13px;
@@ -805,6 +802,40 @@ html[dir="ltr"] .opening-progress span{transform-origin:left}
   0%{transform:translate(0,0)} 25%{transform:translate(2%,-1%)}
   50%{transform:translate(-1%,2%)} 75%{transform:translate(1%,1%)}
   100%{transform:translate(0,0)}
+}
+
+/* ============================================================
+   MOBILE-ONLY: hero title deep bold wine with black outline
+   ============================================================ */
+@media(max-width:620px){
+  .logo-fa{
+    color:#7a0d1f;
+    -webkit-text-fill-color:#7a0d1f;
+    text-shadow:
+      -1.5px -1.5px 0 #000,
+       0    -1.5px 0 #000,
+       1.5px -1.5px 0 #000,
+      -1.5px  0     0 #000,
+       1.5px  0     0 #000,
+      -1.5px  1.5px 0 #000,
+       0     1.5px 0 #000,
+       1.5px  1.5px 0 #000,
+       0 2px 6px rgba(0,0,0,.45);
+  }
+  .dark .logo-fa{
+    color:#a01228;
+    -webkit-text-fill-color:#a01228;
+    text-shadow:
+      -1.5px -1.5px 0 #000,
+       0    -1.5px 0 #000,
+       1.5px -1.5px 0 #000,
+      -1.5px  0     0 #000,
+       1.5px  0     0 #000,
+      -1.5px  1.5px 0 #000,
+       0     1.5px 0 #000,
+       1.5px  1.5px 0 #000,
+       0 2px 8px rgba(0,0,0,.6);
+  }
 }
 
 /* ============================================================
