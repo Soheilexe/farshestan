@@ -13,8 +13,7 @@
 <style>
 /* ============================================================
    FARSHESTAN — UNIFIED COMPACT LUXE
-   Single layout for every screen (mobile-style)
-   Title stays large everywhere (laptop-style)
+   Wine title everywhere · stacked brand/tagline
    ============================================================ */
 :root{
   --bg-1:#f8f4ec;
@@ -46,9 +45,10 @@
   --emerald-soft:rgba(20,80,61,.14);
   --emerald-glow:rgba(20,80,61,.35);
 
-  --wine:#b3162e;
-  --wine-2:#d4273f;
-  --wine-soft:rgba(179,22,46,.12);
+  /* Deep rich wine (زرشکی) — no pink */
+  --wine:#7a1526;
+  --wine-2:#8f1a2e;
+  --wine-soft:rgba(122,21,38,.14);
 
   --sh-xs:0 1px 2px rgba(15,26,22,.06);
   --sh-sm:0 2px 8px -2px rgba(15,26,22,.10), 0 1px 2px rgba(15,26,22,.06);
@@ -94,9 +94,10 @@
   --emerald-soft:rgba(95,191,152,.16);
   --emerald-glow:rgba(95,191,152,.35);
 
-  --wine:#ff4757;
-  --wine-2:#ff6b7a;
-  --wine-soft:rgba(255,71,87,.16);
+  /* Rich wine for dark mode — not pink */
+  --wine:#c4263d;
+  --wine-2:#d63450;
+  --wine-soft:rgba(196,38,61,.18);
 
   --sh-xs:0 1px 2px rgba(0,0,0,.5);
   --sh-sm:0 2px 8px -2px rgba(0,0,0,.55), 0 1px 2px rgba(0,0,0,.45);
@@ -126,7 +127,7 @@ body{
 }
 
 /* ============================================================
-   BACKGROUND — mobile-style everywhere
+   BACKGROUND
    ============================================================ */
 body:before{
   content:""; position:fixed; inset:0; z-index:-3; pointer-events:none;
@@ -250,7 +251,7 @@ a.card,a.msg,a.map{text-decoration:none;color:inherit;-webkit-tap-highlight-colo
 .dark .lang svg{color:var(--gold)}
 
 /* ============================================================
-   SHELL + ORBS — compact width everywhere
+   SHELL + ORBS
    ============================================================ */
 .shell{
   width:min(560px,100%);
@@ -272,7 +273,7 @@ a.card,a.msg,a.map{text-decoration:none;color:inherit;-webkit-tap-highlight-colo
 @keyframes float{50%{transform:translate3d(0,34px,0) scale(1.1)}}
 
 /* ============================================================
-   HERO — title stays big everywhere
+   HERO — wine title + stacked brand & tagline
    ============================================================ */
 .hero{
   text-align:center;
@@ -281,6 +282,7 @@ a.card,a.msg,a.map{text-decoration:none;color:inherit;-webkit-tap-highlight-colo
   position:relative;
 }
 .logo-fa{
+  display:block;
   font-family:Amiri,serif; font-weight:700;
   font-size:clamp(64px,8.5vw,86px);
   line-height:1.14;
@@ -295,36 +297,45 @@ a.card,a.msg,a.map{text-decoration:none;color:inherit;-webkit-tap-highlight-colo
   color:var(--wine);
   text-shadow:0 1px 0 rgba(0,0,0,.35);
 }
+
+/* stacked directly under title */
 .logo-en{
-  display:inline-block;
+  display:block;
+  width:fit-content;
+  margin:8px auto 0;
   font-family:"Cormorant Garamond",serif;
   font-weight:600; letter-spacing:7px; font-size:11px;
   text-transform:uppercase;
   color:var(--gold-3);
-  margin-top:8px;
   padding:5px 13px 4px;
   border-radius:999px;
   transition:color .6s var(--ease);
 }
 .dark .logo-en{color:var(--gold)}
+
+/* stacked directly under logo-en */
 .tag{
-  display:inline-flex; align-items:center; gap:8px;
-  margin-top:12px; padding:6px 12px; border-radius:999px;
+  display:flex;
+  width:fit-content;
+  align-items:center; gap:8px;
+  margin:10px auto 0;
+  padding:6px 12px; border-radius:999px;
   color:var(--gold-3);
   font-size:11px; font-weight:700;
   transition:all .6s var(--ease);
 }
 .dark .tag{color:var(--gold)}
 .tag:before,.tag:after{content:""; width:4px; height:4px; border-radius:50%; background:var(--gold)}
+
 .intro{
-  max-width:520px; margin:10px auto 0;
+  max-width:520px; margin:12px auto 0;
   font-size:11.5px; line-height:1.9; color:var(--ink-2);
   transition:color .6s var(--ease);
 }
 .dark .intro{color:var(--ink-2)}
 
 /* ============================================================
-   CARD GRID — single column everywhere
+   CARD GRID
    ============================================================ */
 .cards{
   display:grid;
@@ -403,7 +414,7 @@ a.card,a.msg,a.map{text-decoration:none;color:inherit;-webkit-tap-highlight-colo
 }
 
 /* ============================================================
-   BADGE — glossy neon (compact size everywhere)
+   BADGE — glossy neon
    ============================================================ */
 .badge{
   width:42px; height:42px; flex:0 0 42px; border-radius:13px;
@@ -454,10 +465,10 @@ a.card,a.msg,a.map{text-decoration:none;color:inherit;-webkit-tap-highlight-colo
   background:linear-gradient(145deg,#38bdf8 0%,#0284c7 55%,#0369a1 100%);
   box-shadow:inset 0 1px 0 rgba(255,255,255,.45), 0 4px 14px rgba(2,132,199,.32);
 }
-.static{--badge-glow:rgba(179,22,46,.42);}
+.static{--badge-glow:rgba(122,21,38,.42);}
 .static .badge{
-  background:linear-gradient(145deg,#e11d48 0%,#b3162e 55%,#8f0e23 100%);
-  box-shadow:inset 0 1px 0 rgba(255,255,255,.45), 0 4px 14px rgba(179,22,46,.32);
+  background:linear-gradient(145deg,#8f1a2e 0%,#7a1526 55%,#5c0e1c 100%);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.45), 0 4px 14px rgba(122,21,38,.32);
 }
 
 /* ============================================================
@@ -506,7 +517,7 @@ html[dir="ltr"] .card:hover .chev{transform:translateX(4px)}
 html[dir="ltr"] .chev svg{transform:rotate(180deg)}
 
 /* ============================================================
-   MESSAGING — compact everywhere
+   MESSAGING
    ============================================================ */
 .messaging{
   padding:10px; border-radius:20px;
@@ -584,7 +595,7 @@ html[dir="ltr"] .chev svg{transform:rotate(180deg)}
 .dark .rubika small{color:#0f1a16}
 
 /* ============================================================
-   ADDRESS + MAP — icon and label side-by-side (compact)
+   ADDRESS + MAP
    ============================================================ */
 .address{display:flex; flex-direction:column; gap:9px; animation:cardIn .7s .35s var(--ease) both}
 .mapgrid{display:grid; grid-template-columns:repeat(3,1fr); gap:8px}
@@ -797,7 +808,7 @@ html[dir="ltr"] .opening-progress span{transform-origin:left}
 }
 
 /* ============================================================
-   SINGLE MOBILE BREAKPOINT — for very narrow phones only
+   NARROW PHONE GUARD
    ============================================================ */
 @media(max-width:380px){
   .logo-fa{font-size:clamp(56px,15vw,72px); letter-spacing:-1px}
@@ -953,7 +964,6 @@ html[dir="ltr"] .opening-progress span{transform-origin:left}
 
 <div class="mapgrid">
 
-  <!-- Google Maps -->
   <a class="map" href="https://maps.app.goo.gl/61jGNhxfx9CrzdR86" target="_blank" rel="noopener">
     <span class="brand">
       <svg viewBox="0 0 24 24" aria-hidden="true">
@@ -968,7 +978,6 @@ html[dir="ltr"] .opening-progress span{transform-origin:left}
     <b class="lg" data-i18n="googleMaps">گوگل مپ</b>
   </a>
 
-  <!-- Neshan -->
   <a class="map" href="https://nshn.ir/c9_brYgeQxO2uJ" target="_blank" rel="noopener">
     <span class="brand">
       <svg viewBox="0 0 24 24" aria-hidden="true">
@@ -986,7 +995,6 @@ html[dir="ltr"] .opening-progress span{transform-origin:left}
     <b class="lg" data-i18n="neshan">نشان</b>
   </a>
 
-  <!-- Balad -->
   <a class="map" href="https://balad.ir/p/28i5s1zWXkq0Id" target="_blank" rel="noopener">
     <span class="brand">
       <svg viewBox="0 0 24 24" aria-hidden="true">
