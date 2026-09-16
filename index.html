@@ -302,7 +302,6 @@ svg{display:block}
 /* =========================
    CINEMATIC OPENING SCENE
    ========================= */
-body.opening-active{overflow:hidden}
 .opening-scene{
   position:fixed; inset:0; z-index:100;
   min-height:100svh;
@@ -312,12 +311,18 @@ body.opening-active{overflow:hidden}
   cursor:default;
   opacity:1;
   visibility:visible;
-  transition:opacity 1.15s cubic-bezier(.22,1,.36,1),visibility 1.15s;
+  transform:scale(1);
+  transition:opacity .18s linear, transform .18s linear, visibility .18s linear;
+  will-change:opacity,transform;
+  pointer-events:auto;
 }
 .opening-scene.is-gone{
   opacity:0;
   visibility:hidden;
   pointer-events:none;
+}
+.opening-scene.reveal-back{
+  pointer-events:auto;
 }
 .opening-image{
   position:absolute; inset:-5%;
@@ -546,29 +551,55 @@ body.opening-active{overflow:hidden}
 <script>
 const body=document.body;
 const openingScene=document.getElementById('openingScene');
-let openingDismissed=false;
+const openingImage=openingScene.querySelector('.opening-image');
+const openingContent=openingScene.querySelector('.opening-content');
+const openingVignette=openingScene.querySelector('.opening-vignette');
+const openingProgress=openingScene.querySelector('.opening-progress span');
 
-body.classList.add('opening-active');
+const REVEAL_DISTANCE = 620;
 
-function dismissOpening(){
-  if(openingDismissed) return;
-  openingDismissed=true;
-  openingScene.classList.add('is-gone');
-  body.classList.remove('opening-active');
-  setTimeout(()=>openingScene.remove(),1250);
+function updateOpening(){
+  const y=Math.max(0,window.scrollY || window.pageYOffset || 0);
+  const progress=Math.min(y/REVEAL_DISTANCE,1);
+
+  // At the top: cinematic hero is fully present.
+  // While scrolling down: it smoothly fades, blurs and scales away.
+  openingScene.style.opacity=String(1-progress);
+  openingScene.style.transform=`scale(${1 + progress*.035})`;
+  openingImage.style.filter=`saturate(.78) contrast(1.03) blur(${progress*8}px)`;
+  openingContent.style.opacity=String(1-progress);
+  openingContent.style.transform=`translateY(${-progress*34}px) scale(${1-progress*.035})`;
+  openingVignette.style.opacity=String(1-progress*.35);
+  openingProgress.style.transform=`scaleX(${1-progress})`;
+
+  if(progress >= 0.995){
+    openingScene.classList.add('is-gone');
+  }else{
+    openingScene.classList.remove('is-gone');
+  }
 }
 
-window.addEventListener('wheel', e=>{
-  if(!openingDismissed && Math.abs(e.deltaY)>2 && e.deltaY>0) dismissOpening();
-},{passive:true});
+let ticking=false;
+function requestOpeningUpdate(){
+  if(!ticking){
+    requestAnimationFrame(()=>{
+      updateOpening();
+      ticking=false;
+    });
+    ticking=true;
+  }
+}
 
-window.addEventListener('touchmove', ()=>{
-  if(!openingDismissed) dismissOpening();
-},{passive:true});
+window.addEventListener('scroll',requestOpeningUpdate,{passive:true});
+window.addEventListener('resize',requestOpeningUpdate);
 
-window.addEventListener('keydown', e=>{
-  if(!openingDismissed && ['ArrowDown','PageDown',' '].includes(e.key)) dismissOpening();
+window.addEventListener('keydown',e=>{
+  if(['Home','ArrowUp'].includes(e.key) && window.scrollY<=40){
+    requestOpeningUpdate();
+  }
 });
+
+updateOpening();
 
 const themeBtn=document.getElementById('theme');
 const langBtn=document.getElementById('lang');
