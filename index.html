@@ -2,369 +2,220 @@
 <html lang="fa" dir="rtl">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#0b0a08">
 <title>فرشستان | نمایشگاه فرش کاشان</title>
-<link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 <style>
-  * { margin:0; padding:0; box-sizing:border-box; }
-  body {
-    font-family: 'Vazirmatn', Tahoma, sans-serif;
-    background: #2a1818;
-    background-image:
-      radial-gradient(at 15% 10%, rgba(106,61,61,0.55) 0px, transparent 55%),
-      radial-gradient(at 85% 90%, rgba(122,72,58,0.45) 0px, transparent 55%),
-      radial-gradient(at 50% 50%, rgba(201,169,97,0.08) 0px, transparent 70%);
-    color: #EAE1CE;
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 24px 16px;
-  }
-  .card {
-    width: 100%;
-    max-width: 440px;
-    background: linear-gradient(180deg, rgba(234,225,206,0.05) 0%, rgba(106,61,61,0.10) 100%);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    border: 1px solid rgba(234,225,206,0.15);
-    border-radius: 28px;
-    padding: 36px 24px 28px;
-    text-align: center;
-    box-shadow: 0 32px 80px rgba(0,0,0,0.55), 0 0 0 1px rgba(234,225,206,0.05) inset;
-    position: relative;
-    overflow: hidden;
-  }
-  .card::before {
-    content: '';
-    position: absolute;
-    top: 0; left: 0; right: 0;
-    height: 3px;
-    background: linear-gradient(90deg, transparent, #C9A961, #EAE1CE, #C9A961, transparent);
-  }
+:root {
+  --bg:#090806; --surface:#11100d; --surface2:#171511; --gold:#d7b66a;
+  --gold2:#f0d99a; --cream:#f6efdf; --muted:#9f9788; --line:rgba(240,217,154,.16);
+  --shadow:0 35px 100px rgba(0,0,0,.55);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  min-height:100vh; font-family:Vazirmatn,Tahoma,sans-serif; color:var(--cream);
+  background:
+    radial-gradient(circle at 80% -10%,rgba(215,182,106,.16),transparent 32%),
+    radial-gradient(circle at 10% 40%,rgba(104,49,33,.16),transparent 30%),
+    var(--bg);
+  overflow-x:hidden;
+}
+body:before{
+  content:"";position:fixed;inset:0;pointer-events:none;opacity:.055;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 160 160' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.5'/%3E%3C/svg%3E");
+}
+.container{width:min(1160px,calc(100% - 40px));margin:auto}
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:50;padding:18px 0;
+  background:linear-gradient(180deg,rgba(9,8,6,.9),rgba(9,8,6,0));
+  backdrop-filter:blur(10px);
+}
+.nav-inner{display:flex;align-items:center;justify-content:space-between}
+.brand{display:flex;align-items:center;gap:12px;color:var(--cream);text-decoration:none;font-weight:800}
+.brand-mark{
+  width:42px;height:42px;border:1px solid rgba(215,182,106,.55);border-radius:13px;
+  display:grid;place-items:center;position:relative;background:linear-gradient(145deg,#292117,#0e0c09);
+  box-shadow:inset 0 0 25px rgba(215,182,106,.08),0 8px 30px rgba(0,0,0,.3)
+}
+.brand-mark:after{content:"✦";color:var(--gold);font-size:20px}
+.brand small{display:block;color:var(--muted);font-weight:400;font-size:10px;margin-top:-2px}
+.nav-pill{font-size:12px;color:var(--gold2);border:1px solid var(--line);border-radius:999px;padding:8px 14px;background:rgba(255,255,255,.025)}
 
-  /* ——— لوگو ——— */
-  .logo-wrap {
-    width: 110px; height: 110px;
-    margin: 0 auto 18px;
-    border-radius: 50%;
-    background: linear-gradient(135deg, #6A3D3D 0%, #8B5A5A 100%);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    box-shadow: 0 12px 40px rgba(106,61,61,0.55), 0 0 0 6px rgba(234,225,206,0.08), 0 0 0 7px rgba(201,169,97,0.25);
-    overflow: hidden;
-    position: relative;
-  }
-  .logo-wrap img {
-    width: 100%; height: 100%;
-    object-fit: cover;
-    border-radius: 50%;
-  }
-  .logo-placeholder {
-    font-size: 46px;
-    filter: brightness(1.1);
-  }
+.hero{min-height:100vh;display:grid;place-items:center;padding:130px 0 80px;position:relative}
+.hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:70px;align-items:center}
+.eyebrow{display:inline-flex;gap:9px;align-items:center;color:var(--gold);font-size:12px;font-weight:700;letter-spacing:.4px;margin-bottom:20px}
+.dot{width:7px;height:7px;border-radius:50%;background:var(--gold);box-shadow:0 0 18px var(--gold)}
+h1{font-size:clamp(44px,7vw,82px);line-height:1.03;letter-spacing:-3px;font-weight:900;max-width:720px}
+h1 span{background:linear-gradient(120deg,#fff5da 10%,#d7b66a 55%,#fff1bd 90%);-webkit-background-clip:text;color:transparent}
+.hero p{color:#aaa294;font-size:17px;line-height:2;margin:24px 0 30px;max-width:620px}
+.actions{display:flex;gap:12px;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;text-decoration:none;border-radius:14px;padding:14px 21px;font-weight:700;font-size:13px;transition:.3s;cursor:pointer}
+.btn-primary{color:#17120a;background:linear-gradient(135deg,#e9cf8b,#b89143);box-shadow:0 15px 40px rgba(215,182,106,.18)}
+.btn-primary:hover{transform:translateY(-3px);box-shadow:0 20px 50px rgba(215,182,106,.3)}
+.btn-ghost{color:var(--cream);border:1px solid var(--line);background:rgba(255,255,255,.025)}
+.btn-ghost:hover{border-color:rgba(215,182,106,.45);background:rgba(215,182,106,.06)}
 
-  h1 {
-    font-size: 23px;
-    font-weight: 800;
-    letter-spacing: -0.3px;
-    background: linear-gradient(135deg, #EAE1CE 0%, #C9A961 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    margin-bottom: 6px;
-  }
-  .subtitle {
-    font-size: 13px;
-    color: #B8A896;
-    margin-bottom: 26px;
-    font-weight: 400;
-  }
+.rug-art{position:relative;min-height:510px;display:grid;place-items:center}
+.rug-frame{
+  width:min(420px,85%);aspect-ratio:.72;border-radius:12px;padding:12px;
+  background:linear-gradient(135deg,#d9bd74,#6c4b1c,#e4ca80,#63431a);
+  transform:rotate(3deg);box-shadow:40px 45px 90px rgba(0,0,0,.7),0 0 90px rgba(215,182,106,.12);
+}
+.rug-inner{
+  width:100%;height:100%;border:5px solid #2d2112;border-radius:5px;
+  background:
+   radial-gradient(ellipse at 50% 48%,rgba(223,194,116,.7) 0 8%,transparent 9%),
+   repeating-radial-gradient(ellipse at center,#753b2b 0 12px,#a66b39 13px 20px,#3e241e 21px 30px);
+  position:relative;overflow:hidden;
+}
+.rug-inner:before{content:"";position:absolute;inset:18px;border:2px solid rgba(231,204,132,.7);box-shadow:inset 0 0 0 7px rgba(45,30,17,.6);}
+.rug-inner:after{content:"فرشستان";position:absolute;inset:0;display:grid;place-items:center;color:rgba(246,239,223,.65);font-size:35px;font-weight:800;transform:rotate(-90deg);letter-spacing:2px}
+.float-card{
+  position:absolute;bottom:55px;left:5%;padding:17px 19px;border:1px solid var(--line);
+  border-radius:18px;background:rgba(18,16,12,.76);backdrop-filter:blur(18px);box-shadow:var(--shadow)
+}
+.float-card b{display:block;color:var(--gold2);font-size:15px;margin-bottom:4px}
+.float-card span{color:var(--muted);font-size:11px}
 
-  /* ——— لینک‌ها ——— */
-  .links { display: flex; flex-direction: column; gap: 11px; }
+.section{padding:100px 0}
+.section-head{display:flex;justify-content:space-between;align-items:end;gap:30px;margin-bottom:32px}
+.section-kicker{color:var(--gold);font-size:11px;font-weight:800;letter-spacing:1px}
+h2{font-size:clamp(30px,5vw,48px);letter-spacing:-1.5px;margin-top:8px}
+.section-head p{max-width:440px;color:var(--muted);line-height:1.9;font-size:13px}
+.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.card{
+  padding:28px;border-radius:24px;border:1px solid var(--line);
+  background:linear-gradient(145deg,rgba(255,255,255,.045),rgba(255,255,255,.012));
+  min-height:210px;transition:.35s;position:relative;overflow:hidden
+}
+.card:hover{transform:translateY(-7px);border-color:rgba(215,182,106,.42);box-shadow:0 25px 60px rgba(0,0,0,.35)}
+.card:after{content:"";position:absolute;width:130px;height:130px;border-radius:50%;background:rgba(215,182,106,.08);filter:blur(25px);left:-50px;bottom:-50px}
+.icon{width:46px;height:46px;border-radius:14px;display:grid;place-items:center;color:#17120a;background:linear-gradient(135deg,#e7ca82,#a77e35);font-size:20px;margin-bottom:24px}
+.card h3{font-size:18px;margin-bottom:10px}
+.card p{font-size:12px;color:var(--muted);line-height:1.9}
 
-  .link {
-    display: flex;
-    align-items: center;
-    gap: 13px;
-    padding: 13px 16px;
-    background: rgba(234,225,206,0.05);
-    border: 1px solid rgba(234,225,206,0.12);
-    border-radius: 16px;
-    color: #EAE1CE;
-    text-decoration: none;
-    font-size: 15px;
-    font-weight: 600;
-    transition: all 0.3s cubic-bezier(.4,0,.2,1);
-    direction: rtl;
-    position: relative;
-    overflow: hidden;
-  }
-  .link::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(135deg, rgba(106,61,61,0.4), rgba(201,169,97,0.15));
-    opacity: 0;
-    transition: opacity 0.3s ease;
-  }
-  .link:hover, .link:active {
-    transform: translateY(-2px);
-    border-color: rgba(201,169,97,0.4);
-    box-shadow: 0 10px 28px rgba(0,0,0,0.4), 0 0 0 1px rgba(201,169,97,0.15);
-  }
-  .link:hover::before { opacity: 1; }
+.contact{border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:75px 0}
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.contact-box{padding:28px;border:1px solid var(--line);border-radius:24px;background:rgba(255,255,255,.025)}
+.contact-box h3{font-size:20px;margin-bottom:8px}
+.contact-box>p{color:var(--muted);font-size:12px;line-height:1.9;margin-bottom:20px}
+.contact-list{display:grid;gap:9px}
+.contact-link{display:flex;align-items:center;justify-content:space-between;gap:15px;text-decoration:none;color:var(--cream);padding:14px 15px;border-radius:14px;background:rgba(255,255,255,.035);border:1px solid transparent;transition:.25s}
+.contact-link:hover{border-color:var(--line);background:rgba(215,182,106,.05)}
+.contact-link span:first-child{color:var(--muted);font-size:11px}
+.contact-link strong{font-size:13px;direction:ltr}
 
-  .icon-box {
-    width: 40px; height: 40px;
-    display: flex; align-items: center; justify-content: center;
-    border-radius: 12px;
-    flex-shrink: 0;
-    position: relative;
-    z-index: 1;
-    border: 1px solid rgba(234,225,206,0.15);
-  }
-  .icon-box svg { width: 20px; height: 20px; fill: currentColor; }
+footer{padding:35px 0 45px;color:#716b60;font-size:11px}
+.footer-inner{display:flex;justify-content:space-between;gap:20px;align-items:center}
+.gold{color:var(--gold)}
 
-  /* ——— آیکون‌ها با پالت لوکس ——— */
-  .ig    { background: linear-gradient(45deg,#8B5A5A,#6A3D3D); color:#EAE1CE; }
-  .web   { background: linear-gradient(135deg,#6A3D3D,#8B5A5A); color:#EAE1CE; }
-  .mail  { background: linear-gradient(135deg,#8B5A5A,#6A3D3D); color:#EAE1CE; }
-  .tg    { background: linear-gradient(135deg,#7A9BA8,#4A6B7A); color:#EAE1CE; }
-  .eitaa { background: linear-gradient(135deg,#A8B89C,#6B7A5A); color:#EAE1CE; }
-  .phone { background: linear-gradient(135deg,#C9A961,#8B7A3A); color:#2a1818; }
-  .map-g { background: linear-gradient(135deg,#C9A961,#A88A3A); color:#2a1818; }
-  .map-n { background: linear-gradient(135deg,#A89B7A,#7A6B4A); color:#EAE1CE; }
-  .map-b { background: linear-gradient(135deg,#8B5A5A,#6A3D3D); color:#EAE1CE; }
-
-  .link-content {
-    display: flex; flex-direction: column;
-    align-items: flex-start;
-    position: relative; z-index: 1;
-    flex: 1;
-  }
-  .link-label {
-    font-size: 11px; color: #B8A896;
-    font-weight: 400; margin-bottom: 1px;
-    letter-spacing: 0.2px;
-  }
-  .link-value {
-    font-size: 14px; direction: ltr;
-    font-weight: 600;
-    color: #EAE1CE;
-  }
-  .link-value.fa { direction: rtl; font-size: 15px; font-weight: 700; }
-
-  /* ——— بخش‌بندی ——— */
-  .section-title {
-    font-size: 12px;
-    color: #C9A961;
-    font-weight: 700;
-    text-align: right;
-    padding: 20px 6px 10px;
-    letter-spacing: 0.5px;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-  }
-  .section-title::after {
-    content: '';
-    flex: 1;
-    height: 1px;
-    background: linear-gradient(90deg, rgba(201,169,97,0.4), transparent);
-  }
-
-  /* ——— توضیح پیام‌رسان ——— */
-  .contact-note {
-    background: rgba(106,61,61,0.25);
-    border: 1px solid rgba(201,169,97,0.25);
-    border-radius: 14px;
-    padding: 14px 16px;
-    margin-bottom: 12px;
-    font-size: 12.5px;
-    line-height: 1.9;
-    color: #EAE1CE;
-    text-align: right;
-    position: relative;
-  }
-  .contact-note .highlight {
-    color: #C9A961;
-    font-weight: 700;
-  }
-  .contact-note .pm-list {
-    display: flex;
-    gap: 6px;
-    flex-wrap: wrap;
-    margin-top: 8px;
-    justify-content: flex-end;
-  }
-  .pm-tag {
-    background: rgba(234,225,206,0.08);
-    border: 1px solid rgba(201,169,97,0.3);
-    color: #EAE1CE;
-    font-size: 11px;
-    font-weight: 600;
-    padding: 3px 10px;
-    border-radius: 20px;
-  }
-
-  /* ——— فوتر ——— */
-  .footer {
-    margin-top: 26px;
-    padding-top: 18px;
-    border-top: 1px solid rgba(234,225,206,0.08);
-    font-size: 11px;
-    color: #8B7A6A;
-    font-weight: 400;
-    letter-spacing: 0.3px;
-  }
+@media(max-width:850px){
+  .container{width:min(100% - 28px,650px)}
+  .hero{padding-top:110px}
+  .hero-grid{grid-template-columns:1fr;gap:25px;text-align:center}
+  .hero p{margin-left:auto;margin-right:auto}
+  .actions{justify-content:center}
+  .rug-art{min-height:430px}
+  .rug-frame{width:300px}
+  .float-card{left:2%;bottom:20px}
+  .cards{grid-template-columns:1fr}
+  .section-head{display:block}
+  .section-head p{margin-top:15px}
+  .contact-grid{grid-template-columns:1fr}
+  .footer-inner{display:block;text-align:center}
+  .footer-inner>*+*{margin-top:10px}
+}
+@media(max-width:480px){
+  h1{letter-spacing:-1.8px}
+  .nav-pill{display:none}
+  .rug-art{min-height:380px}
+  .rug-frame{width:245px}
+  .float-card{padding:12px 14px}
+}
 </style>
 </head>
 <body>
-  <div class="card">
+<nav>
+  <div class="container nav-inner">
+    <a class="brand" href="#">
+      <span class="brand-mark"></span>
+      <span>فرشستان<small>نمایشگاه فرش کاشان</small></span>
+    </a>
+    <span class="nav-pill">کاشان · بلوار امام رضا</span>
+  </div>
+</nav>
 
-    <!-- لوگو -->
-    <div class="logo-wrap">
-      <!-- <img src="logo.png" alt="فرشستان"> -->
-      <span class="logo-placeholder">🧶</span>
-    </div>
-
-    <h1>نمایشگاه فرش فرشستان</h1>
-    <p class="subtitle">کاشان، بلوار امام رضا</p>
-
-    <!-- ========== لینک‌های اصلی ========== -->
-    <div class="links">
-
-      <!-- وب‌سایت -->
-      <a class="link" href="https://farshestan.co/" target="_blank" rel="noopener">
-        <div class="icon-box web">
-          <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>
-        </div>
-        <div class="link-content">
-          <span class="link-label">وب‌سایت رسمی</span>
-          <span class="link-value">farshestan.co</span>
-        </div>
-      </a>
-
-      <!-- اینستاگرام -->
-      <a class="link" href="https://www.instagram.com/farshestan/" target="_blank" rel="noopener">
-        <div class="icon-box ig">
-          <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
-        </div>
-        <div class="link-content">
-          <span class="link-label">اینستاگرام</span>
-          <span class="link-value">@farshestan</span>
-        </div>
-      </a>
-
-      <!-- کانال تلگرام -->
-      <a class="link" href="https://t.me/farshestanco" target="_blank" rel="noopener">
-        <div class="icon-box tg">
-          <svg viewBox="0 0 24 24"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
-        </div>
-        <div class="link-content">
-          <span class="link-label">کانال تلگرام</span>
-          <span class="link-value">@farshestanco</span>
-        </div>
-      </a>
-
-      <!-- کانال ایتا — آیکون واقعی ایتا (سبک مثل تلگرام) -->
-      <a class="link" href="https://eitaa.com/farshestan_co" target="_blank" rel="noopener">
-        <div class="icon-box eitaa">
-          <svg viewBox="0 0 24 24"><path d="M12 1.5C6.201 1.5 1.5 6.201 1.5 12S6.201 22.5 12 22.5 22.5 17.799 22.5 12 17.799 1.5 12 1.5zm5.548 6.786c.086-.001.274.02.396.12a.435.435 0 0 1 .146.277c.013.079.03.26.017.401-.153 1.617-.82 5.539-1.158 7.35-.143.766-.425 1.023-.699 1.048-.593.055-1.043-.392-1.618-.768-.899-.59-1.407-.957-2.281-1.533-1.009-.664-.355-1.03.22-1.627.15-.157 2.766-2.536 2.817-2.751.006-.027.011-.128-.048-.18s-.148-.035-.212-.021c-.09.021-1.527.971-4.311 2.849-.409.281-.777.417-1.109.409-.365-.007-1.066-.205-1.588-.375-.64-.208-1.148-.318-1.104-.672.023-.184.277-.372.76-.565 2.979-1.297 4.965-2.152 5.959-2.566 2.837-1.18 3.427-1.385 3.811-1.392z"/></svg>
-        </div>
-        <div class="link-content">
-          <span class="link-label">کانال ایتا</span>
-          <span class="link-value">@farshestan_co</span>
-        </div>
-      </a>
-
-      <!-- ایمیل -->
-      <a class="link" href="mailto:info@farshestan.co">
-        <div class="icon-box mail">
-          <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
-        </div>
-        <div class="link-content">
-          <span class="link-label">ایمیل</span>
-          <span class="link-value">info@farshestan.co</span>
-        </div>
-      </a>
-    </div>
-
-    <!-- ========== بخش تماس ========== -->
-    <div class="section-title">📞 ارتباط مستقیم</div>
-
-    <div class="contact-note">
-      برای <span class="highlight">ارتباط مستقیم</span> و <span class="highlight">دریافت کاتالوگ فرش‌ها</span> می‌توانید از طریق پیام‌رسان‌های زیر با ما در تماس باشید:
-      <div class="pm-list">
-        <span class="pm-tag">تلگرام</span>
-        <span class="pm-tag">واتساپ</span>
-        <span class="pm-tag">بله</span>
-        <span class="pm-tag">ایتا</span>
+<main>
+<section class="hero">
+  <div class="container hero-grid">
+    <div>
+      <div class="eyebrow"><span class="dot"></span> اصالت، هنر، انتخاب متفاوت</div>
+      <h1>جایی که <span>فرش</span><br>به یک اثر هنری تبدیل می‌شود.</h1>
+      <p>فرشستان؛ تجربه‌ای متفاوت برای دیدن، انتخاب و ارتباط با دنیای فرش. از گالری آنلاین تا ارتباط مستقیم و مسیریابی نمایشگاه.</p>
+      <div class="actions">
+        <a class="btn btn-primary" href="https://farshestan.co/" target="_blank" rel="noopener">ورود به وب‌سایت ↗</a>
+        <a class="btn btn-ghost" href="#contact">ارتباط با فرشستان</a>
       </div>
     </div>
-
-    <div class="links">
-      <a class="link" href="tel:09135836090">
-        <div class="icon-box phone">
-          <svg viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
-        </div>
-        <div class="link-content">
-          <span class="link-label">تماس ۱</span>
-          <span class="link-value">0913 583 6090</span>
-        </div>
-      </a>
-
-      <a class="link" href="tel:09135836080">
-        <div class="icon-box phone">
-          <svg viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
-        </div>
-        <div class="link-content">
-          <span class="link-label">تماس ۲</span>
-          <span class="link-value">0913 583 6080</span>
-        </div>
-      </a>
+    <div class="rug-art" aria-label="تصویر تزئینی فرش">
+      <div class="rug-frame"><div class="rug-inner"></div></div>
+      <div class="float-card"><b>فرشستان</b><span>کاشان · بلوار امام رضا</span></div>
     </div>
-
-    <!-- ========== بخش نقشه ========== -->
-    <div class="section-title">📍 مسیریابی</div>
-    <div class="links">
-
-      <a class="link" href="https://maps.app.goo.gl/61jGNhxfx9CrzdR86" target="_blank" rel="noopener">
-        <div class="icon-box map-g">
-          <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
-        </div>
-        <div class="link-content">
-          <span class="link-label">مسیریابی با</span>
-          <span class="link-value fa">گوگل مپ</span>
-        </div>
-      </a>
-
-      <a class="link" href="https://nshn.ir/c9_brYgeQxO2uJ" target="_blank" rel="noopener">
-        <div class="icon-box map-n">
-          <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
-        </div>
-        <div class="link-content">
-          <span class="link-label">مسیریابی با</span>
-          <span class="link-value fa">نشان</span>
-        </div>
-      </a>
-
-      <a class="link" href="https://balad.ir/p/28i5s1zWXkq0Id" target="_blank" rel="noopener">
-        <div class="icon-box map-b">
-          <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
-        </div>
-        <div class="link-content">
-          <span class="link-label">مسیریابی با</span>
-          <span class="link-value fa">بلد</span>
-        </div>
-      </a>
-    </div>
-
-    <div class="footer">© فرشستان — کاشان</div>
   </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="section-head">
+      <div><div class="section-kicker">THE EXPERIENCE</div><h2>همه‌چیز برای یک انتخاب خاص</h2></div>
+      <p>یک صفحه‌ی ساده کافی نیست؛ اینجا ساختار سایت بر پایه‌ی حس لوکس، خوانایی، تعامل و دسترسی سریع طراحی شده است.</p>
+    </div>
+    <div class="cards">
+      <article class="card"><div class="icon">✦</div><h3>گالری و وب‌سایت</h3><p>ورود سریع به فضای اصلی برند و مشاهده‌ی محصولات و محتوای فرشستان.</p></article>
+      <article class="card"><div class="icon">◎</div><h3>ارتباط مستقیم</h3><p>دسترسی سریع به شبکه‌های اجتماعی، پیام‌رسان‌ها، ایمیل و شماره‌های تماس.</p></article>
+      <article class="card"><div class="icon">⌖</div><h3>مسیریابی</h3><p>پیدا کردن نمایشگاه در گوگل مپ، نشان و بلد، بدون جست‌وجوی اضافه.</p></article>
+    </div>
+  </div>
+</section>
+
+<section class="contact" id="contact">
+  <div class="container contact-grid">
+    <div class="contact-box">
+      <div class="section-kicker">DIRECT CONTACT</div>
+      <h3>ارتباط با فرشستان</h3>
+      <p>برای ارتباط مستقیم و دریافت کاتالوگ فرش‌ها، از مسیر موردنظر خود وارد شوید.</p>
+      <div class="contact-list">
+        <a class="contact-link" href="https://www.instagram.com/farshestan/" target="_blank" rel="noopener"><span>اینستاگرام</span><strong>@farshestan ↗</strong></a>
+        <a class="contact-link" href="https://t.me/farshestanco" target="_blank" rel="noopener"><span>تلگرام</span><strong>@farshestanco ↗</strong></a>
+        <a class="contact-link" href="https://eitaa.com/farshestan_co" target="_blank" rel="noopener"><span>ایتا</span><strong>@farshestan_co ↗</strong></a>
+        <a class="contact-link" href="mailto:info@farshestan.co"><span>ایمیل</span><strong>info@farshestan.co</strong></a>
+        <a class="contact-link" href="tel:09135836090"><span>تماس ۱</span><strong>0913 583 6090</strong></a>
+        <a class="contact-link" href="tel:09135836080"><span>تماس ۲</span><strong>0913 583 6080</strong></a>
+      </div>
+    </div>
+    <div class="contact-box">
+      <div class="section-kicker">VISIT US</div>
+      <h3>به نمایشگاه سر بزنید</h3>
+      <p>کاشان، بلوار امام رضا — مسیر موردنظر خود را انتخاب کنید.</p>
+      <div class="contact-list">
+        <a class="contact-link" href="https://maps.app.goo.gl/61jGNhxfx9CrzdR86" target="_blank" rel="noopener"><span>مسیریابی با</span><strong>گوگل مپ ↗</strong></a>
+        <a class="contact-link" href="https://nshn.ir/c9_brYgeQxO2uJ" target="_blank" rel="noopener"><span>مسیریابی با</span><strong>نشان ↗</strong></a>
+        <a class="contact-link" href="https://balad.ir/p/28i5s1zWXkq0Id" target="_blank" rel="noopener"><span>مسیریابی با</span><strong>بلد ↗</strong></a>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="container footer-inner">
+    <span>© فرشستان — کاشان</span>
+    <span class="gold">اصالت در جزئیات است.</span>
+  </div>
+</footer>
 </body>
 </html>
