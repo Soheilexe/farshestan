@@ -4,17 +4,17 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>فرشستان | نمایشگاه فرش کاشان</title>
-<link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
   * { margin:0; padding:0; box-sizing:border-box; }
   body {
     font-family: 'Vazirmatn', Tahoma, sans-serif;
-    background: #0a0e27;
+    background: #2a1818;
     background-image:
-      radial-gradient(at 20% 10%, rgba(106,17,203,0.35) 0px, transparent 50%),
-      radial-gradient(at 80% 90%, rgba(37,117,252,0.30) 0px, transparent 50%),
-      radial-gradient(at 50% 50%, rgba(255,78,205,0.12) 0px, transparent 70%);
-    color: #fff;
+      radial-gradient(at 15% 10%, rgba(106,61,61,0.55) 0px, transparent 55%),
+      radial-gradient(at 85% 90%, rgba(122,72,58,0.45) 0px, transparent 55%),
+      radial-gradient(at 50% 50%, rgba(201,169,97,0.08) 0px, transparent 70%);
+    color: #EAE1CE;
     min-height: 100vh;
     display: flex;
     align-items: center;
@@ -24,14 +24,23 @@
   .card {
     width: 100%;
     max-width: 440px;
-    background: rgba(255,255,255,0.04);
+    background: linear-gradient(180deg, rgba(234,225,206,0.05) 0%, rgba(106,61,61,0.10) 100%);
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
-    border: 1px solid rgba(255,255,255,0.09);
+    border: 1px solid rgba(234,225,206,0.15);
     border-radius: 28px;
     padding: 36px 24px 28px;
     text-align: center;
-    box-shadow: 0 32px 80px rgba(0,0,0,0.5), 0 0 0 1px rgba(255,255,255,0.03) inset;
+    box-shadow: 0 32px 80px rgba(0,0,0,0.55), 0 0 0 1px rgba(234,225,206,0.05) inset;
+    position: relative;
+    overflow: hidden;
+  }
+  .card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, transparent, #C9A961, #EAE1CE, #C9A961, transparent);
   }
 
   /* ——— لوگو ——— */
@@ -39,11 +48,11 @@
     width: 110px; height: 110px;
     margin: 0 auto 18px;
     border-radius: 50%;
-    background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+    background: linear-gradient(135deg, #6A3D3D 0%, #8B5A5A 100%);
     display: flex;
     align-items: center;
     justify-content: center;
-    box-shadow: 0 12px 40px rgba(106,17,203,0.45), 0 0 0 6px rgba(255,255,255,0.06);
+    box-shadow: 0 12px 40px rgba(106,61,61,0.55), 0 0 0 6px rgba(234,225,206,0.08), 0 0 0 7px rgba(201,169,97,0.25);
     overflow: hidden;
     position: relative;
   }
@@ -54,13 +63,14 @@
   }
   .logo-placeholder {
     font-size: 46px;
+    filter: brightness(1.1);
   }
 
   h1 {
     font-size: 23px;
     font-weight: 800;
     letter-spacing: -0.3px;
-    background: linear-gradient(135deg, #fff 0%, #b8c6ff 100%);
+    background: linear-gradient(135deg, #EAE1CE 0%, #C9A961 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -68,7 +78,7 @@
   }
   .subtitle {
     font-size: 13px;
-    color: #8890b5;
+    color: #B8A896;
     margin-bottom: 26px;
     font-weight: 400;
   }
@@ -81,14 +91,14 @@
     align-items: center;
     gap: 13px;
     padding: 13px 16px;
-    background: rgba(255,255,255,0.05);
-    border: 1px solid rgba(255,255,255,0.07);
+    background: rgba(234,225,206,0.05);
+    border: 1px solid rgba(234,225,206,0.12);
     border-radius: 16px;
-    color: #fff;
+    color: #EAE1CE;
     text-decoration: none;
     font-size: 15px;
     font-weight: 600;
-    transition: all 0.28s cubic-bezier(.4,0,.2,1);
+    transition: all 0.3s cubic-bezier(.4,0,.2,1);
     direction: rtl;
     position: relative;
     overflow: hidden;
@@ -97,15 +107,14 @@
     content: '';
     position: absolute;
     inset: 0;
-    background: linear-gradient(135deg, rgba(106,17,203,0.15), rgba(37,117,252,0.15));
+    background: linear-gradient(135deg, rgba(106,61,61,0.4), rgba(201,169,97,0.15));
     opacity: 0;
-    transition: opacity 0.28s ease;
+    transition: opacity 0.3s ease;
   }
   .link:hover, .link:active {
     transform: translateY(-2px);
-    border-color: rgba(255,255,255,0.18);
-    background: rgba(255,255,255,0.09);
-    box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+    border-color: rgba(201,169,97,0.4);
+    box-shadow: 0 10px 28px rgba(0,0,0,0.4), 0 0 0 1px rgba(201,169,97,0.15);
   }
   .link:hover::before { opacity: 1; }
 
@@ -116,22 +125,20 @@
     flex-shrink: 0;
     position: relative;
     z-index: 1;
+    border: 1px solid rgba(234,225,206,0.15);
   }
-  .icon-box svg { width: 20px; height: 20px; fill: #fff; }
+  .icon-box svg { width: 20px; height: 20px; fill: currentColor; }
 
-  /* ——— رنگ آیکون‌ها ——— */
-  .ig    { background: linear-gradient(45deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888); }
-  .web   { background: linear-gradient(135deg,#0ea5e9,#2563eb); }
-  .phone { background: linear-gradient(135deg,#22c55e,#15803d); }
-  .mail  { background: linear-gradient(135deg,#f43f5e,#e11d48); }
-  .tg    { background: linear-gradient(135deg,#0088cc,#006699); }
-  .eitaa { background: linear-gradient(135deg,#f59e0b,#d97706); }
-  .bale  { background: linear-gradient(135deg,#10b981,#047857); }
-  .rubika{ background: linear-gradient(135deg,#8b5cf6,#6d28d9); }
-  .wa    { background: linear-gradient(135deg,#25d366,#128c7e); }
-  .map-g { background: linear-gradient(135deg,#4285f4,#34a853); }
-  .map-n { background: linear-gradient(135deg,#00b4d8,#0077b6); }
-  .map-b { background: linear-gradient(135deg,#f97316,#ea580c); }
+  /* ——— آیکون‌ها با پالت لوکس ——— */
+  .ig    { background: linear-gradient(45deg,#8B5A5A,#6A3D3D); color:#EAE1CE; }
+  .web   { background: linear-gradient(135deg,#6A3D3D,#8B5A5A); color:#EAE1CE; }
+  .mail  { background: linear-gradient(135deg,#8B5A5A,#6A3D3D); color:#EAE1CE; }
+  .tg    { background: linear-gradient(135deg,#7A9BA8,#4A6B7A); color:#EAE1CE; }
+  .eitaa { background: linear-gradient(135deg,#A8B89C,#6B7A5A); color:#EAE1CE; }
+  .phone { background: linear-gradient(135deg,#C9A961,#8B7A3A); color:#2a1818; }
+  .map-g { background: linear-gradient(135deg,#C9A961,#A88A3A); color:#2a1818; }
+  .map-n { background: linear-gradient(135deg,#A89B7A,#7A6B4A); color:#EAE1CE; }
+  .map-b { background: linear-gradient(135deg,#8B5A5A,#6A3D3D); color:#EAE1CE; }
 
   .link-content {
     display: flex; flex-direction: column;
@@ -140,40 +147,86 @@
     flex: 1;
   }
   .link-label {
-    font-size: 11px; color: #8890b5;
+    font-size: 11px; color: #B8A896;
     font-weight: 400; margin-bottom: 1px;
+    letter-spacing: 0.2px;
   }
   .link-value {
     font-size: 14px; direction: ltr;
     font-weight: 600;
+    color: #EAE1CE;
   }
-  .link-value.fa { direction: rtl; }
+  .link-value.fa { direction: rtl; font-size: 15px; font-weight: 700; }
 
-  /* ——— بخش نقشه ——— */
+  /* ——— بخش‌بندی ——— */
   .section-title {
     font-size: 12px;
-    color: #6b7299;
-    font-weight: 600;
+    color: #C9A961;
+    font-weight: 700;
     text-align: right;
-    padding: 18px 4px 8px;
-    letter-spacing: 0.3px;
+    padding: 20px 6px 10px;
+    letter-spacing: 0.5px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .section-title::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(90deg, rgba(201,169,97,0.4), transparent);
+  }
+
+  /* ——— توضیح پیام‌رسان ——— */
+  .contact-note {
+    background: rgba(106,61,61,0.25);
+    border: 1px solid rgba(201,169,97,0.25);
+    border-radius: 14px;
+    padding: 14px 16px;
+    margin-bottom: 12px;
+    font-size: 12.5px;
+    line-height: 1.9;
+    color: #EAE1CE;
+    text-align: right;
+    position: relative;
+  }
+  .contact-note .highlight {
+    color: #C9A961;
+    font-weight: 700;
+  }
+  .contact-note .pm-list {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+    margin-top: 8px;
+    justify-content: flex-end;
+  }
+  .pm-tag {
+    background: rgba(234,225,206,0.08);
+    border: 1px solid rgba(201,169,97,0.3);
+    color: #EAE1CE;
+    font-size: 11px;
+    font-weight: 600;
+    padding: 3px 10px;
+    border-radius: 20px;
   }
 
   /* ——— فوتر ——— */
   .footer {
     margin-top: 26px;
     padding-top: 18px;
-    border-top: 1px solid rgba(255,255,255,0.06);
+    border-top: 1px solid rgba(234,225,206,0.08);
     font-size: 11px;
-    color: #4a5070;
+    color: #8B7A6A;
     font-weight: 400;
+    letter-spacing: 0.3px;
   }
 </style>
 </head>
 <body>
   <div class="card">
 
-    <!-- لوگو : بعداً عکس لوگو رو جای این div بذار -->
+    <!-- لوگو -->
     <div class="logo-wrap">
       <!-- <img src="logo.png" alt="فرشستان"> -->
       <span class="logo-placeholder">🧶</span>
@@ -191,7 +244,7 @@
           <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>
         </div>
         <div class="link-content">
-          <span class="link-label">وب‌سایت</span>
+          <span class="link-label">وب‌سایت رسمی</span>
           <span class="link-value">farshestan.co</span>
         </div>
       </a>
@@ -207,7 +260,7 @@
         </div>
       </a>
 
-      <!-- کانال تلگرام (آیدی) -->
+      <!-- کانال تلگرام -->
       <a class="link" href="https://t.me/farshestanco" target="_blank" rel="noopener">
         <div class="icon-box tg">
           <svg viewBox="0 0 24 24"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
@@ -218,10 +271,10 @@
         </div>
       </a>
 
-      <!-- کانال ایتا (آیدی) -->
+      <!-- کانال ایتا — آیکون واقعی ایتا (سبک مثل تلگرام) -->
       <a class="link" href="https://eitaa.com/farshestan_co" target="_blank" rel="noopener">
         <div class="icon-box eitaa">
-          <svg viewBox="0 0 24 24"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.562 8.161c-.18.717-2.104 8.548-2.104 8.548-.156.622-.518.774-.918.482l-2.544-1.876-1.228 1.184c-.136.136-.25.25-.512.25l.183-2.596 4.728-4.272c.206-.183-.045-.285-.318-.103l-5.844 3.68-2.518-.786c-.547-.172-.558-.547.114-.81l9.834-3.792c.456-.164.855.11.692.795z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 1.5C6.201 1.5 1.5 6.201 1.5 12S6.201 22.5 12 22.5 22.5 17.799 22.5 12 17.799 1.5 12 1.5zm5.548 6.786c.086-.001.274.02.396.12a.435.435 0 0 1 .146.277c.013.079.03.26.017.401-.153 1.617-.82 5.539-1.158 7.35-.143.766-.425 1.023-.699 1.048-.593.055-1.043-.392-1.618-.768-.899-.59-1.407-.957-2.281-1.533-1.009-.664-.355-1.03.22-1.627.15-.157 2.766-2.536 2.817-2.751.006-.027.011-.128-.048-.18s-.148-.035-.212-.021c-.09.021-1.527.971-4.311 2.849-.409.281-.777.417-1.109.409-.365-.007-1.066-.205-1.588-.375-.64-.208-1.148-.318-1.104-.672.023-.184.277-.372.76-.565 2.979-1.297 4.965-2.152 5.959-2.566 2.837-1.18 3.427-1.385 3.811-1.392z"/></svg>
         </div>
         <div class="link-content">
           <span class="link-label">کانال ایتا</span>
@@ -241,68 +294,36 @@
       </a>
     </div>
 
-    <!-- ========== بخش تماس / پیام‌رسان‌ها ========== -->
-    <div class="section-title">📞 تماس و پیام مستقیم</div>
+    <!-- ========== بخش تماس ========== -->
+    <div class="section-title">📞 ارتباط مستقیم</div>
+
+    <div class="contact-note">
+      برای <span class="highlight">ارتباط مستقیم</span> و <span class="highlight">دریافت کاتالوگ فرش‌ها</span> می‌توانید از طریق پیام‌رسان‌های زیر با ما در تماس باشید:
+      <div class="pm-list">
+        <span class="pm-tag">تلگرام</span>
+        <span class="pm-tag">واتساپ</span>
+        <span class="pm-tag">بله</span>
+        <span class="pm-tag">ایتا</span>
+      </div>
+    </div>
+
     <div class="links">
-
-      <!-- شماره ۱ — چت در ۵ پیام‌رسان -->
-      <a class="link" href="https://wa.me/989135836090" target="_blank" rel="noopener">
-        <div class="icon-box wa">
-          <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+      <a class="link" href="tel:09135836090">
+        <div class="icon-box phone">
+          <svg viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
         </div>
         <div class="link-content">
-          <span class="link-label">واتساپ | شماره ۱</span>
+          <span class="link-label">تماس ۱</span>
           <span class="link-value">0913 583 6090</span>
         </div>
       </a>
 
-      <a class="link" href="https://t.me/+989135836090" target="_blank" rel="noopener">
-        <div class="icon-box tg">
-          <svg viewBox="0 0 24 24"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
-        </div>
-        <div class="link-content">
-          <span class="link-label">تلگرام | شماره ۱</span>
-          <span class="link-value">0913 583 6090</span>
-        </div>
-      </a>
-
-      <a class="link" href="https://eitaa.com/09135836090" target="_blank" rel="noopener">
-        <div class="icon-box eitaa">
-          <svg viewBox="0 0 24 24"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.562 8.161c-.18.717-2.104 8.548-2.104 8.548-.156.622-.518.774-.918.482l-2.544-1.876-1.228 1.184c-.136.136-.25.25-.512.25l.183-2.596 4.728-4.272c.206-.183-.045-.285-.318-.103l-5.844 3.68-2.518-.786c-.547-.172-.558-.547.114-.81l9.834-3.792c.456-.164.855.11.692.795z"/></svg>
-        </div>
-        <div class="link-content">
-          <span class="link-label">ایتا | شماره ۱</span>
-          <span class="link-value">0913 583 6090</span>
-        </div>
-      </a>
-
-      <a class="link" href="https://ble.ir/09135836090" target="_blank" rel="noopener">
-        <div class="icon-box bale">
-          <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 15v-4H8l4-4 4 4h-3v4h-2z"/></svg>
-        </div>
-        <div class="link-content">
-          <span class="link-label">بله | شماره ۱</span>
-          <span class="link-value">0913 583 6090</span>
-        </div>
-      </a>
-
-      <a class="link" href="https://rubika.ir/09135836090" target="_blank" rel="noopener">
-        <div class="icon-box rubika">
-          <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
-        </div>
-        <div class="link-content">
-          <span class="link-label">روبیکا | شماره ۱</span>
-          <span class="link-value">0913 583 6090</span>
-        </div>
-      </a>
-
-      <!-- شماره ۲ — فقط تماس ساده -->
       <a class="link" href="tel:09135836080">
         <div class="icon-box phone">
           <svg viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
         </div>
         <div class="link-content">
-          <span class="link-label">تماس مستقیم</span>
+          <span class="link-label">تماس ۲</span>
           <span class="link-value">0913 583 6080</span>
         </div>
       </a>
@@ -317,8 +338,8 @@
           <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
         </div>
         <div class="link-content">
-          <span class="link-label">گوگل مپ</span>
-          <span class="link-value fa">مشاهده روی نقشه</span>
+          <span class="link-label">مسیریابی با</span>
+          <span class="link-value fa">گوگل مپ</span>
         </div>
       </a>
 
@@ -327,8 +348,8 @@
           <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
         </div>
         <div class="link-content">
-          <span class="link-label">مسیریاب نشان</span>
-          <span class="link-value fa">مشاهده روی نقشه</span>
+          <span class="link-label">مسیریابی با</span>
+          <span class="link-value fa">نشان</span>
         </div>
       </a>
 
@@ -337,8 +358,8 @@
           <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
         </div>
         <div class="link-content">
-          <span class="link-label">مسیریاب بلد</span>
-          <span class="link-value fa">مشاهده روی نقشه</span>
+          <span class="link-label">مسیریابی با</span>
+          <span class="link-value fa">بلد</span>
         </div>
       </a>
     </div>
