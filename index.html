@@ -2,9 +2,8 @@
 <html lang="fa" dir="rtl">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="viewport" content="width=device-width,initial-scale=1">
 <title>فرشستان — ارتباط با ما</title>
-<!-- PERFORMANCE: large Base64 image externalized to opening-image.png -->
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -28,7 +27,6 @@
   --shadow-hover:0 34px 90px rgba(55,39,29,.20);
   --radius:28px;
   --ease:cubic-bezier(.22,1,.36,1);
-  --reveal-distance:620px;
 }
 
 *{box-sizing:border-box}
@@ -55,6 +53,7 @@ body:after{
   background:
     radial-gradient(circle at 50% -10%,rgba(255,255,255,.62),transparent 42%),
     repeating-linear-gradient(115deg,rgba(255,255,255,.025) 0 1px,transparent 1px 7px);
+  backdrop-filter:blur(11px);
 }
 button{font:inherit;color:inherit}
 button,.card{border:0}
@@ -66,9 +65,6 @@ svg{display:block}
   margin:auto;
   padding:20px 18px 38px;
   position:relative;
-  min-height:100vh;
-  min-height:100svh;
-  will-change:transform;
 }
 
 /* ambient luxury glow */
@@ -137,7 +133,7 @@ svg{display:block}
 }
 
 /* premium cards */
-.section{margin-top:16px;content-visibility:auto;contain-intrinsic-size:0 180px}
+.section{margin-top:16px}
 .card{
   position:relative; isolation:isolate; overflow:hidden;
   width:100%; display:flex;align-items:center;gap:15px;
@@ -146,7 +142,7 @@ svg{display:block}
   border:1px solid rgba(87,57,42,.12);
   background:linear-gradient(135deg,rgba(255,255,255,.76),rgba(247,239,226,.54));
   box-shadow:var(--shadow),inset 0 1px rgba(255,255,255,.86);
-  backdrop-filter:blur(14px) saturate(110%);
+  backdrop-filter:blur(22px) saturate(120%);
   text-align:right;cursor:pointer;
   transform:translateY(0);
   transition:transform .55s var(--ease),box-shadow .55s var(--ease),border-color .55s;
@@ -199,7 +195,7 @@ svg{display:block}
   background:rgba(255,250,241,.52);
   border:1px solid var(--line);
   box-shadow:var(--shadow);
-  backdrop-filter:blur(14px);
+  backdrop-filter:blur(20px);
   display:grid;grid-template-columns:repeat(4,1fr);gap:10px;
   animation:cardIn .8s .23s var(--ease) both;
 }
@@ -256,17 +252,10 @@ svg{display:block}
   padding:12px 18px;border:1px solid rgba(213,183,126,.25);
   border-radius:16px;font-size:12px;
   box-shadow:0 18px 55px rgba(0,0,0,.22);
+  backdrop-filter:blur(16px);
   transition:.45s var(--ease);
 }
 .toast.show{opacity:1;transform:translate(-50%,0) scale(1)}
-
-/* spacer لازم برای تکمیل انیمیشن ورود */
-.reveal-spacer{
-  height:var(--reveal-distance,620px);
-  pointer-events:none;
-}
-/* قفل لمس در حین اسنپ */
-html.is-snapping{touch-action:none}
 
 @keyframes fadeDown{from{opacity:0;transform:translateY(-15px)}to{opacity:1;transform:none}}
 @keyframes heroIn{from{opacity:0;transform:translateY(18px) scale(.97)}to{opacity:1;transform:none}}
@@ -289,6 +278,7 @@ html.is-snapping{touch-action:none}
 }
 .dark:after{
   background:radial-gradient(circle at 50% 0,rgba(215,181,116,.07),transparent 42%);
+  backdrop-filter:blur(12px);
 }
 .dark .icon-btn,.dark .lang{
   background:rgba(30,25,21,.58);border-color:var(--line);color:#e1c895;
@@ -308,10 +298,28 @@ html.is-snapping{touch-action:none}
 .dark .footer{color:#a8977e}
 .dark .orb{opacity:.11}
 
+/* =========================
+   PAGE-2 BLURRED BACKGROUND
+   ========================= */
+.page2-bg{
+  position:fixed; inset:-6%; z-index:-1;
+  pointer-events:none;
+  background:url("carpett.jpg") center/cover no-repeat;
+  filter:blur(34px) saturate(1.05) brightness(1.02);
+  opacity:.22;
+  transform:scale(1.12);
+  transition:opacity .5s ease, filter .5s ease;
+}
+.dark .page2-bg{
+  opacity:.14;
+  filter:blur(38px) saturate(.85) brightness(.72);
+}
+
 
 /* =========================
    CINEMATIC OPENING SCENE
    ========================= */
+body.opening-active{overflow:hidden}
 .opening-scene{
   position:fixed; inset:0; z-index:100;
   min-height:100svh;
@@ -321,21 +329,12 @@ html.is-snapping{touch-action:none}
   cursor:default;
   opacity:1;
   visibility:visible;
-  transform:scale(1);
-  transition:visibility 0s linear 0s;
-  will-change:opacity,transform;
-  pointer-events:auto;
-  backface-visibility:hidden;
-  -webkit-backface-visibility:hidden;
-  transform-origin:center center;
+  transition:opacity .45s cubic-bezier(.22,1,.36,1),visibility .45s;
 }
 .opening-scene.is-gone{
   opacity:0;
   visibility:hidden;
   pointer-events:none;
-}
-.opening-scene.reveal-back{
-  pointer-events:auto;
 }
 .opening-image{
   position:absolute; inset:-5%;
@@ -344,8 +343,7 @@ html.is-snapping{touch-action:none}
     url("opening-image.png") center/cover;
   filter:saturate(.78) contrast(1.03);
   transform:scale(1.075);
-  animation:none;
-  will-change:transform,filter;
+  animation:openingZoom 5s cubic-bezier(.2,.7,.2,1) forwards;
 }
 .opening-vignette{
   position:absolute; inset:0;
@@ -354,20 +352,17 @@ html.is-snapping{touch-action:none}
     linear-gradient(180deg,rgba(10,6,6,.22),transparent 38%,rgba(10,6,6,.58));
 }
 .opening-grain{
-  position:absolute; inset:-20%;
-  opacity:.07; pointer-events:none;
-  background:
-    repeating-radial-gradient(circle at 17% 23%,rgba(255,255,255,.11) 0 1px,transparent 1px 4px),
-    repeating-radial-gradient(circle at 73% 68%,rgba(0,0,0,.08) 0 1px,transparent 1px 5px);
-  mix-blend-mode:soft-light;
-  animation:grainShift .8s steps(2) infinite;
+  position:absolute; inset:-50%;
+  opacity:.10; pointer-events:none;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.8'/%3E%3C/svg%3E");
+  animation:grainShift .35s steps(2) infinite;
 }
 .opening-content{
   position:relative; z-index:2;
   width:min(760px,calc(100% - 38px));
   text-align:center; color:#fff8ed;
   transform:translateY(10px);
-  animation:openingContentIn 1.25s .25s cubic-bezier(.22,1,.36,1) both;
+  animation:openingContentIn 1s .15s cubic-bezier(.22,1,.36,1) both;
   text-shadow:0 8px 40px rgba(0,0,0,.36);
 }
 .opening-kicker{
@@ -414,7 +409,7 @@ html.is-snapping{touch-action:none}
   display:block; width:100%; height:100%;
   transform:scaleX(0); transform-origin:right;
   background:linear-gradient(90deg,transparent,#d9b878,transparent);
-  animation:openingProgress 5.5s ease-out forwards;
+  animation:openingProgress 3.5s ease-out forwards;
 }
 
 @keyframes openingZoom{
@@ -445,7 +440,15 @@ html.is-snapping{touch-action:none}
   .opening-logo{letter-spacing:-4px}
   .opening-content p{font-size:12px}
   .scroll-hint{margin-top:38px}
+}
 
+@media(prefers-reduced-motion:reduce){
+  .opening-image,.opening-content,.opening-progress span,.scroll-hint,.opening-grain{
+    animation:none!important;
+  }
+}
+
+@media(max-width:520px){
   .shell{padding-inline:14px}
   .logo-fa{font-size:59px}
   .logo-en{letter-spacing:7px;font-size:16px}
@@ -456,14 +459,7 @@ html.is-snapping{touch-action:none}
   .mapgrid{gap:7px}
   .card{border-radius:23px}
 }
-
 @media(prefers-reduced-motion:reduce){
-  .opening-image,
-  .opening-content,
-  .opening-progress span,
-  .scroll-hint,
-  .opening-grain{animation:none!important}
-
   *,*:before,*:after{animation:none!important;transition:none!important;scroll-behavior:auto!important}
 }
 </style>
@@ -492,6 +488,7 @@ html.is-snapping{touch-action:none}
 </div>
 
 <div class="orb one"></div><div class="orb two"></div>
+<div class="page2-bg" aria-hidden="true"></div>
 
 <main class="shell">
 <header class="topbar">
@@ -562,188 +559,35 @@ html.is-snapping{touch-action:none}
 <footer class="footer">فرشستان، انتخابی ماندگار</footer>
 </main>
 
-<div class="reveal-spacer" aria-hidden="true"></div>
-
 <div class="toast" id="toast"><i data-lucide="sparkles" width="15"></i><span></span></div>
 
 <script>
 const body=document.body;
-const shell=document.querySelector('.shell');
 const openingScene=document.getElementById('openingScene');
-const openingImage=openingScene.querySelector('.opening-image');
-const openingContent=openingScene.querySelector('.opening-content');
-const openingVignette=openingScene.querySelector('.opening-vignette');
-const openingProgress=openingScene.querySelector('.opening-progress span');
-const openingGrain=openingScene.querySelector('.opening-grain');
+let openingDismissed=false;
 
-/* ================= CONFIG ================= */
-const REVEAL_DISTANCE = 620;   // طول مسیر صفحه ۱ → صفحه ۲
-const SNAP_DOWN       = 45;    // کمی اسکرول پایین → تکمیل خودکار رفتن
-const SNAP_UP         = 80;    // کمی اسکرول بالا  → تکمیل خودکار برگشتن
-const SNAP_MAX_MS     = 760;   // حداکثر زمان انیمیشن اسنپ
-const SNAP_MIN_RATIO  = .55;   // حداقل نسبت زمان انیمیشن
+body.classList.add('opening-active');
 
-const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-/* ارتفاع اسپیسر از همین عدد ساخته می‌شود */
-document.documentElement.style.setProperty('--reveal-distance', REVEAL_DISTANCE + 'px');
-
-function clamp(value,min=0,max=1){
-  return Math.min(Math.max(value,min),max);
+function dismissOpening(){
+  if(openingDismissed) return;
+  openingDismissed=true;
+  openingScene.classList.add('is-gone');
+  body.classList.remove('opening-active');
+  setTimeout(()=>openingScene.remove(),500);
 }
 
-function updateOpening(){
-  const y=Math.max(0,window.scrollY || window.pageYOffset || 0);
-  const progress=clamp(y/REVEAL_DISTANCE);
+window.addEventListener('wheel', e=>{
+  if(!openingDismissed && Math.abs(e.deltaY)>2 && e.deltaY>0) dismissOpening();
+},{passive:true});
 
-  // صفحهٔ دوم دقیقاً به اندازهٔ اسکرول به پایین هل داده می‌شود
-  // تا وقتی صفحهٔ اول کامل محو نشده، سر جایش بایستد.
-  const holdOffset=Math.min(y,REVEAL_DISTANCE);
-  shell.style.transform=`translate3d(0,${Math.round(holdOffset)}px,0)`;
+window.addEventListener('touchmove', ()=>{
+  if(!openingDismissed) dismissOpening();
+},{passive:true});
 
-  // خروج سینمایی صفحهٔ اول
-  openingScene.style.opacity=String(1-progress);
-  openingScene.style.transform=`scale(${1+progress*.018})`;
+window.addEventListener('keydown', e=>{
+  if(!openingDismissed && ['ArrowDown','PageDown',' '].includes(e.key)) dismissOpening();
+});
 
-  // زوم‌اوت پس‌زمینه از 1.075 به 1.000
-  const bgScale=1.075-(progress*.075);
-  openingImage.style.transform=`scale(${bgScale})`;
-
-  const contentY=-progress*38;
-  const contentScale=1-progress*.035;
-
-  openingContent.style.opacity=String(1-progress);
-  openingContent.style.transform=`translate3d(0,${contentY}px,0) scale(${contentScale})`;
-  openingContent.style.filter=`blur(${progress*3}px)`;
-
-  openingVignette.style.opacity=String(1-progress*.55);
-  openingGrain.style.opacity=String(.10*(1-progress));
-  openingProgress.style.transform=`scaleX(${1-progress})`;
-
-  if(progress>=1){
-    openingScene.classList.add('is-gone');
-    openingScene.style.pointerEvents='none';
-  }else{
-    openingScene.classList.remove('is-gone');
-    openingScene.style.pointerEvents='auto';
-  }
-}
-
-/* ================= رندر با rAF ================= */
-let ticking=false;
-
-function requestOpeningUpdate(){
-  if(ticking)return;
-  ticking=true;
-  requestAnimationFrame(()=>{updateOpening();ticking=false;});
-}
-
-/* ================= موتور اسنپ ================= */
-let snapping=false;
-let snapRAF=0;
-let lastY=window.scrollY;
-let acc=0;       // مجموع اسکرول داخل ناحیهٔ گذار
-let accDir=0;    // جهت فعلی
-
-const easeOutCubic = t => 1 - Math.pow(1-t,3);
-
-function animateScrollTo(target){
-  cancelAnimationFrame(snapRAF);
-
-  const start=window.scrollY;
-  const dist=target-start;
-
-  if(Math.abs(dist)<1){
-    snapping=false;
-    document.documentElement.classList.remove('is-snapping');
-    lastY=start; acc=0; accDir=0;
-    return;
-  }
-
-  // اگر کاربر کاهش حرکت خواسته، بدون انیمیشن بپر
-  if(reduceMotion){
-    window.scrollTo(0,target);
-    updateOpening();
-    lastY=target; acc=0; accDir=0;
-    snapping=false;
-    document.documentElement.classList.remove('is-snapping');
-    return;
-  }
-
-  const duration = clamp(Math.abs(dist)/REVEAL_DISTANCE, SNAP_MIN_RATIO, 1) * SNAP_MAX_MS;
-  const t0=performance.now();
-
-  snapping=true;
-  document.documentElement.classList.add('is-snapping');
-
-  function step(now){
-    const t=clamp((now-t0)/duration);
-    window.scrollTo(0, start + dist*easeOutCubic(t));
-    updateOpening();
-
-    if(t<1){
-      snapRAF=requestAnimationFrame(step);
-    }else{
-      snapping=false;
-      document.documentElement.classList.remove('is-snapping');
-      lastY=window.scrollY;
-      acc=0; accDir=0;
-    }
-  }
-  snapRAF=requestAnimationFrame(step);
-}
-
-/* ================= هندلر اسکرول ================= */
-function onScroll(){
-  const y=window.scrollY;
-
-  // وقتی خودمان داریم اسکرول را می‌چرخانیم، ورودی کاربر را نادیده بگیر
-  if(snapping){
-    lastY=y;
-    requestOpeningUpdate();
-    return;
-  }
-
-  requestOpeningUpdate();
-
-  const dy=y-lastY;
-  lastY=y;
-
-  if(Math.abs(dy)<.5) return;
-
-  // بیرون از ناحیهٔ گذار هیچ اسنپی نداریم
-  if(y<=0 || y>=REVEAL_DISTANCE){
-    acc=0; accDir=0;
-    return;
-  }
-
-  const dir = dy>0 ? 1 : -1;
-  if(dir===accDir){ acc+=dy; }
-  else { accDir=dir; acc=dy; }
-
-  if(dir>0 && acc>=SNAP_DOWN){
-    animateScrollTo(REVEAL_DISTANCE);
-  }else if(dir<0 && -acc>=SNAP_UP){
-    animateScrollTo(0);
-  }
-}
-
-window.addEventListener('scroll',onScroll,{passive:true});
-window.addEventListener('resize',requestOpeningUpdate,{passive:true});
-
-// جلوگیری از کشمکش مومنتوم/ترک‌پد با انیمیشن اسنپ
-window.addEventListener('wheel',e=>{ if(snapping) e.preventDefault(); },{passive:false});
-window.addEventListener('touchmove',e=>{ if(snapping) e.preventDefault(); },{passive:false});
-window.addEventListener('keydown',e=>{
-  if(!snapping) return;
-  if(['ArrowUp','ArrowDown','PageUp','PageDown','Home','End',' '].includes(e.key)){
-    e.preventDefault();
-  }
-},{passive:false});
-
-updateOpening();
-
-/* ================= UI ================= */
 const themeBtn=document.getElementById('theme');
 const langBtn=document.getElementById('lang');
 const langText=document.getElementById('langText');
@@ -769,9 +613,10 @@ document.getElementById('menu').onclick=()=>toast('منو — فعلاً نما�
 
 document.querySelectorAll('.card').forEach(card=>{
   card.addEventListener('pointermove',e=>{
-    card.style.setProperty('--mx',`${e.offsetX}px`);
-    card.style.setProperty('--my',`${e.offsetY}px`);
-  },{passive:true});
+    const r=card.getBoundingClientRect();
+    card.style.setProperty('--mx',`${e.clientX-r.left}px`);
+    card.style.setProperty('--my',`${e.clientY-r.top}px`);
+  });
 });
 
 function toast(text){
