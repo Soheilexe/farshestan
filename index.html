@@ -3,12 +3,15 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#0a0d0c">
 <title>فرشستان — ارتباط با ما</title>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+<link rel="preload" as="image" href="opening-image.jpg" fetchpriority="high">
+<link rel="prefetch" as="image" href="carpett.jpg">
 <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Cormorant+Garamond:wght@500;600;700&family=Vazirmatn:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-<script src="https://unpkg.com/lucide@latest"></script>
 
 <style>
 /* ============================================================
@@ -35,6 +38,7 @@
   --gold:#a67c2e;
   --gold-2:#d4b46a;
   --gold-3:#7a5a1f;
+  --gold-hi:#f3e2b4;
   --gold-soft:rgba(166,124,46,.14);
   --gold-soft-2:rgba(166,124,46,.28);
   --gold-glow:rgba(166,124,46,.42);
@@ -60,6 +64,9 @@
   --radius:20px;
   --radius-lg:24px;
   --ease:cubic-bezier(.22,1,.36,1);
+  --t-fast:.28s;
+  --t-mid:.4s;
+  --t-slow:.6s;
 }
 
 .dark{
@@ -83,6 +90,7 @@
   --gold:#e8cf94;
   --gold-2:#f7e4b4;
   --gold-3:#d4b878;
+  --gold-hi:#fff6da;
   --gold-soft:rgba(232,207,148,.14);
   --gold-soft-2:rgba(232,207,148,.28);
   --gold-glow:rgba(232,207,148,.42);
@@ -113,7 +121,6 @@ html{
   -moz-osx-font-smoothing:grayscale;
   text-rendering:optimizeLegibility;
   font-feature-settings:"kern" 1,"liga" 1;
-  /* prevent rubber-band / pull-to-refresh that jitters fixed backgrounds on mobile */
   overscroll-behavior-y: none;
 }
 body{
@@ -122,7 +129,7 @@ body{
   font-weight:500;
   overflow-x:hidden;
   position:relative;
-  transition:color .5s var(--ease);
+  transition:color var(--t-slow) var(--ease);
   overscroll-behavior-y: none;
 }
 
@@ -134,8 +141,6 @@ body:before{
   position:fixed;
   top:0; left:0;
   width:100%;
-  /* fallback for very old browsers, then lvh = largest viewport height,
-     which stays constant when mobile address bar hides/shows */
   height:100vh;
   height:100lvh;
   z-index:-3;
@@ -144,9 +149,9 @@ body:before{
     linear-gradient(rgba(248,244,236,.10), rgba(248,244,236,.20)),
     url("carpett.jpg") center center / cover no-repeat;
   filter:saturate(1.28) contrast(1.05) brightness(1.12);
-  transition:background .6s var(--ease), filter .6s var(--ease);
-  will-change:transform;
-  transform:translateZ(0);   /* force GPU layer, no reflow on resize */
+  transition:filter var(--t-slow) var(--ease);
+  contain:strict;
+  transform:translateZ(0);
 }
 body:after{
   content:"";
@@ -160,6 +165,7 @@ body:after{
   background:
     radial-gradient(circle at 50% -10%, rgba(255,255,255,.16), transparent 45%),
     repeating-linear-gradient(115deg, rgba(255,255,255,.014) 0 1px, transparent 1px 8px);
+  contain:strict;
   transform:translateZ(0);
 }
 .dark:before{
@@ -178,7 +184,9 @@ button{font:inherit;color:inherit}
 button,.card{border:0}
 button{appearance:none}
 svg{display:block}
+a,button{touch-action:manipulation}
 a.card,a.msg,a.map{text-decoration:none;color:inherit;-webkit-tap-highlight-color:transparent}
+:focus-visible{outline:2px solid var(--gold-2);outline-offset:3px;border-radius:8px}
 
 /* ============================================================
    LIQUID GLASS
@@ -190,8 +198,8 @@ a.card,a.msg,a.map{text-decoration:none;color:inherit;-webkit-tap-highlight-colo
     rgba(255,255,255,.72) 0%,
     rgba(255,255,255,.42) 45%,
     rgba(255,255,255,.60) 100%);
-  backdrop-filter:blur(16px) saturate(180%);
-  -webkit-backdrop-filter:blur(16px) saturate(180%);
+  backdrop-filter:blur(14px) saturate(180%);
+  -webkit-backdrop-filter:blur(14px) saturate(180%);
   border:1px solid rgba(255,255,255,.72);
   box-shadow:
     inset 0 1px 0 rgba(255,255,255,.98),
@@ -229,6 +237,20 @@ a.card,a.msg,a.map{text-decoration:none;color:inherit;-webkit-tap-highlight-colo
 }
 
 /* ============================================================
+   MOTIF — a small geometric rug-border chain, used as a signature
+   accent instead of a generic rule/divider
+   ============================================================ */
+.motif{
+  --d:16px;
+  width:150px; height:9px; margin:0 auto;
+  background:
+    linear-gradient(45deg, transparent 44%, var(--gold) 44% 56%, transparent 56%) 0 0 / var(--d) var(--d) repeat-x,
+    linear-gradient(-45deg, transparent 44%, var(--gold) 44% 56%, transparent 56%) 0 0 / var(--d) var(--d) repeat-x;
+  opacity:.9;
+  filter:drop-shadow(0 0 5px rgba(232,207,148,.45));
+}
+
+/* ============================================================
    TOP BUTTONS
    ============================================================ */
 .topbar{
@@ -243,17 +265,17 @@ a.card,a.msg,a.map{text-decoration:none;color:inherit;-webkit-tap-highlight-colo
   border-radius:14px;
   background:linear-gradient(135deg, var(--surface-1), var(--surface-2));
   box-shadow:var(--sh-sm), inset 0 1px 0 rgba(255,255,255,.7);
-  backdrop-filter:blur(22px) saturate(150%);
-  -webkit-backdrop-filter:blur(22px) saturate(150%);
+  backdrop-filter:blur(18px) saturate(150%);
+  -webkit-backdrop-filter:blur(18px) saturate(150%);
   cursor:pointer;
-  transition:transform .5s var(--ease), box-shadow .5s var(--ease), border-color .5s, color .5s;
+  transition:transform var(--t-fast) var(--ease), box-shadow var(--t-fast) var(--ease), border-color var(--t-fast), color var(--t-fast);
 }
 .icon-btn{width:44px}
 .icon-btn:before,.lang:before{
   content:""; position:absolute; inset:-80% 30% auto -40%; height:180%;
   background:linear-gradient(90deg, transparent, rgba(255,255,255,.65), transparent);
   transform:rotate(24deg) translateX(-130%);
-  transition:transform .8s var(--ease);
+  transition:transform .65s var(--ease);
   pointer-events:none;
 }
 .icon-btn:hover:before,.lang:hover:before{transform:rotate(24deg) translateX(180%)}
@@ -284,12 +306,35 @@ a.card,a.msg,a.map{text-decoration:none;color:inherit;-webkit-tap-highlight-colo
 .orb{
   position:fixed; width:280px; height:280px; border-radius:50%;
   filter:blur(70px); opacity:.22; pointer-events:none; z-index:-1;
-  animation:float 12s ease-in-out infinite;
+  animation:float 14s ease-in-out infinite;
 }
 .orb.one{background:radial-gradient(circle, var(--gold) 0%, transparent 70%); top:12%; right:-120px}
-.orb.two{background:radial-gradient(circle, var(--emerald) 0%, transparent 70%); bottom:6%; left:-130px; animation-delay:-5s}
+.orb.two{background:radial-gradient(circle, var(--emerald) 0%, transparent 70%); bottom:6%; left:-130px; animation-delay:-6s}
 .dark .orb{opacity:.16}
 @keyframes float{50%{transform:translate3d(0,34px,0) scale(1.1)}}
+
+/* ============================================================
+   ONE ORCHESTRATED REVEAL
+   The content sits ready but hidden while the opening scene
+   plays; a single choreographed rise-in answers the moment the
+   visitor dismisses it — not a per-card scatter of entrances.
+   ============================================================ */
+.hero,.cards,.messaging,.address,.footer{
+  opacity:0; transform:translateY(18px);
+  transition:opacity .85s var(--ease), transform .85s var(--ease);
+}
+.hero{transition-delay:.02s}
+.cards{transition-delay:.14s}
+.messaging{transition-delay:.22s}
+.address{transition-delay:.30s}
+.footer{transition-delay:.38s}
+body:not(.opening-active) .hero,
+body:not(.opening-active) .cards,
+body:not(.opening-active) .messaging,
+body:not(.opening-active) .address,
+body:not(.opening-active) .footer{
+  opacity:1; transform:none;
+}
 
 /* ============================================================
    HERO
@@ -297,11 +342,9 @@ a.card,a.msg,a.map{text-decoration:none;color:inherit;-webkit-tap-highlight-colo
 .hero{
   text-align:center;
   padding:14px 8px 14px;
-  animation:heroIn .9s .05s var(--ease) both;
   position:relative;
 }
 
-/* Wine title with black outline — everywhere, both modes */
 .logo-fa{
   display:block;
   font-family:Amiri,serif; font-weight:700;
@@ -311,8 +354,9 @@ a.card,a.msg,a.map{text-decoration:none;color:inherit;-webkit-tap-highlight-colo
   letter-spacing:-1.5px;
   color:#7a0d1f;
   -webkit-text-fill-color:#7a0d1f;
+  -webkit-text-stroke:1px rgba(0,0,0,.6);
   margin:0 auto;
-  transition:color .5s var(--ease);
+  transition:color var(--t-slow) var(--ease);
   text-shadow:
     -1.5px -1.5px 0 #000,
      0    -1.5px 0 #000,
@@ -339,7 +383,6 @@ a.card,a.msg,a.map{text-decoration:none;color:inherit;-webkit-tap-highlight-colo
      0 3px 10px rgba(0,0,0,.55);
 }
 
-/* FARSHESTAN — solid chip so it reads on any background */
 .logo-en{
   display:block;
   width:fit-content;
@@ -356,7 +399,7 @@ a.card,a.msg,a.map{text-decoration:none;color:inherit;-webkit-tap-highlight-colo
     0 4px 14px rgba(0,0,0,.28),
     inset 0 1px 0 rgba(255,255,255,.18);
   text-shadow:0 1px 2px rgba(0,0,0,.45);
-  transition:all .6s var(--ease);
+  transition:all var(--t-slow) var(--ease);
 }
 .dark .logo-en{
   color:#f7e4b4;
@@ -369,24 +412,23 @@ a.card,a.msg,a.map{text-decoration:none;color:inherit;-webkit-tap-highlight-colo
   text-shadow:0 1px 3px rgba(0,0,0,.6);
 }
 
-/* tagline chip */
 .tag{
   display:flex;
   width:fit-content;
-  align-items:center; gap:8px;
-  margin:10px auto 0;
+  align-items:center; gap:9px;
+  margin:12px auto 0;
   padding:6px 12px; border-radius:999px;
   color:var(--gold-3);
   font-size:11px; font-weight:700;
-  transition:all .6s var(--ease);
+  transition:all var(--t-slow) var(--ease);
 }
 .dark .tag{color:var(--gold)}
-.tag:before,.tag:after{content:""; width:4px; height:4px; border-radius:50%; background:var(--gold)}
+.tag:before,.tag:after{content:""; width:5px; height:5px; background:var(--gold); transform:rotate(45deg); border-radius:1px}
 
 .intro{
   max-width:520px; margin:12px auto 0;
   font-size:11.5px; line-height:1.9; color:var(--ink-2);
-  transition:color .6s var(--ease);
+  transition:color var(--t-slow) var(--ease);
 }
 .dark .intro{color:var(--ink-2)}
 
@@ -400,6 +442,7 @@ a.card,a.msg,a.map{text-decoration:none;color:inherit;-webkit-tap-highlight-colo
 }
 .card{
   position:relative; isolation:isolate; overflow:hidden;
+  contain:layout paint;
   display:flex; align-items:center; gap:12px;
   padding:12px 14px;
   min-height:58px;
@@ -407,23 +450,17 @@ a.card,a.msg,a.map{text-decoration:none;color:inherit;-webkit-tap-highlight-colo
   border:1px solid var(--line-2);
   background:linear-gradient(135deg, var(--surface-1), var(--surface-2));
   box-shadow:var(--sh-md), inset 0 1px 0 rgba(255,255,255,.55);
-  backdrop-filter:blur(22px) saturate(140%);
-  -webkit-backdrop-filter:blur(22px) saturate(140%);
+  backdrop-filter:blur(18px) saturate(140%);
+  -webkit-backdrop-filter:blur(18px) saturate(140%);
   text-align:start; cursor:pointer;
-  transition:transform .55s var(--ease), box-shadow .55s var(--ease), border-color .55s;
-  animation:cardIn .7s var(--ease) both;
+  transition:transform var(--t-mid) var(--ease), box-shadow var(--t-mid) var(--ease), border-color var(--t-mid);
 }
-.card:nth-child(1){animation-delay:.05s}
-.card:nth-child(2){animation-delay:.10s}
-.card:nth-child(3){animation-delay:.15s}
-.card:nth-child(4){animation-delay:.20s}
-.card:nth-child(5){animation-delay:.25s}
 
 .card:before{
   content:""; position:absolute; inset:0; z-index:-1;
   background:radial-gradient(440px circle at var(--mx,50%) var(--my,50%),
     var(--gold-soft-2), transparent 42%);
-  opacity:0; transition:opacity .5s var(--ease);
+  opacity:0; transition:opacity var(--t-mid) var(--ease);
   pointer-events:none;
 }
 .card:after{
@@ -431,7 +468,7 @@ a.card,a.msg,a.map{text-decoration:none;color:inherit;-webkit-tap-highlight-colo
   width:50%;
   background:linear-gradient(90deg, transparent, rgba(255,255,255,.42), transparent);
   transform:skewX(-16deg);
-  transition:left .95s var(--ease);
+  transition:left .75s var(--ease);
   pointer-events:none;
 }
 .card:hover{
@@ -481,7 +518,7 @@ a.card,a.msg,a.map{text-decoration:none;color:inherit;-webkit-tap-highlight-colo
   box-shadow:
     inset 0 1px 0 rgba(255,255,255,.45),
     0 4px 14px rgba(20,80,61,.32);
-  transition:transform .5s var(--ease), box-shadow .5s var(--ease), filter .5s;
+  transition:transform var(--t-fast) var(--ease), box-shadow var(--t-fast) var(--ease), filter var(--t-fast);
   position:relative;
   overflow:hidden;
 }
@@ -559,7 +596,7 @@ html[dir="ltr"] .ltr-text{text-align:left}
   color:var(--ink-4);
   background:rgba(255,255,255,.4);
   border:1px solid var(--line-1);
-  transition:transform .5s var(--ease), background .5s, color .5s, border-color .5s;
+  transition:transform var(--t-fast) var(--ease), background var(--t-fast), color var(--t-fast), border-color var(--t-fast);
 }
 .dark .chev{background:rgba(255,255,255,.04); border-color:var(--line-1)}
 .card:hover .chev{
@@ -580,19 +617,19 @@ html[dir="ltr"] .chev svg{transform:rotate(180deg)}
   background:linear-gradient(135deg, var(--surface-2), var(--surface-3));
   border:1px solid var(--line-2);
   box-shadow:var(--sh-md), inset 0 1px 0 rgba(255,255,255,.6);
-  backdrop-filter:blur(20px) saturate(150%);
-  -webkit-backdrop-filter:blur(20px) saturate(150%);
+  backdrop-filter:blur(18px) saturate(150%);
+  -webkit-backdrop-filter:blur(18px) saturate(150%);
   display:flex; flex-wrap:wrap; gap:8px;
-  animation:cardIn .7s .3s var(--ease) both;
 }
 .msg{
   flex:1 1 0; min-width:66px;
   height:46px; position:relative; overflow:hidden;
+  contain:layout paint;
   border-radius:12px;
   display:grid; place-items:center; cursor:pointer;
   border:1px solid rgba(255,255,255,.22);
   box-shadow:0 6px 16px rgba(15,26,22,.16), inset 0 1px 0 rgba(255,255,255,.35);
-  transition:transform .45s var(--ease), box-shadow .45s var(--ease), filter .45s;
+  transition:transform var(--t-fast) var(--ease), box-shadow var(--t-fast) var(--ease), filter var(--t-fast);
   -webkit-tap-highlight-color:transparent;
 }
 .msg:before{
@@ -653,7 +690,7 @@ html[dir="ltr"] .chev svg{transform:rotate(180deg)}
 /* ============================================================
    ADDRESS + MAP
    ============================================================ */
-.address{display:flex; flex-direction:column; gap:9px; animation:cardIn .7s .35s var(--ease) both}
+.address{display:flex; flex-direction:column; gap:9px}
 .mapgrid{display:grid; grid-template-columns:repeat(3,1fr); gap:8px}
 .map{
   display:flex; align-items:center; justify-content:center;
@@ -663,12 +700,13 @@ html[dir="ltr"] .chev svg{transform:rotate(180deg)}
   border:1px solid var(--line-2); cursor:pointer;
   box-shadow:var(--sh-sm), inset 0 1px 0 rgba(255,255,255,.7);
   position:relative; overflow:hidden; isolation:isolate;
-  transition:transform .45s var(--ease), box-shadow .45s var(--ease), border-color .45s;
+  contain:layout paint;
+  transition:transform var(--t-fast) var(--ease), box-shadow var(--t-fast) var(--ease), border-color var(--t-fast);
 }
 .map:before{
   content:""; position:absolute; inset:0; z-index:-1;
   background:radial-gradient(200px circle at 50% 0%, var(--gold-soft-2), transparent 60%);
-  opacity:0; transition:opacity .45s;
+  opacity:0; transition:opacity var(--t-fast);
 }
 .map:hover{
   transform:translateY(-3px);
@@ -682,7 +720,7 @@ html[dir="ltr"] .chev svg{transform:rotate(180deg)}
   width:22px; height:22px; flex:0 0 22px;
   display:grid; place-items:center;
   filter:drop-shadow(0 2px 4px rgba(15,26,22,.18));
-  transition:transform .45s var(--ease), filter .45s;
+  transition:transform var(--t-fast) var(--ease), filter var(--t-fast);
 }
 .map .brand svg{display:block; width:100%; height:100%}
 .map:hover .brand{
@@ -703,15 +741,13 @@ html[dir="ltr"] .chev svg{transform:rotate(180deg)}
 /* ============================================================
    FOOTER
    ============================================================ */
+.footer-wrap{display:flex; flex-direction:column; align-items:center; gap:10px; margin-top:6px}
 .footer{
   display:inline-block;
-  align-self:center;
   color:var(--ink-2); font-size:10.5px; font-weight:600;
   padding:8px 18px;
   border-radius:999px;
-  animation:fadeUp 1s .5s var(--ease) both;
-  margin-top:8px;
-  transition:color .6s var(--ease);
+  transition:color var(--t-slow) var(--ease);
 }
 .dark .footer{color:var(--ink-2)}
 
@@ -730,14 +766,10 @@ html[dir="ltr"] .chev svg{transform:rotate(180deg)}
   box-shadow:0 22px 60px rgba(0,0,0,.32), 0 0 0 1px rgba(232,207,148,.12);
   backdrop-filter:blur(18px);
   -webkit-backdrop-filter:blur(18px);
-  transition:.5s var(--ease);
+  transition:.4s var(--ease);
 }
 .toast.show{opacity:1; transform:translate(-50%,0) scale(1)}
 .toast svg{color:var(--gold-2)}
-
-@keyframes heroIn{from{opacity:0;transform:translateY(18px) scale(.97)}to{opacity:1;transform:none}}
-@keyframes cardIn{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:none}}
-@keyframes fadeUp{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
 
 /* ============================================================
    CINEMATIC OPENING SCENE
@@ -772,9 +804,9 @@ body.opening-active{overflow:hidden}
 }
 .opening-grain{
   position:absolute; inset:-50%;
-  opacity:.09; pointer-events:none;
+  opacity:.08; pointer-events:none;
   background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.8'/%3E%3C/svg%3E");
-  animation:grainShift .35s steps(2) infinite;
+  animation:grainShift .4s steps(2) infinite;
 }
 .opening-content{
   position:relative; z-index:2;
@@ -791,6 +823,7 @@ body.opening-active{overflow:hidden}
   text-shadow:0 2px 10px rgba(0,0,0,.6);
 }
 .opening-logo{
+  position:relative;
   font-family:Amiri,serif;
   font-size:clamp(66px,11vw,116px);
   line-height:1.14;
@@ -798,9 +831,10 @@ body.opening-active{overflow:hidden}
   font-weight:700;
   letter-spacing:-2px;
   background:linear-gradient(180deg,
-    #8a5a2b 0%,
-    #5a3618 30%,
-    #3a2210 62%,
+    #a9793c 0%,
+    #8a5a2b 22%,
+    #5a3618 48%,
+    #3a2210 74%,
     #180d05 100%);
   -webkit-background-clip:text; background-clip:text;
   -webkit-text-fill-color:transparent; color:transparent;
@@ -809,11 +843,24 @@ body.opening-active{overflow:hidden}
     drop-shadow(0 6px 22px rgba(0,0,0,.65))
     drop-shadow(0 0 46px rgba(200,140,60,.28));
 }
+.opening-logo:after{
+  content:"فرشستان";
+  position:absolute; inset:0;
+  padding:6px 6px 10px;
+  background:linear-gradient(100deg, transparent 40%, rgba(255,244,214,.9) 50%, transparent 60%);
+  background-size:260% 100%;
+  background-position:-40% 0;
+  -webkit-background-clip:text; background-clip:text;
+  -webkit-text-fill-color:transparent; color:transparent;
+  animation:foilSweep 2.6s .9s var(--ease) 1 both;
+  pointer-events:none;
+}
 .opening-line{
-  width:80px; height:1px; margin:22px auto 18px;
+  width:80px; height:1px; margin:22px auto 16px;
   background:linear-gradient(90deg, transparent, #e8cf94, transparent);
   box-shadow:0 0 20px rgba(232,207,148,.7);
 }
+.opening-scene .motif{margin:0 auto 18px}
 .opening-title{
   font-family:Amiri,serif;
   font-size:clamp(20px,3vw,28px);
@@ -856,6 +903,10 @@ html[dir="ltr"] .opening-progress span{transform-origin:left}
   from{opacity:0; transform:translateY(38px) scale(.97); filter:blur(8px)}
   to{opacity:1; transform:none; filter:none}
 }
+@keyframes foilSweep{
+  0%{background-position:-60% 0}
+  100%{background-position:160% 0}
+}
 @keyframes openingProgress{to{transform:scaleX(1)}}
 @keyframes scrollPulse{50%{transform:translateY(6px); opacity:.5}}
 @keyframes grainShift{
@@ -886,12 +937,13 @@ html[dir="ltr"] .opening-progress span{transform-origin:left}
 
 @media(prefers-reduced-motion:reduce){
   *,*:before,*:after{animation:none!important; transition:none!important; scroll-behavior:auto!important}
+  .hero,.cards,.messaging,.address,.footer{opacity:1!important; transform:none!important}
 }
 </style>
 
 </head>
 
-<body class="dark">
+<body class="dark opening-active">
 
 <div class="opening-scene" id="openingScene">
   <div class="opening-image"></div>
@@ -902,6 +954,7 @@ html[dir="ltr"] .opening-progress span{transform-origin:left}
     <div class="opening-kicker">F A R S H E S T A N</div>
     <div class="opening-logo">فرشستان</div>
     <div class="opening-line"></div>
+    <div class="motif" aria-hidden="true"></div>
     <div class="opening-title" data-i18n="openingTitle">هنر اصیل، در خانه شما</div>
     <p data-i18n="openingDesc">جایی که اصالت، هنر و زیبایی<br>در کنار هم ماندگار می‌شوند.</p>
     <div class="scroll-hint">
@@ -1073,11 +1126,15 @@ html[dir="ltr"] .opening-progress span{transform-origin:left}
 
   </section>
 
-  <footer class="footer lg" data-i18n="footer">فرشستان، انتخابی ماندگار</footer>
+  <div class="footer-wrap">
+    <div class="motif" aria-hidden="true"></div>
+    <footer class="footer lg" data-i18n="footer">فرشستان، انتخابی ماندگار</footer>
+  </div>
 </main>
 
 <div class="toast" id="toast"><i data-lucide="sparkles" width="15"></i><span></span></div>
 
+<script src="https://cdn.jsdelivr.net/npm/lucide@0.462.0/dist/umd/lucide.js" defer></script>
 <script>
 /* ============ I18N ============ */
 const I18N = {
@@ -1145,14 +1202,12 @@ const html = document.documentElement;
 const openingScene = document.getElementById('openingScene');
 let openingDismissed = false;
 
-body.classList.add('opening-active');
-
 function dismissOpening(){
   if(openingDismissed) return;
   openingDismissed = true;
   openingScene.classList.add('is-gone');
   body.classList.remove('opening-active');
-  setTimeout(()=>openingScene.remove(),600);
+  setTimeout(()=>openingScene.remove(),650);
 }
 
 window.addEventListener('wheel', e=>{
@@ -1167,6 +1222,10 @@ window.addEventListener('keydown', e=>{
   if(!openingDismissed && ['ArrowDown','PageDown',' '].includes(e.key)) dismissOpening();
 });
 
+openingScene.addEventListener('click', ()=>{
+  if(!openingDismissed) dismissOpening();
+});
+
 /* ============ ELEMENTS ============ */
 const themeBtn = document.getElementById('theme');
 const langBtn  = document.getElementById('lang');
@@ -1174,7 +1233,13 @@ const langText = document.getElementById('langText');
 const toastEl  = document.getElementById('toast');
 const baleBtn  = document.getElementById('baleBtn');
 
-lucide.createIcons();
+function initIcons(){ if(window.lucide) lucide.createIcons(); }
+if(document.readyState === 'complete' || document.readyState === 'interactive'){
+  initIcons();
+} else {
+  document.addEventListener('DOMContentLoaded', initIcons);
+}
+window.addEventListener('load', initIcons);
 
 /* ============ THEME ============ */
 themeBtn.onclick = ()=>{
@@ -1207,13 +1272,20 @@ langBtn.onclick = ()=>{
 /* ============ BALE BUTTON ============ */
 baleBtn.onclick = ()=> toast(I18N[currentLang].baleSoon);
 
-/* ============ SOFT CURSOR LIGHT ============ */
+/* ============ SOFT CURSOR LIGHT (rAF-throttled) ============ */
+let pendingEl = null, pendingX = 0, pendingY = 0, rafScheduled = false;
+function flushPointer(){
+  rafScheduled = false;
+  if(!pendingEl) return;
+  pendingEl.style.setProperty('--mx', `${pendingX}px`);
+  pendingEl.style.setProperty('--my', `${pendingY}px`);
+}
 document.querySelectorAll('.card:not(.static), .map, .msg, .icon-btn, .lang').forEach(el=>{
   el.addEventListener('pointermove', e=>{
     const r = el.getBoundingClientRect();
-    el.style.setProperty('--mx', `${e.clientX - r.left}px`);
-    el.style.setProperty('--my', `${e.clientY - r.top}px`);
-  });
+    pendingEl = el; pendingX = e.clientX - r.left; pendingY = e.clientY - r.top;
+    if(!rafScheduled){ rafScheduled = true; requestAnimationFrame(flushPointer); }
+  },{passive:true});
 });
 
 /* ============ TOAST ============ */
