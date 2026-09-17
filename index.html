@@ -194,8 +194,8 @@ body::after{
 button{font:inherit;color:inherit;border:0;appearance:none;background:none}
 svg{display:block}
 img{max-width:100%}
-a,button{touch-action:manipulation}
-a.card,a.msg,a.map{text-decoration:none;color:inherit;-webkit-tap-highlight-color:transparent}
+a,button{touch-action:manipulation; -webkit-tap-highlight-color:transparent}
+a.card,a.msg,a.map{text-decoration:none;color:inherit}
 :focus-visible{outline:2px solid var(--gold-2);outline-offset:3px;border-radius:8px}
 .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
 
@@ -305,10 +305,17 @@ a.card,a.msg,a.map{text-decoration:none;color:inherit;-webkit-tap-highlight-colo
 .dark .lang{color:var(--gold)}
 .lang b{letter-spacing:.5px}
 
-/* the toggle shows the mode you would switch *to* */
-.icon-sun{display:none}
-.dark .icon-sun{display:block}
-.dark .icon-moon{display:none}
+/* the toggle shows the mode you would switch *to* — cross-faded
+   with a small rotate instead of an instant display swap, so a
+   tap (which has no hover to soften it) still reads as deliberate */
+.icon-sun,.icon-moon{
+  position:absolute; inset:0; margin:auto;
+  transition:opacity var(--t-mid) var(--ease), transform var(--t-mid) var(--ease);
+}
+.icon-sun{opacity:1; transform:rotate(0deg) scale(1)}
+.icon-moon{opacity:0; transform:rotate(-40deg) scale(.6)}
+.dark .icon-sun{opacity:0; transform:rotate(40deg) scale(.6)}
+.dark .icon-moon{opacity:1; transform:rotate(0deg) scale(1)}
 
 /* ============================================================
    SHELL + ORBS
@@ -1276,7 +1283,7 @@ document.addEventListener('pointermove', function(e){
 if(matchMedia('(hover: none), (pointer: coarse)').matches){
   document.addEventListener('pointerdown', function(e){
     if(e.pointerType !== 'touch') return;
-    var el = e.target.closest ? e.target.closest('.card:not(.static), .map, .msg') : null;
+    var el = e.target.closest ? e.target.closest('.card:not(.static), .map, .msg, .icon-btn, .lang') : null;
     if(!el) return;
     var r = el.getBoundingClientRect();
     el.style.setProperty('--mx', (e.clientX - r.left) + 'px');
