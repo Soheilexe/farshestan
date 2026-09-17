@@ -101,28 +101,7 @@
   --glow-gold:0 0 0 1px rgba(232,207,148,.34), 0 20px 48px -14px rgba(232,207,148,.35);
 }
 
-/* Registering the palette as animatable colours lets light/dark
-   cross-fade instead of snapping. Only the tokens that are actually
-   read by visible surfaces are registered — every extra registered
-   property costs a style recalc per frame during the switch. */
-@property --ink-1{syntax:'<color>';inherits:true;initial-value:#0f1a16}
-@property --ink-2{syntax:'<color>';inherits:true;initial-value:#2b3833}
-@property --ink-3{syntax:'<color>';inherits:true;initial-value:#4a5852}
-@property --ink-4{syntax:'<color>';inherits:true;initial-value:#7a8781}
-@property --line-1{syntax:'<color>';inherits:true;initial-value:rgba(15,26,22,.08)}
-@property --line-2{syntax:'<color>';inherits:true;initial-value:rgba(15,26,22,.13)}
-@property --surface-1{syntax:'<color>';inherits:true;initial-value:rgba(255,255,255,.88)}
-@property --surface-2{syntax:'<color>';inherits:true;initial-value:rgba(255,255,255,.68)}
-@property --surface-3{syntax:'<color>';inherits:true;initial-value:rgba(255,255,255,.45)}
-@property --gold{syntax:'<color>';inherits:true;initial-value:#a67c2e}
-@property --gold-2{syntax:'<color>';inherits:true;initial-value:#d4b46a}
-@property --gold-3{syntax:'<color>';inherits:true;initial-value:#7a5a1f}
-@property --gold-hi{syntax:'<color>';inherits:true;initial-value:#f3e2b4}
-@property --gold-soft{syntax:'<color>';inherits:true;initial-value:rgba(166,124,46,.14)}
-@property --gold-soft-2{syntax:'<color>';inherits:true;initial-value:rgba(166,124,46,.28)}
-@property --emerald{syntax:'<color>';inherits:true;initial-value:#14503d}
-@property --emerald-2{syntax:'<color>';inherits:true;initial-value:#2d7a5e}
-
+/* Theme transitions optimized for mobile GPU compositing. */
 *{box-sizing:border-box}
 html{
   scroll-behavior:smooth;
@@ -137,17 +116,7 @@ body{
   font-weight:500;
   overflow-x:hidden;
   position:relative;
-  transition:
-    color var(--t-slow) var(--ease),
-    --ink-1 var(--t-slow) var(--ease), --ink-2 var(--t-slow) var(--ease),
-    --ink-3 var(--t-slow) var(--ease), --ink-4 var(--t-slow) var(--ease),
-    --line-1 var(--t-slow) var(--ease), --line-2 var(--t-slow) var(--ease),
-    --surface-1 var(--t-slow) var(--ease), --surface-2 var(--t-slow) var(--ease),
-    --surface-3 var(--t-slow) var(--ease),
-    --gold var(--t-slow) var(--ease), --gold-2 var(--t-slow) var(--ease),
-    --gold-3 var(--t-slow) var(--ease), --gold-hi var(--t-slow) var(--ease),
-    --gold-soft var(--t-slow) var(--ease), --gold-soft-2 var(--t-slow) var(--ease),
-    --emerald var(--t-slow) var(--ease), --emerald-2 var(--t-slow) var(--ease);
+  transition:color .45s var(--ease);
 }
 
 /* ============================================================
@@ -283,7 +252,8 @@ a.card,a.msg,a.map{text-decoration:none;color:inherit}
   backdrop-filter:blur(18px) saturate(150%);
   -webkit-backdrop-filter:blur(18px) saturate(150%);
   cursor:pointer;
-  transition:transform var(--t-fast) var(--ease), box-shadow var(--t-fast) var(--ease), border-color var(--t-fast), color var(--t-fast);
+  transition:transform var(--t-fast) var(--ease), box-shadow var(--t-fast) var(--ease),
+    background var(--t-slow) var(--ease), border-color var(--t-slow) var(--ease), color var(--t-slow) var(--ease);
 }
 .icon-btn{width:44px}
 .icon-btn::before,.lang::before{
@@ -887,6 +857,15 @@ html[dir="ltr"] .opening-progress span{transform-origin:left}
   /* the reveal keyframes are what actually show the logo —
      disabling animation must not leave it clipped, faded or scaled */
   .opening-logo{clip-path:none!important; opacity:1!important; transform:none!important}
+}
+
+/* Smooth theme performance tuning */
+html.theme-changing *{will-change:color,background-color,border-color;}
+@media(max-width:600px){
+  .icon-btn,.lang,.card,.messaging,.msg,.map{
+    backdrop-filter:blur(8px) saturate(120%);
+    -webkit-backdrop-filter:blur(8px) saturate(120%);
+  }
 }
 </style>
 
