@@ -101,7 +101,73 @@
   --glow-gold:0 0 0 1px rgba(232,207,148,.34), 0 20px 48px -14px rgba(232,207,148,.35);
 }
 
-/* Theme transitions optimized for mobile GPU compositing. */
+/* Registering the palette as animatable colours lets light/dark
+   cross-fade instead of snapping. Only the tokens that are actually
+   read by visible surfaces are registered — every extra registered
+   property costs a style recalc per frame during the switch. */
+@property --ink-1{syntax:'<color>';inherits:true;initial-value:#0f1a16}
+@property --ink-2{syntax:'<color>';inherits:true;initial-value:#2b3833}
+@property --ink-3{syntax:'<color>';inherits:true;initial-value:#4a5852}
+@property --ink-4{syntax:'<color>';inherits:true;initial-value:#7a8781}
+@property --line-1{syntax:'<color>';inherits:true;initial-value:rgba(15,26,22,.08)}
+@property --line-2{syntax:'<color>';inherits:true;initial-value:rgba(15,26,22,.13)}
+@property --surface-1{syntax:'<color>';inherits:true;initial-value:rgba(255,255,255,.88)}
+@property --surface-2{syntax:'<color>';inherits:true;initial-value:rgba(255,255,255,.68)}
+@property --surface-3{syntax:'<color>';inherits:true;initial-value:rgba(255,255,255,.45)}
+@property --gold{syntax:'<color>';inherits:true;initial-value:#a67c2e}
+@property --gold-2{syntax:'<color>';inherits:true;initial-value:#d4b46a}
+@property --gold-3{syntax:'<color>';inherits:true;initial-value:#7a5a1f}
+@property --gold-hi{syntax:'<color>';inherits:true;initial-value:#f3e2b4}
+@property --gold-soft{syntax:'<color>';inherits:true;initial-value:rgba(166,124,46,.14)}
+@property --gold-soft-2{syntax:'<color>';inherits:true;initial-value:rgba(166,124,46,.28)}
+@property --emerald{syntax:'<color>';inherits:true;initial-value:#14503d}
+@property --emerald-2{syntax:'<color>';inherits:true;initial-value:#2d7a5e}
+
+/* ============================================================
+   THEME SWITCH
+   The swap itself is instantaneous — one style recalc, one paint.
+   What the eye sees is a cross-fade between a snapshot of the old
+   page and the new one, animated purely on the compositor, so it
+   stays at refresh rate on a phone regardless of how heavy the
+   page is (blurs, shadows, the background photo, all of it).
+   ============================================================ */
+html.theme-swap *,
+html.theme-swap *::before,
+html.theme-swap *::after{
+  /* Individual element transitions would keep running *underneath*
+     the cross-fade and land a second, staggered colour change after
+     it finished — that is the "تیکه تیکه" part. */
+  transition:none !important;
+}
+
+::view-transition-group(root),
+::view-transition-old(root),
+::view-transition-new(root){
+  animation-duration:.5s;
+  animation-timing-function:cubic-bezier(.22,1,.36,1);
+}
+/* The old snapshot sits on top and dissolves away over an already
+   fully-opaque new page. Fading both at once would dip the whole
+   screen towards the backdrop at the 50% mark. */
+::view-transition-old(root){z-index:2; animation-name:fs-theme-out}
+::view-transition-new(root){z-index:1; animation-name:none; opacity:1}
+@keyframes fs-theme-out{from{opacity:1} to{opacity:0}}
+
+/* Fallback for engines without View Transitions (Firefox, Safari <18):
+   a short wash in the colour being switched to. Only opacity animates,
+   so it is compositor-only as well. */
+#themeFade{
+  position:fixed; inset:0; z-index:9999;
+  pointer-events:none; opacity:0;
+  will-change:opacity;
+  transition:opacity .2s linear;
+}
+
+@media(prefers-reduced-motion:reduce){
+  ::view-transition-old(root),
+  ::view-transition-new(root){animation:none !important}
+}
+
 *{box-sizing:border-box}
 html{
   scroll-behavior:smooth;
@@ -116,7 +182,12 @@ body{
   font-weight:500;
   overflow-x:hidden;
   position:relative;
-  transition:color .45s var(--ease);
+  /* No colour-token animation here any more. Animating the registered
+     custom properties meant every one of the ~600ms frames invalidated
+     style for the whole inherited subtree and re-resolved every var()
+     on the page — cheap on a laptop, a slideshow on a phone.
+     The palette now flips in one paint and the *pixels* are cross-faded
+     by the compositor (see THEME SWITCH below). */
 }
 
 /* ============================================================
@@ -131,8 +202,11 @@ body::before{
   background:
     linear-gradient(rgba(248,244,236,.10), rgba(248,244,236,.20)),
     url("carpett.jpg") center center / cover no-repeat;
+  /* filter is NOT transitioned: re-filtering a viewport-sized photo
+     every frame is the single heaviest thing a mid-range phone can be
+     asked to do during a theme switch. It flips instantly, hidden
+     underneath the cross-fade. */
   filter:saturate(1.28) contrast(1.05) brightness(1.12);
-  transition:filter var(--t-slow) var(--ease);
   contain:strict;
   transform:translateZ(0);
 }
@@ -858,15 +932,6 @@ html[dir="ltr"] .opening-progress span{transform-origin:left}
      disabling animation must not leave it clipped, faded or scaled */
   .opening-logo{clip-path:none!important; opacity:1!important; transform:none!important}
 }
-
-/* Smooth theme performance tuning */
-html.theme-changing *{will-change:color,background-color,border-color;}
-@media(max-width:600px){
-  .icon-btn,.lang,.card,.messaging,.msg,.map{
-    backdrop-filter:blur(8px) saturate(120%);
-    -webkit-backdrop-filter:blur(8px) saturate(120%);
-  }
-}
 </style>
 
 <!-- Without JS the opening scene would trap the page behind a
@@ -1178,12 +1243,70 @@ addEventListener('keydown', function(e){
 openingScene.addEventListener('click', dismissOpening);
 
 /* ============ THEME ============ */
-function applyTheme(isDark, announce){
+var noMotion = matchMedia('(prefers-reduced-motion: reduce)');
+
+/* The raw swap: synchronous, one paint, nothing animated. */
+function setTheme(isDark){
   root.classList.toggle('dark', isDark);
   themeMeta.setAttribute('content', isDark ? '#0a0d0c' : '#f8f4ec');
   root.style.colorScheme = isDark ? 'dark' : 'light';
   store.set('fs-theme', isDark ? 'dark' : 'light');
-  if(announce) toast(isDark ? I18N[currentLang].themeDark : I18N[currentLang].themeLight);
+}
+
+/* Fallback path: dip to the incoming background colour, swap behind
+   it, dip back out. Two opacity tweens, no layout, no repaint of the
+   page while the wash is visible. */
+function fadeSwap(isDark, done){
+  var veil = document.createElement('div');
+  veil.id = 'themeFade';
+  veil.style.background = isDark ? '#0a0d0c' : '#f8f4ec';
+  document.body.appendChild(veil);
+  veil.getBoundingClientRect();           /* flush, so opacity:0 is the start value */
+  veil.style.opacity = '1';
+
+  setTimeout(function(){
+    root.classList.add('theme-swap');
+    setTheme(isDark);
+    /* two frames: one for the class/paint to land, one to be sure the
+       new paint is on screen before the veil starts lifting */
+    requestAnimationFrame(function(){
+      requestAnimationFrame(function(){
+        veil.style.transition = 'opacity .3s linear';
+        veil.style.opacity = '0';
+        setTimeout(function(){
+          if(veil.parentNode) veil.parentNode.removeChild(veil);
+          root.classList.remove('theme-swap');
+          if(done) done();
+        }, 320);
+      });
+    });
+  }, 200);
+}
+
+function applyTheme(isDark, announce){
+  /* First paint / reduced motion: never animate. */
+  if(!announce || noMotion.matches){
+    setTheme(isDark);
+    if(announce) toast(isDark ? I18N[currentLang].themeDark : I18N[currentLang].themeLight);
+    return;
+  }
+
+  var say = function(){
+    toast(isDark ? I18N[currentLang].themeDark : I18N[currentLang].themeLight);
+  };
+
+  if(document.startViewTransition){
+    var clear = function(){ root.classList.remove('theme-swap'); };
+    root.classList.add('theme-swap');
+    var vt = document.startViewTransition(function(){ setTheme(isDark); });
+    /* The toast fires after the snapshot is taken, so it slides in over
+       the finished page instead of being baked into the cross-fade. */
+    vt.ready.then(say, say);
+    vt.finished.then(clear, clear);
+  } else {
+    fadeSwap(isDark, null);
+    say();
+  }
 }
 applyTheme(root.classList.contains('dark'), false);
 
